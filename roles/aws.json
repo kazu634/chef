@@ -1,0 +1,15 @@
+{
+  "name":"base",
+  "default_attributes":{},
+  "json_class":"Chef::Role",
+  "description":"",
+  "chef_type":"role",
+  "run_list":[
+    "recipe[base]",
+    "recipe[munin-node]",
+    "recipe[interfaces]",
+    "recipe[monit]",
+    "recipe[kazu634]",
+    "recipe[nagios::nrpe]",
+    "recipe[motd-tail]"
+    ]}

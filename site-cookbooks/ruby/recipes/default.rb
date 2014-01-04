@@ -1,0 +1,24 @@
+#
+# Cookbook Name:: ruby
+# Recipe:: default
+#
+# Copyright 2013, YOUR_COMPANY_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+
+include_recipe "apt"
+include_recipe "build-essential"
+include_recipe "base"
+
+gem_package "ruby-shadow" do
+  action :install
+end
+
+pre_requisites = %w{libreadline-dev libssl-dev zlib1g-dev libssl1.0.0 libxml2-dev libxslt-dev}
+
+pre_requisites.each do |p|
+  package p do
+    action :install
+  end
+end

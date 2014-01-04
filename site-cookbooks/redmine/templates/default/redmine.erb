@@ -1,0 +1,24 @@
+upstream redmine {
+  server unix:/home/redmine/redmine/tmp/unicorn.sock;
+}
+
+server {
+  listen  80;
+  server_name  <%= node[:redmine][:hostname] %>.<%= node[:redmine][:domain] %>;
+
+  root /home/redmine/redmine/public;
+
+  access_log  /var/log/nginx/<%= node[:redmine][:hostname] %>.<%= node[:redmine][:domain] %>.access.log ltsv;
+  error_log   /var/log/nginx/<%= node[:redmine][:hostname] %>.<%= node[:redmine][:domain] %>.error.log;
+
+  location / {
+    if (-f $request_filename) { break; }
+
+    proxy_set_header X-Real-IP  $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+
+    proxy_pass http://redmine;
+  }
+}

@@ -1,0 +1,30 @@
+server {
+  listen 80;
+  server_name <%= node[:tech][:hostname] %>.<%= node[:tech][:domain] %>;
+
+  access_log  /var/log/nginx/tech.access.log ltsv;
+  error_log   /var/log/nginx/tech.error.log;
+
+  root /var/www/nginx-default/domain/tech/;
+  index index.html index.htm;
+
+  location / {
+    try_files $uri $uri/ /  index.html;
+  }
+
+  location = /index.html {
+    expires 5m;
+  }
+
+  location ~* /.*\.(js|css)$ {
+    expires 3d;
+  }
+
+  location ~* /.*\.html$ {
+    expires 24h;
+  }
+
+  location /images {
+    expires max;
+  }
+}

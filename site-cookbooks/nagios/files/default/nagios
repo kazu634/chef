@@ -1,0 +1,2 @@
+nagios ALL=(root) NOPASSWD:/opt/nagios/libexec/check_apt
+nagios ALL=(root) NOPASSWD:/opt/nagios/libexec/check_log

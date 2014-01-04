@@ -1,0 +1,11 @@
+{
+  "sensu-custom":{
+      "server": true
+  },
+  "run_list": [
+    <% recipes.each do |recipe| %>
+    "recipe[<%= recipe %>]",
+    <% end %>
+    "role[base]"
+  ]
+}

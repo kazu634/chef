@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+#
+# See: http://talkfast.org/2010/05/31/twitter-from-the-command-line-in-python-using-oauth
+
+import sys
+import tweepy
+import string
+import syslog
+
+CONSUMER_KEY = '9GLNmtPnpMpd9adXLgn2Q'
+CONSUMER_SECRET = 'D0iYN267KvXtqe4hejmQIO25L3V6DVeOoOxMUsEnuPw'
+ACCESS_KEY = '141552639-vrwUUFCMOrf6I9EvOTydkxvbPQaBfqzQCojkesI4'
+ACCESS_SECRET = 'Dra0ZFT1jmBqAIQbbS2A4U2RhkHVxIFvXZiFVFJc6A'
+
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+api = tweepy.API(auth)
+
+# Process the commandline argument, replace words etc. to shorten the message
+s = sys.argv[1]
+s = string.replace(s, "WARNING", "WARN")
+s = string.replace(s, "PROBLEM", "PROB")
+s = string.replace(s, "CRITICAL", "CRIT")
+
+# logging
+syslog.syslog(s[0:140])
+
+# Send the message, 140 characters max.
+
+try:
+  api.update_status(s[0:140], headers={'content-length': 0})
+
+except tweepy.TweepError, e:
+
+  syslog.syslog(syslog.LOG_ERR, e.reason)

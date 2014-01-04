@@ -1,0 +1,15 @@
+log_level                :info
+log_location             STDOUT
+node_name                'kazu634'
+client_key               '/home/kazu634/.chef/kazu634.pem'
+validation_client_name   'chef-validator'
+validation_key           '/etc/chef-server/chef-validator.pem'
+chef_server_url          'https://localhost:443'
+syntax_check_cache_path  '/home/kazu634/.chef/syntax_check_cache'
+
+knife[:aws_access_key_id]       = "#{ENV['AWS_ACCESS_KEY']}"
+knife[:aws_secret_access_key]   = "#{ENV['AWS_SECRET_KEY']}"
+knife[:region]                  = "#{ENV['EC2_REGION']}"
+knife[:availability_zone]       = "#{ENV['EC2_AVAILABILITY_ZONE']}"
+knife[:ssh_user]                = "ubuntu"
+knife[:groups]                  = "default"

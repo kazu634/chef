@@ -1,0 +1,91 @@
+#!/bin/bash
+
+########################################
+# Name: Kazuhiro MUSASHI
+#
+# about:
+#
+# Usage:
+#
+# Author:
+# Date:
+########################################
+
+set -e
+
+# Constants
+WHOIS='/usr/bin/whois'
+
+# Thresholds
+WARNINGS=60
+CRITICAL=30
+
+# Return Codes
+OK=0
+WARN=1
+CRIT=2
+UNKNOWN=3
+
+# Check the number of the arguments
+if [ $# -ne 1 ]; then
+  exit ${UNKNOWN}
+fi
+
+DOMAIN=$1
+
+# Check the specified domain name
+if [ ! ${DOMAIN##*.} == "com" ]; then
+
+  echo "Specify the .com domain name."
+  exit ${UNKNOWN}
+
+fi
+
+# Check whether the whois command exists or not
+if [ ! -x ${WHOIS} ]; then
+
+  echo "${WHOIS} command does not exist."
+  exit ${UNKNOWN}
+
+fi
+
+# Execute the whois command
+EXPIRE=`${WHOIS} ${DOMAIN} | grep Expiration | tail -n 1 | cut -f 3 -d " "`
+
+# check the return value
+if [ -z ${EXPIRE} ]; then
+
+  echo "The response of the whois command is invalid."
+  exit ${UNKNOWN}
+
+fi
+
+# Convert the expiration date into seconds
+EXPIRE_SECS=`date +%s --date=${EXPIRE}`
+
+# Acquire the now seconds
+CURRENTDATE_SEC=`date +%s`
+
+# Calculate the remaining days
+((DIFF_SEC=EXPIRE_SECS-CURRENTDATE_SEC))
+
+REMAIN_DAYS=$((DIFF_SEC/86400))
+
+# Happy case
+if [ ${REMAIN_DAYS} -ge ${WARNINGS} ]; then
+  echo "The domain will be expired in ${REMAIN_DAYS} days."
+  exit ${OK}
+
+# Warning case
+elif [ ${REMAIN_DAYS} -ge ${CRITICAL} ]; then
+  echo "The domain will be expired in ${REMAIN_DAYS} days."
+  exit ${WARN}
+
+# Critical case
+elif [ ${REMAIN_DAYS} -lt ${CRITICAL} ]; then
+  echo "The domain will be expired in ${REMAIN_DAYS} days."
+  exit ${CRIT}
+fi
+
+echo "The script should not end at this point."
+exit ${UNKNOWN}

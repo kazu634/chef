@@ -1,0 +1,8 @@
+# ktai entry
+
+MAILTO=""
+
+PLUGIN_DIR="/var/www/nginx-default/domain/wordpress/wp-content/plugins/ktai-entry/"
+RETRIEVE_PHP="/var/www/nginx-default/domain/wordpress/wp-content/plugins/ktai-entry/inc/retrieve.php"
+
+*/10 * * * *    root test -e ${PLUGIN_DIR} && /usr/bin/php ${RETRIEVE_PHP}

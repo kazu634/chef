@@ -1,0 +1,21 @@
+Host *
+  StrictHostKeyChecking no
+
+Host bitbucket.org
+    HostName bitbucket.org
+    IdentityFile ~/.ssh/id_rsa.bitbucket
+    Port 22
+    User git
+
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa.github
+    Port 22
+    User git
+
+Host www3232u.sakura.ne.jp
+    HostName www3232u.sakura.ne.jp
+    IdentityFile ~/.ssh/id_rsa.chef
+    Port 10022
+    User tech
+
