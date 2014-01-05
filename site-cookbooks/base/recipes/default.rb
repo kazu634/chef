@@ -89,6 +89,16 @@ package "git-core" do
   options "--force-yes"
 end
 
+remote_file "/usr/share/git-core/templates/hooks/pre-push" do
+  source "https://gist.github.com/kazu634/8267388/raw/e9202cd4c29a66723c88d2be05f3cd19413d2137/pre-push"
+
+  owner "root"
+  group "root"
+  mode 0755
+
+  not_if "test -e /usr/share/git-core/templates/hooks/pre-push"
+end
+
 cookbook_file "/usr/share/git-core/templates/hooks/pre-commit" do
   action   :create
 
