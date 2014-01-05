@@ -31,6 +31,14 @@ remote_file "/etc/sensu/plugins/check-load.rb" do
   mode   0755
 end
 
+remote_file "/etc/sensu/plugins/check-swap.sh" do
+  source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-swap.sh"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end
+
 cookbook_file "/etc/sensu/handlers/tw.rb" do
   source "tw.rb"
 
