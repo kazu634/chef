@@ -27,3 +27,10 @@ sensu_check "swap" do
   subscribers ["all"]
   interval 3600
 end
+
+sensu_check "disk_usage" do
+  command "/usr/bin/sudo /etc/sensu/plugins/check-disk.rb"
+  handlers ["default"]
+  subscribers ["all"]
+  interval 3600
+end
