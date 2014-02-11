@@ -9,7 +9,6 @@
 
 git "/home/kazu634/repo/chef" do
   repo "git://github.com/kazu634/chef.git"
-  revision "dev"
 
   user "kazu634"
   group "kazu634"
