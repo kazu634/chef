@@ -11,6 +11,8 @@ include_recipe "apt"
 include_recipe "build-essential"
 include_recipe "iptables"
 
+include_recipe "base::cron-apt"
+
 # only install amd64 package
 cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
   source   "multiarch"
