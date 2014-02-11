@@ -121,14 +121,6 @@ cookbook_file "/usr/share/git-core/templates/hooks/prepare-commit-msg" do
   source   "prepare-commit-msg"
 end
 
-cookbook_file "/usr/local/bin/git-ticket" do
-  action   :create
-
-  owner    "root"
-  group    "root"
-  mode     0755
-end
-
 package "vim-nox" do
   action :install
 end
