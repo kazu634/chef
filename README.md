@@ -29,19 +29,14 @@ Execute the following commands. See also: https://github.com/sstephenson/rbenv/
 
     rbenv rehash
 
-## How to install chef
+## How to install chef, its libraries, and official cookbooks
 Execute the following commands:
 
     gem install bundler --no-ri --no-rdoc
 
     rbenv rehash
 
-    bundle --path vendor/bundle
-
-## How to Download & Install 3rd Party Cookbooks
-Execute the following commands:
-
-    bundle exec berks --path cookbooks
+    bundle exec rake init
 
 That's it. Easy enough?
 
