@@ -6,8 +6,10 @@ task :init do
 
   sh "test -e cookbooks || bundle exec berks --path cookbooks"
 
-  sh "sed -i'.bak' '20,22d' cookbooks/openvpn/recipes/users.rb"
-  sh "sed -i'.bak' '55d' cookbooks/openvpn/recipes/users.rb"
+  if not FileTest.exist?("cookbooks/openvpn/recipes/users.rb.bak")
+    sh "sed -i'.bak' '20,22d' cookbooks/openvpn/recipes/users.rb"
+    sh "sed -i'.bak' '55d' cookbooks/openvpn/recipes/users.rb"
+  end
 
   sh "mkdir -p site-cookbooks/openvpn-wrapper/libraries/"
   sh "cp -pr cookbooks/chef-solo-search/libraries/* site-cookbooks/openvpn-wrapper/libraries/"
