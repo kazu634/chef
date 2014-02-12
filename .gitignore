@@ -9,3 +9,4 @@ site-cookbooks/openvpn-wrapper/libraries/
 test/spec/reports
 test/Rakefile
 *.swp
+.bundle
