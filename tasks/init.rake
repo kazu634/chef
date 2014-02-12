@@ -6,6 +6,9 @@ task :init do
 
   sh "test -e cookbooks || bundle exec berks --path cookbooks"
 
+  sh "sed -i '20,22d' cookbooks/openvpn/recipes/users.rb"
+  sh "sed -i '55d' cookbooks/openvpn/recipes/users.rb"
+
   sh "mkdir -p site-cookbooks/openvpn-wrapper/libraries/"
   sh "cp -pr cookbooks/chef-solo-search/libraries/* site-cookbooks/openvpn-wrapper/libraries/"
 end
