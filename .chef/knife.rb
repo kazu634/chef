@@ -11,3 +11,4 @@ knife[:ssh_user]                = "ubuntu"
 knife[:groups]                  = "default"
 
 knife[:berkshelf_path] = "cookbooks"
+knife[:berkshelf]      = false
