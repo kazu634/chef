@@ -32,4 +32,5 @@ Host esxi
     HostName       192.168.3.4
     Port           22
     User           root
+    IdentityFile   ~/.ssh/id_rsa.chef
     ProxyCommand   ssh home.kazu634.com nc -w 600 %h %p
