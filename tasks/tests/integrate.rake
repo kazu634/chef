@@ -10,7 +10,7 @@ task :test do
   recipes = []
   recipes = traverse_cookbooks()
 
-  File.open("nodes/localhost.json",  "w") do |io|
+  File.open("nodes/sandbox.json",  "w") do |io|
     io.write @erb.result(binding)
   end
 
