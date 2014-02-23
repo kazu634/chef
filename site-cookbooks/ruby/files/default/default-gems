@@ -1,0 +1,4 @@
+bundler
+rake
+json
+knife-ec2

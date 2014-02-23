@@ -51,8 +51,6 @@ ruby_setup "redmine" do
   action :install
 
   version '1.9.3-p392'
-
-  gems ['bundler', 'mysql2', 'unicorn']
 end
 
 service "mysql" do
