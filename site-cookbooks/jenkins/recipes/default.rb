@@ -11,8 +11,15 @@ include_recipe "apt"
 include_recipe "nginx"
 include_recipe "base"
 
-package "python-demjson" do
-  action :install
+pre_requisites = %w{python-demjson ca-certificates-java default-jre-headless
+                    icedtea-6-jre-cacao icedtea-6-jre-jamvm java-common libavahi-client3
+                    libavahi-common-data libavahi-common3 libcups2 libnspr4 libnss3 libnss3-1d
+                    libpcsclite1 openjdk-6-jre-headless openjdk-6-jre-lib tzdata-java}
+
+pre_requisites.each do |p|
+  package p do
+    action :install
+  end
 end
 
 apt_repository "jenkins" do
@@ -25,8 +32,22 @@ apt_repository "jenkins" do
   not_if "test -e /usr/share/jenkins/jenkins.war"
 end
 
-package "jenkins" do
-  action :install
+remote_file "#{Chef::Config[:file_cache_path]}/jenkins.deb" do
+  source `apt-get --allow-unauthenticated -y install --print-uris jenkins | cut -d\\' -f2 | grep http:// | grep jenkins | head -1`.chomp
+
+  mode 0666
+
+  not_if "test -e /usr/share/jenkins/jenkins.war"
+end
+
+script "Install jenkins" do
+  interpreter "bash"
+
+  cwd Chef::Config['file_cache_path']
+
+  code <<-EOF
+  dpkg -i jenkins.deb
+  EOF
 
   not_if "test -e /usr/share/jenkins/jenkins.war"
 end
