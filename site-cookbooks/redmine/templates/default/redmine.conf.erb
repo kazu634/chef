@@ -1,6 +1,0 @@
-check process unicorn
-  with pidfile /home/redmine/redmine/tmp/unicorn.pid
-  start program = "/etc/init.d/redmine start" with timeout 120 seconds
-  stop program = "/etc/init.d/redmine stop"
-  if totalmem > 20% for 1 cycles then restart
-  depends nginx
