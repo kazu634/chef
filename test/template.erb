@@ -4,7 +4,7 @@ require 'ci/reporter/rake/rspec'
 
 hosts = [
   {
-    :name  => 'localhost',
+    :name  => 'sandbox-test',
     :roles => %w(
       <% tests.each do |recipe| %>
         <%= recipe %>
