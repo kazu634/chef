@@ -49,11 +49,12 @@ action :install do
     end
 
     cookbook_file "#{home}/.rbenv/default-gems" do
-      source "default-gems"
+      source     "default-gems"
+      cookbook   "ruby"
 
-      owner  user
-      group  group
-      mode   0644
+      owner      user
+      group      group
+      mode       0644
     end
 
     script "install ruby" do
