@@ -14,8 +14,6 @@ ruby_setup "jenkins" do
 
   user "jenkins"
   group "nogroup"
-
-  gems ['bundler', 'rake']
 end
 
 jenkins_home_dir = `grep "^jenkins" /etc/passwd | cut -f 6 -d ":"`.chomp!

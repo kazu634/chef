@@ -37,6 +37,25 @@ action :install do
       group         group
     end
 
+    git "#{home}/.rbenv/plugins/rbenv-default-gems" do
+      action        :sync
+
+      repo          "git://github.com/sstephenson/rbenv-default-gems.git"
+      destination   "#{home}/.rbenv/plugins/rbenv-default-gems"
+      revision      "master"
+
+      user          user
+      group         group
+    end
+
+    cookbook_file "#{home}/.rbenv/default-gems" do
+      source "default-gems"
+
+      owner  user
+      group  group
+      mode   0644
+    end
+
     script "install ruby" do
       interpreter "bash"
 
@@ -64,34 +83,6 @@ action :install do
     end
 
   end
-
-  # Already installed Ruby,
-  # so the gem command should be available at this point.
-  unless @new_resource.gems - @current_resource.gems  ==  []
-
-    gems = @new_resource.gems - @current_resource.gems
-
-    gems.each do |g|
-
-      gem_package g do
-        gem_binary "#{home}/.rbenv/shims/gem"
-      end
-
-    end
-
-    script "rbenv rehash" do
-      interpreter "bash"
-
-      user "root"
-      group "root"
-
-      code <<-EOH
-      su - #{user} -c "#{home}/.rbenv/bin/rbenv rehash"
-      EOH
-    end
-
-  end
-
 
   unless @current_resource.versions.include?(ver) and @new_resource.gems - @current_resource.gems  ==  []
 

@@ -11,8 +11,6 @@ include_recipe "ruby"
 
 ruby_setup "kazu634" do
   action :install
-
-  gems ['bundler', 'rake', 'json', 'knife-ec2']
 end
 
 directory "/home/kazu634/bin" do
