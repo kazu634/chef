@@ -59,5 +59,4 @@ service "nginx" do
   action :nothing
 end
 
-include_recipe "jenkins::docker"
 include_recipe "jenkins::env"
