@@ -44,5 +44,26 @@ That's it. Easy enough?
 You know the secret key is on /home/kazu634.
 Just copy the key to /path/to/chef.
 
+## How to manipulate an encrypted data bag
+This section illustrate how to manipulate an encrypted data bag
+
+### How to make an encrypted data bag
+
+    export EDITOR="vim -u NONE -U NONE --noplugin"
+
+    bundle exec knife solo data bag create apps app_1
+
+### How to show an encrypted data bag
+
+    export EDITOR="vim -u NONE -U NONE --noplugin"
+
+    bundle exec knife solo data bag show apps app_1
+
+### How to edit an encrypted data bag
+
+    export EDITOR="vim -u NONE -U NONE --noplugin"
+
+    bundle exec knife solo data bag edit apps app_1
+
 # Build Status
 [![Build Status](https://api.travis-ci.org/kazu634/chef.png)](https://api.travis-ci.org/kazu634/chef.png)
