@@ -62,8 +62,7 @@ jsonファイルの書き方を紹介します。
 {
   "run_list": [
     "role[aws]",
-    "recipe[jenkins]",
-    "recipe[openvpn-wrapper]"
+    "recipe[jenkins]"
   ]
 }
 ```
