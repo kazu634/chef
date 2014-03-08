@@ -15,7 +15,7 @@ sensu_check "monit_log" do
 end
 
 sensu_check "load_average" do
-  command "/usr/bin/sudo /etc/sensu/plugins/check-load.rb -w 2,4,6 -c 3,6,9 -p"
+  command "/usr/bin/sudo /etc/sensu/plugins/check-load.rb -w 1,2,3 -c 2,4,6 -p"
   handlers ["default"]
   subscribers ["all"]
   interval 300
