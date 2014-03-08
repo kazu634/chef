@@ -5,7 +5,6 @@ Berksfile.lock
 .kitchen
 vendor
 .chef_databag_secret
-site-cookbooks/openvpn-wrapper/libraries/
 test/spec/reports
 test/Rakefile
 *.swp
