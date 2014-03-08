@@ -1,1 +1,1 @@
-default['nginx']['num_of_procs']=1
+default['nginx']['num_of_procs']=`cat /proc/cpuinfo | grep processor | wc -l`.chomp
