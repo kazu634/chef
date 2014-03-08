@@ -19,6 +19,12 @@ Host www3232u.sakura.ne.jp
     Port 10022
     User tech
 
+Host home.kazu634.com
+    HostName     home.kazu634.com
+    Port         10022
+    User         vyatta
+    IdentityFile ~/.ssh/id_rsa.chef
+
 Host esxi
     HostName     192.168.3.4
     Port         22
