@@ -13,5 +13,6 @@ include_recipe "build-essential"
   gem_package p do
     action     :install
     retries    3
+    gem_binary("/opt/sensu/embedded/bin/gem")
   end
 end
