@@ -14,3 +14,11 @@
     gem_binary("/opt/sensu/embedded/bin/gem")
   end
 end
+
+remote_file "/opt/sensu/embedded/ssl/cert.pem" do
+  source   "http://curl.haxx.se/ca/cacert.pem"
+
+  owner    "root"
+  group    "root"
+  mode     0644
+end
