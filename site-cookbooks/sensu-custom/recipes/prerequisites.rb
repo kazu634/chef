@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-%w{ sensu-plugin twitter }.each do |p|
+%w{ sensu-plugin twitter net-ping }.each do |p|
   gem_package p do
     action     :install
     retries    3
