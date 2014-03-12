@@ -7,11 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "build-essential"
-
 %w{ sensu-plugin twitter }.each do |p|
   gem_package p do
     action     :install
     retries    3
+    gem_binary("/opt/sensu/embedded/bin/gem")
   end
 end

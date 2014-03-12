@@ -1,1 +1,3 @@
-sensu          ALL=(ALL) NOPASSWD: /etc/sensu/plugins/
+Defaults exempt_group += sensu
+
+sensu ALL=(ALL) NOPASSWD: /etc/sensu/plugins/

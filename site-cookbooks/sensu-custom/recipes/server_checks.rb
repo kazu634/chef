@@ -15,21 +15,21 @@ sensu_check "monit_log" do
 end
 
 sensu_check "load_average" do
-  command "/usr/bin/sudo /etc/sensu/plugins/check-load.rb -w 1,2,3 -c 2,4,6 -p"
+  command "/etc/sensu/plugins/check-load.rb -w 1,2,3 -c 2,4,6 -p"
   handlers ["default"]
   subscribers ["all"]
   interval 300
 end
 
 sensu_check "swap" do
-  command "/usr/bin/sudo /etc/sensu/plugins/check-swap.sh -w 30 -c 60"
+  command "/etc/sensu/plugins/check-swap.sh -w 30 -c 60"
   handlers ["default"]
   subscribers ["all"]
   interval 3600
 end
 
 sensu_check "disk_usage" do
-  command "/usr/bin/sudo /etc/sensu/plugins/check-disk.rb"
+  command "/etc/sensu/plugins/check-disk.rb"
   handlers ["default"]
   subscribers ["all"]
   interval 3600
