@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "build-essential"
-
 %w{ sensu-plugin twitter }.each do |p|
   gem_package p do
     action     :install
