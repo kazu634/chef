@@ -36,9 +36,9 @@ class TwitterHandler < Sensu::Handler
         end
 
         if @event['action'].eql?("resolve")
-          client.update("@kazu634 RESOLVED - #{event_name}: #{@event['check']['output'].chomp} Time: #{Time.now()} ")
+          client.update("@kazu634 RESOLVED - #{event_name}: #{@event['check']['output'].chomp} Time: #{Time.now()} "[0...139])
         else
-          client.update("@kazu634 ALERT - #{event_name}: #{@event['check']['output'].chomp} Time: #{Time.now()} ")
+          client.update("@kazu634 ALERT - #{event_name}: #{@event['check']['output'].chomp} Time: #{Time.now()} "[0...139])
         end
       end
     end
