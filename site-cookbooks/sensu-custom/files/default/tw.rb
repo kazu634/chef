@@ -29,10 +29,10 @@ class TwitterHandler < Sensu::Handler
     settings['twitter'].each do |account|
       if @event['client']['subscriptions'].include?(account[1]["sensusub"])
         client = Twitter::REST::Client.new do |config|
-          config.consumer_key = account[1]["consumer_key"]
-          config.consumer_secret = account[1]["consumer_secret"]
-          config.oauth_token = account[1]["oauth_token"]
-          config.oauth_token_secret = account[1]["oauth_token_secret"]
+          config.consumer_key        = account[1]["consumer_key"]
+          config.consumer_secret     = account[1]["consumer_secret"]
+          config.access_token        = account[1]["oauth_token"]
+          config.access_token_secret = account[1]["oauth_token_secret"]
         end
 
         if @event['action'].eql?("resolve")
