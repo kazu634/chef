@@ -47,14 +47,6 @@ remote_file "/etc/sensu/plugins/check-disk.rb" do
   mode   0755
 end
 
-remote_file "/etc/sensu/plugins/check-ping.rb" do
-  source   "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/ping/check-ping.rb"
-
-  user     "sensu"
-  group    "sensu"
-  mode     0755
-end
-
 cookbook_file "/etc/sensu/handlers/tw.rb" do
   source "tw.rb"
 
