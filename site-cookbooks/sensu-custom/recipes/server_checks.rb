@@ -34,3 +34,21 @@ sensu_check "disk_usage" do
   subscribers ["all"]
   interval 3600
 end
+
+%w{ blog tech jenkins }.each do |host|
+  sensu_check "#{host}.kazu634.com" do
+    command "/etc/sensu/plugins/check-ping.rb -h #{host}.kazu634.com -t HTTP"
+    handlers ["default"]
+    interval 60
+    standalone true
+  end
+end
+
+%w{ home router }.each do |host|
+  sensu_check "#{host}.kazu634.com" do
+    command "/usr/bin/sudo /etc/sensu/plugins/check-ping.rb -h #{host}.kazu634.com -t ICMP"
+    handlers ["default"]
+    interval 60
+    standalone true
+  end
+end
