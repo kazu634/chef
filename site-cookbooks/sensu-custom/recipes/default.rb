@@ -12,6 +12,7 @@ include_recipe "build-essential"
 include_recipe "sensu::default"
 
 include_recipe "sensu-custom::prerequisites"
+include_recipe "sensu-custom::nagios-plugins"
 
 include_recipe "sensu-custom::client_settings"
 include_recipe "sensu-custom::deploy_scripts"
