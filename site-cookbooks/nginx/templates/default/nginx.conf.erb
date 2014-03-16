@@ -1,5 +1,9 @@
 user www-data;
-worker_processes <%= node[:nginx][:num_of_procs] %>;
+
+# Newer version of Nginx calculates the worker_processes,
+# based on the CPU cores. Use this feature:
+worker_processes auto;
+
 pid /run/nginx.pid;
 
 events {
