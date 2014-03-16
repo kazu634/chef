@@ -14,4 +14,16 @@ include_recipe "sensu-custom::server_handlers"
 include_recipe "iptables"
 iptables_rule  "rabbitmq"
 
+%w{redis.conf rabbimq.conf}.each do |conf|
+  cookbook_file "/etc/monit/conf.d/#{conf}" do
+    source "redis.conf"
+
+    owner "root"
+    group "root"
+    mode 0644
+
+    notifies :restart, "service[monit]"
+  end
+end
+
 include_recipe "sensu-custom::server_varnish"
