@@ -41,7 +41,12 @@ http {
 
     server_names_hash_bucket_size  128;
 
-    open_file_cache max=1000 inactive=300s;
+    # cache informations about FDs, frequently accessed files
+    # can boost performance:
+    open_file_cache max=200000 inactive=20s;
+    open_file_cache_valid 30s;
+    open_file_cache_min_uses 2;
+    open_file_cache_errors on;
 
     ##
     # Logging Settings
