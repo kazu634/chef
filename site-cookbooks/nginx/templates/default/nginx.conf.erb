@@ -48,6 +48,10 @@ http {
     open_file_cache_min_uses 2;
     open_file_cache_errors on;
 
+    # allow the server to close connection on non responding client,
+    # this will free up memory
+    reset_timedout_connection on;
+
     ##
     # Logging Settings
     ##
