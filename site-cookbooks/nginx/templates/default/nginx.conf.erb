@@ -52,6 +52,9 @@ http {
     # this will free up memory
     reset_timedout_connection on;
 
+    # request timed out -- default 60
+    client_body_timeout 10s;
+
     ##
     # Logging Settings
     ##
