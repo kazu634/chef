@@ -16,6 +16,9 @@ events {
     # max clients = worker_connections * worker_processes
     # max clients is also limited by the number of socket connections available on the system (~64k)
     worker_connections 4096;
+
+    # accept as many connections as possible
+    multi_accept on;
 }
 
 http {
