@@ -6,6 +6,11 @@ worker_processes auto;
 
 pid /run/nginx.pid;
 
+# number of file descriptors used for nginx
+# the limit for the maximum file descriptors on the server is usually set by the OS.
+# if you don't set FD's then OS settings will be used.
+worker_rlimit_nofile 100000;
+
 events {
     worker_connections 512;
     # multi_accept on;
