@@ -19,6 +19,9 @@ events {
 
     # accept as many connections as possible
     multi_accept on;
+
+    # optmized to serve many clients with each thread, essential for linux
+    use epoll;
 }
 
 http {
