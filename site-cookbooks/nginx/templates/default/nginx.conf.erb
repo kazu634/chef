@@ -12,8 +12,10 @@ pid /run/nginx.pid;
 worker_rlimit_nofile 100000;
 
 events {
-    worker_connections 512;
-    # multi_accept on;
+    # determines how much clients will be served per worker
+    # max clients = worker_connections * worker_processes
+    # max clients is also limited by the number of socket connections available on the system (~64k)
+    worker_connections 4096;
 }
 
 http {
