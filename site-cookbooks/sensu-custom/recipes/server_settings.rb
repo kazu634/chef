@@ -14,9 +14,9 @@ include_recipe "sensu-custom::server_handlers"
 include_recipe "iptables"
 iptables_rule  "rabbitmq"
 
-%w{redis.conf rabbitmq.conf}.each do |conf|
+%w{redis.conf rabbitmq.conf sensu-server.conf sensu-api.conf sensu-dashboard.conf}.each do |conf|
   cookbook_file "/etc/monit/conf.d/#{conf}" do
-    source "#{conf}"
+    source conf
 
     owner "root"
     group "root"
