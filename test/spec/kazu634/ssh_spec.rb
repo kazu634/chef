@@ -31,5 +31,5 @@ end
 describe file('/home/kazu634/.ssh/config') do
   it { should be_file }
   it { should be_mode 664 }
-  it { should match_md5checksum '909715fcdbea44560c38f6d08b74038b' }
+  it { should match_md5checksum '4fe67db8d596501f778e82eba5861f22' }
 end
