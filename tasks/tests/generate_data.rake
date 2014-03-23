@@ -1,7 +1,7 @@
 #!/usr/bin/env rake
 
 desc "Generate the test node json data."
-task :test do
+task :gen_data do
   require "erb"
   node_template = "nodes/template.json.erb"
 
