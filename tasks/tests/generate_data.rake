@@ -33,8 +33,9 @@ def traverse_cookbooks()
   cookbooks = []
 
   master = `git ls-remote origin master | awk '{ print $1 }'`.chomp!
+  current_branch = `git rev-parse --abbrev-ref HEAD`.chomp!
 
-  cookbooks =  `git diff --name-only master | grep site-cookbooks | cut -f 2 -d "/" | uniq`.split("\n")
+  cookbooks =  `git diff --name-only #{master} #{current_branch} | grep site-cookbooks | cut -f 2 -d "/" | uniq`.split("\n")
 
   # Minus `base` role recipies:
   cookbooks = cookbooks - `grep recipe roles/base.json | awk -F '[\\\\[\\\\]]' '{ print $2 }'`.split("\n")
@@ -46,8 +47,9 @@ def traverse_tests()
   tests = []
 
   master = `git ls-remote origin master | awk '{ print $1 }'`.chomp!
+  current_branch = `git rev-parse --abbrev-ref HEAD`.chomp!
 
-  tests =  `git diff --name-only master | grep spec | cut -f 2 -d "/" | uniq`.split("\n")
+  tests =  `git diff --name-only #{master} #{current_branch} | grep spec | cut -f 2 -d "/" | uniq`.split("\n")
 
   # product set between tests and `base` role recipies:
   tests = tests | ["base", "kazu634", "monit", "munin-node", "nagios-nrpe"]
