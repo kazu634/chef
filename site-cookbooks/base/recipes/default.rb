@@ -15,6 +15,7 @@ include_recipe "base::ssh"
 include_recipe "base::fortune"
 include_recipe "base::packages"
 include_recipe "base::timezone"
+include_recipe "base::ntpdate"
 
 # only install amd64 package
 cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
@@ -44,20 +45,3 @@ directory "/etc/sudoers.d" do
 
   not_if   "test -e /etc/sudoers.d"
 end
-
-# ntpdate settings
-
-cookbook_file "/etc/default/ntpdate" do
-  source   "ntpdate"
-  owner    "root"
-  group    "root"
-  mode     0644
-end
-
-cookbook_file "/etc/cron.hourly/ntpdate" do
-  source   "ntpdate-cron"
-  owner    "root"
-  group    "root"
-  mode     0755
-end
-
