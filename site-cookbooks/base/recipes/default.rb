@@ -12,6 +12,7 @@ include_recipe "build-essential"
 
 include_recipe "base::cron-apt"
 include_recipe "base::ssh"
+include_recipe "base::fortune"
 
 # only install amd64 package
 cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
@@ -19,40 +20,6 @@ cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
   owner    "root"
   group    "root"
   mode     0644
-end
-
-# fortune
-package "fortune" do
-  action :install
-end
-
-remote_file "#{Chef::Config[:file_cache_path]}/starwars.tgz" do
-  source "http://www.splitbrain.org/_media/projects/fortunes/fortune-starwars.tgz"
-
-  owner "root"
-  group "root"
-  mode 0644
-
-  not_if "test -e /usr/share/games/fortunes/starwars.dat"
-end
-
-script "Install starwars fortune data" do
-  interpreter "bash"
-
-  user "root"
-  group "root"
-
-  cwd "#{Chef::Config[:file_cache_path]}/"
-
-  code <<-EOH
-    tar xf starwars.tgz
-
-    cd fortune-starwars/
-    cp starwars.dat /usr/share/games/fortunes/
-    cp starwars /usr/share/games/fortunes/
-  EOH
-
-  not_if "test -e /usr/share/games/fortunes/starwars.dat"
 end
 
 package "zsh" do
