@@ -14,6 +14,7 @@ include_recipe "base::cron-apt"
 include_recipe "base::ssh"
 include_recipe "base::fortune"
 include_recipe "base::packages"
+include_recipe "base::timezone"
 
 # only install amd64 package
 cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
@@ -34,29 +35,6 @@ script "Language Settings" do
   dpkg-reconfigure locales
   update-locale LANG=ja_JP.UTF-8
   EOH
-end
-
-# timezone setting
-
-cookbook_file "/etc/timezone" do
-  source "timezone"
-
-  owner "root"
-  group "root"
-  mode  0644
-end
-
-script "Timezone Settings" do
-  interpreter "bash"
-
-  user "root"
-  group "root"
-
-  code <<-EOH
-  cp  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-  EOH
-
-  not_if "diff /usr/share/zoneinfo/Asia/Tokyo /etc/localtime"
 end
 
 directory "/etc/sudoers.d" do
