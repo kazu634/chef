@@ -15,3 +15,8 @@ end
 describe package('screen') do
   it { should be_installed }
 end
+
+describe package('git-core') do
+  it { should be_installed }
+end
+
