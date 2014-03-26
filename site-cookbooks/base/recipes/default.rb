@@ -9,9 +9,9 @@
 
 include_recipe "apt"
 include_recipe "build-essential"
-include_recipe "iptables"
 
 include_recipe "base::cron-apt"
+include_recipe "base::ssh"
 
 # only install amd64 package
 cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
@@ -19,22 +19,6 @@ cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
   owner    "root"
   group    "root"
   mode     0644
-end
-
-iptables_rule "base_10022"
-
-template "/etc/ssh/sshd_config" do
-  source   "sshd_config.erb"
-
-  owner    "root"
-  group    "root"
-  mode     0644
-
-  notifies :restart, "service[ssh]"
-end
-
-service "ssh" do
-    action :nothing
 end
 
 # fortune
