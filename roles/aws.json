@@ -9,6 +9,5 @@
     "recipe[munin-node]",
     "recipe[monit]",
     "recipe[kazu634]",
-    "recipe[nagios::nrpe]",
-    "recipe[motd-tail]"
+    "recipe[nagios::nrpe]"
     ]}
