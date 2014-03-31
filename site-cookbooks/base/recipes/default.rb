@@ -45,3 +45,12 @@ directory "/etc/sudoers.d" do
 
   not_if   "test -e /etc/sudoers.d"
 end
+
+remote_file "/etc/motd.taild" do
+  source   "https://gist.githubusercontent.com/makocchi-git/9775443/raw/746887fbc6e1a7c6b120af0abcfe58701e8b4550/slime-allstar.txt"
+
+  owner    "root"
+  group    "root"
+
+  mode     0644
+end
