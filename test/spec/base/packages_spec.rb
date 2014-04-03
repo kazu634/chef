@@ -27,3 +27,7 @@ end
 describe package('rubygems') do
   it { should be_installed }
 end
+
+describe package('dstat') do
+  it { should be_installed }
+end

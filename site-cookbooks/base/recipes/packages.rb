@@ -46,3 +46,7 @@ end
     action :install
   end
 end
+
+package "dstat" do
+  action :install
+end
