@@ -1,7 +1,0 @@
-#!/bin/bash
-
-/usr/sbin/ntpdate-debian > /dev/null
-
-/sbin/hwclock --systohc
-
-exit 0

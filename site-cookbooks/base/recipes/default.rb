@@ -15,7 +15,7 @@ include_recipe "base::ssh"
 include_recipe "base::fortune"
 include_recipe "base::packages"
 include_recipe "base::timezone"
-include_recipe "base::ntpdate"
+include_recipe "base::ntp"
 
 # only install amd64 package
 cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
