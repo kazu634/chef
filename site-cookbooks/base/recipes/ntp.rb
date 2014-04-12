@@ -16,4 +16,10 @@ cookbook_file "/etc/ntp.conf" do
   group "root"
 
   mode 0644
+
+  notifies :restart, "service[ntp]"
+end
+
+service "ntp" do
+  action :nothing
 end
