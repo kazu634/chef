@@ -1,0 +1,23 @@
+upstream sensu {
+  ip_hash;
+  server 127.0.0.1:8080 fail_timeout=0;
+}
+
+server {
+  listen 80;
+  server_name sensu.kazu634.com;
+
+  access_log  /var/log/nginx/sensu.access.log ltsv;
+  error_log   /var/log/nginx/sensu.error.log;
+
+  location / {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+
+    try_files $uri @sensu;
+  }
+
+  location @sensu {
+    proxy_pass http://sensu;
+  }
+}
