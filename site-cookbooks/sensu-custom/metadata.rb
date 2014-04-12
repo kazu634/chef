@@ -9,3 +9,4 @@ version          '0.1.0'
 depends "sensu"
 depends "build-essential"
 depends 'iptables'
+depends 'nginx'
