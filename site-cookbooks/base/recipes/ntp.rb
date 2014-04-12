@@ -10,3 +10,10 @@
 package "ntp" do
   action :install
 end
+
+cookbook_file "/etc/ntp.conf" do
+  owner "root"
+  group "root"
+
+  mode 0644
+end
