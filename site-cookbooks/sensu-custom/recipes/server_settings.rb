@@ -25,5 +25,3 @@ iptables_rule  "rabbitmq"
     notifies :restart, "service[monit]"
   end
 end
-
-include_recipe "sensu-custom::server_varnish"
