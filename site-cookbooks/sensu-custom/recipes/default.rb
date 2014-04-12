@@ -24,6 +24,8 @@ if node["sensu-custom"]["server"]
   include_recipe "sensu::api_service"
   include_recipe "sensu::dashboard_service"
 
+  include_recipe "nginx"
+
   include_recipe "sensu-custom::server_settings"
 end
 
