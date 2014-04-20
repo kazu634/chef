@@ -26,3 +26,17 @@ script "Install GrowthForecast." do
   #{node['growthforecast']['home']}/perl5/perlbrew/bin/cpanm -n GrowthForecast
   EOH
 end
+
+directory "#{node['growthforecast']['home']}/appdata/" do
+  owner   "growth"
+  group   "growth"
+
+  mode    0775
+end
+
+directory "/var/log/growthforecast" do
+  owner   "growth"
+  group   "growth"
+
+  mode    0755
+end
