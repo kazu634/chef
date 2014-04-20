@@ -35,3 +35,23 @@ if not FileTest.exists?("#{node['growthforecast']['home']}/perl5/perlbrew/bin/pe
     mode    0644
   end
 end
+
+script "Install Perl." do
+  interpreter "bash"
+
+  user "growth"
+  group "growth"
+
+  environment({'PERLBREW_ROOT' => "#{node['growthforecast']['home']}/perl5/perlbrew",
+               'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew"
+              })
+
+  code <<-EOH
+  source #{node['growthforecast']['home']}/perl5/perlbrew/etc/bashrc
+
+  perlbrew install --notest #{node['growthforecast']['perl']}
+  perlbrew switch #{node['growthforecast']['perl']}
+  EOH
+
+  not_if "test -e #{node['growthforecast']['home']}/perl5/perlbrew/perls/#{node['growthforecast']['perl']}/"
+end
