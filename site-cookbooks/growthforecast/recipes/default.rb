@@ -10,3 +10,5 @@
 include_recipe "growthforecast::prerequisites"
 
 include_recipe "growthforecast::perlbrew"
+
+include_recipe "growthforecast::growthforecast"
