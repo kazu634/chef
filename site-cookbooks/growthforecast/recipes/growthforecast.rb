@@ -40,3 +40,18 @@ directory "/var/log/growthforecast" do
 
   mode    0755
 end
+
+service "growthforecast" do
+  supports :restart => true,   :start => true,   :stop => true
+  action :nothing
+end
+
+cookbook_file "/etc/init.d/growthforecast" do
+  owner   "root"
+  group   "root"
+
+  mode    0755
+
+  notifies :enable,  "service[growthforecast]"
+  notifies :start,   "service[growthforecast]"
+end
