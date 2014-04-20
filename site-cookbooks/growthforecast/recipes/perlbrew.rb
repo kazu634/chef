@@ -55,3 +55,22 @@ script "Install Perl." do
 
   not_if "test -e #{node['growthforecast']['home']}/perl5/perlbrew/perls/#{node['growthforecast']['perl']}/"
 end
+
+script "Install cpanm." do
+  interpreter "bash"
+
+  user "growth"
+  group "growth"
+
+  environment({'PERLBREW_ROOT' => "#{node['growthforecast']['home']}/perl5/perlbrew",
+               'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew"
+              })
+
+  code <<-EOH
+  source #{node['growthforecast']['home']}/perl5/perlbrew/etc/bashrc
+
+  perlbrew install-cpanm
+  EOH
+
+  not_if "test -e #{node['growthforecast']['home']}/perl5/perlbrew/bin/cpanm"
+end
