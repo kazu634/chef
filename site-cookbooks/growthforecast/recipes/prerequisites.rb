@@ -17,3 +17,14 @@ script "apt-get build-dep rrdtool" do
   apt-get -y build-dep rrdtool
   EOH
 end
+
+user "growth" do
+  comment  "User for GrowthForecast"
+
+  home     node['growthforecast']['home']
+  shell    "/bin/bash"
+
+  supports :manage_home => true
+
+  system   true
+end
