@@ -49,7 +49,7 @@ def traverse_tests()
   master         = branches[0]
   current_branch = branches[1]
 
-  tests          = `git diff --name-only #{master} #{current_branch} | grep spec | cut -f 2 -d "/" | uniq`.split("\n")
+  tests          = `git diff --name-only #{master} #{current_branch} | grep spec | cut -f 3 -d "/" | uniq`.split("\n")
 
   # product set between tests and `base` role recipies:
   tests          = tests | ["base", "kazu634", "monit", "munin-node", "nagios-nrpe"]
