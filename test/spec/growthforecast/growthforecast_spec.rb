@@ -6,7 +6,7 @@ describe file('/var/lib/growthforecast/appdata') do
   it { should be_owned_by 'growth' }
   it { should be_grouped_into 'growth' }
 
-  it { should be_mode 755 }
+  it { should be_mode 775 }
 end
 
 describe file('/var/log/growthforecast') do
