@@ -55,3 +55,19 @@ cookbook_file "/etc/init.d/growthforecast" do
   notifies :enable,  "service[growthforecast]"
   notifies :start,   "service[growthforecast]"
 end
+
+cookbook_file "/etc/nginx/sites-available/growth" do
+  owner "root"
+  group "root"
+
+  mode 0644
+
+  notifies :reload, "service[nginx]"
+end
+
+link "/etc/nginx/sites-enabled/growthforecast" do
+  to "/etc/nginx/sites-available/growth"
+
+  owner "root"
+  group "root"
+end
