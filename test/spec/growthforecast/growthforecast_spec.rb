@@ -25,6 +25,8 @@ describe file('/etc/init.d/growthforecast') do
   it { should be_grouped_into 'root' }
 
   it { should be_mode 755 }
+
+  it { should match_md5checksum '3064b7026d75fc33bca1a8675beed0d5' }
 end
 
 describe service('growthforecast') do
