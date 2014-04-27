@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "nginx"
+
 script "apt-get build-dep rrdtool" do
   interpreter "bash"
 
