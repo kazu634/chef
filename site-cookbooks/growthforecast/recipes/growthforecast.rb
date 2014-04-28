@@ -67,7 +67,4 @@ end
 
 link "/etc/nginx/sites-enabled/growthforecast" do
   to "/etc/nginx/sites-available/growth"
-
-  owner "root"
-  group "root"
 end

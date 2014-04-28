@@ -42,7 +42,7 @@ describe file('/etc/nginx/sites-available/growth') do
 
   it { should be_mode 644 }
 
-  it { should match_md5checksum '163657859bd82223b8f7f5827b0b947a' }
+  it { should match_md5checksum 'cbaaee097941fdc4f88095b0a78cdc91' }
 end
 
 describe file('/etc/nginx/sites-enabled/growthforecast') do
