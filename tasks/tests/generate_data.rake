@@ -2,25 +2,37 @@
 
 desc "Generate the test node json data."
 task :gen_data do
+  ## Common section ##
   require "erb"
+
+  # Retrieve the test target cookbooks by using `git diff` command
+  test_target_cookbooks = traverse_cookbooks()
+
+  ## Generating node file section ##
+
+  # Specify the node template file
   node_template = "nodes/template.json.erb"
+  @erb          = ERB.new(File.read(node_template))
 
-  @erb = ERB.new(File.read(node_template))
+  recipes       = test_target_cookbooks
 
-  recipes = []
-  recipes = traverse_cookbooks()
-
+  # Generate the test node file
   File.open("nodes/sandbox.json",  "w") do |io|
     io.write @erb.result(binding)
   end
 
+  ## Generating serverspec file section ##
 
+  # Specify the template file section
   test_template = "test/template.erb"
+  @erb          = ERB.new(File.read(test_template))
 
-  @erb = ERB.new(File.read(test_template))
-
-  tests = []
-  tests = traverse_tests()
+  # In the case of `serverspec` file,
+  # test target cookbooks should contain `base` role cookbooks.
+  # This is because, the node template file, by default,
+  # contains and installs the `base` role cookbooks.
+  tests       = traverse_cookbooks() | ["base",  "kazu634",  "monit",  "munin-node",  "nagios-nrpe"]
+  tests_local = traverse_cookbooks()
 
   File.open("test/Rakefile",  "w") do |io|
     io.write @erb.result(binding)
@@ -30,10 +42,10 @@ end
 private
 
 def traverse_cookbooks()
-  cookbooks      = []
+  cookbooks = []
 
-  master         = branches[0]
-  current_branch = branches[1]
+  master         = `git ls-remote origin master | awk '{ print $1 }'`.chomp!
+  current_branch = `git rev-parse --abbrev-ref HEAD`.chomp!
 
   cookbooks      = `git diff --name-only #{master} #{current_branch} | grep site-cookbooks | cut -f 2 -d "/" | uniq`.split("\n")
 
@@ -41,25 +53,4 @@ def traverse_cookbooks()
   cookbooks      = cookbooks - `grep recipe roles/base.json | awk -F '[\\\\[\\\\]]' '{ print $2 }'`.split("\n")
 
   return cookbooks
-end
-
-def traverse_tests()
-  tests          = []
-
-  master         = branches[0]
-  current_branch = branches[1]
-
-  tests          = `git diff --name-only #{master} #{current_branch} | grep spec | cut -f 3 -d "/" | uniq`.split("\n")
-
-  # product set between tests and `base` role recipies:
-  tests          = tests | ["base", "kazu634", "monit", "munin-node", "nagios-nrpe"]
-
-  return tests
-end
-
-def branches
-  master         = `git ls-remote origin master | awk '{ print $1 }'`.chomp!
-  current_branch = `git rev-parse --abbrev-ref HEAD`.chomp!
-
-  return [master, current_branch]
 end
