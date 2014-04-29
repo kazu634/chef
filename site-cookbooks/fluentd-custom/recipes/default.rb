@@ -6,3 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+include_recipe "fluentd-custom::prerequisites"
+
+include_recipe "chef-td-agent"
