@@ -9,3 +9,7 @@ end
 describe package('nginx') do
   it { should be_installed }
 end
+
+describe package('fonts-ipafont') do
+  it { should be_installed }
+end
