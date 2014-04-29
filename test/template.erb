@@ -10,6 +10,13 @@ hosts = [
         <%= recipe %>
       <% end %>),
   },
+  {
+    :name  => 'test',
+    :roles => %w(
+      <% tests.each do |recipe| %>
+        <%= recipe %>
+      <% end %>),
+  },
 ]
 
 hosts = hosts.map do |host|
