@@ -13,7 +13,7 @@ hosts = [
   {
     :name  => 'test',
     :roles => %w(
-      <% tests.each do |recipe| %>
+      <% tests_local.each do |recipe| %>
         <%= recipe %>
       <% end %>),
   },
