@@ -20,6 +20,10 @@ script "apt-get build-dep rrdtool" do
   EOH
 end
 
+package "fonts-ipafont" do
+  action :install
+end
+
 user "growth" do
   comment  "User for GrowthForecast"
 
