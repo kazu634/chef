@@ -25,9 +25,27 @@ describe file('/etc/init.d/growthforecast') do
   it { should be_grouped_into 'root' }
 
   it { should be_mode 755 }
+
+  it { should match_md5checksum '3064b7026d75fc33bca1a8675beed0d5' }
 end
 
 describe service('growthforecast') do
   it { should be_enabled }
   it { should be_running }
 end
+
+describe file('/etc/nginx/sites-available/growth') do
+  it { should be_file }
+
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+
+  it { should be_mode 644 }
+
+  it { should match_md5checksum 'cbaaee097941fdc4f88095b0a78cdc91' }
+end
+
+describe file('/etc/nginx/sites-enabled/growthforecast') do
+  it { should be_linked_to '/etc/nginx/sites-available/growth' }
+end
+

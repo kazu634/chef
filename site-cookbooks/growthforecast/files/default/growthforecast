@@ -14,8 +14,10 @@ LOG_FILE="/var/log/growthforecast/growthforecast.log"
 
 start() {
   su - ${USER} -c "${PERLBREW} exec perl ${GROWTHFORECAST} --port=5125 \
-    --data-dir ${HOME}/appdata \
-    >>$LOG_FILE 2>&1 &"
+                                                           --data-dir ${HOME}/appdata \
+                                                           --host 127.0.0.1 \
+                                                           --front-proxy 0.0.0.0 \
+                                    >>$LOG_FILE 2>&1 &"
 
     echo `pgrep -o -f 'growthforecast.pl'` >> ${PID_FILE}
 }
