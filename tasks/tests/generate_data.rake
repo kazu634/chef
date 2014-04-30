@@ -31,7 +31,7 @@ task :gen_data do
   # test target cookbooks should contain `base` role cookbooks.
   # This is because, the node template file, by default,
   # contains and installs the `base` role cookbooks.
-  tests       = traverse_cookbooks() | ["base",  "kazu634",  "monit",  "munin-node",  "nagios-nrpe"]
+  tests       = traverse_cookbooks() | ["base",  "kazu634",  "monit",  "munin-node",  "nagios-nrpe", "fluentd-custom"]
   tests_local = traverse_cookbooks()
 
   File.open("test/Rakefile",  "w") do |io|
