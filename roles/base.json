@@ -10,5 +10,6 @@
     "recipe[munin-node]",
     "recipe[monit]",
     "recipe[kazu634]",
-    "recipe[nagios::nrpe]"
+    "recipe[nagios::nrpe]",
+    "recipe[fluentd-custom]"
     ]}
