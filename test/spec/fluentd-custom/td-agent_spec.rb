@@ -17,3 +17,14 @@ describe file('/etc/td-agent/conf.d') do
 
   it { should be_mode 755 }
 end
+
+describe file('/etc/td-agent/td-agent.conf') do
+  it { should be_file }
+
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+
+  it { should be_mode 644 }
+
+  it { should match_md5checksum '19ed229ade1c3ed11be7835982d40847' }
+end
