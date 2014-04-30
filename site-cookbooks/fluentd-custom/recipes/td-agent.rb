@@ -1,12 +1,10 @@
 #
 # Cookbook Name:: fluentd-custom
-# Recipe:: default
+# Recipe:: td-agent
 #
 # Copyright 2014, YOUR_COMPANY_NAME
 #
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "fluentd-custom::prerequisites"
-
-include_recipe "fluentd-custom::td-agent"
+include_recipe "chef-td-agent"
