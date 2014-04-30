@@ -26,3 +26,14 @@ cookbook_file "/etc/td-agent/td-agent.conf" do
 
   notifies :restart, "service[td-agent]"
 end
+
+cookbook_file "/etc/monit/conf.d/td-agent.conf" do
+  source "td-agent.monit"
+
+  owner "root"
+  group "root"
+
+  mode  0644
+
+  notifies :restart, "service[monit]"
+end
