@@ -15,3 +15,14 @@ directory "/etc/td-agent/conf.d" do
 
   mode  0755
 end
+
+cookbook_file "/etc/td-agent/td-agent.conf" do
+  source "td-agent.conf"
+
+  owner "root"
+  group "root"
+
+  mode  0644
+
+  notifies :restart, "service[td-agent]"
+end
