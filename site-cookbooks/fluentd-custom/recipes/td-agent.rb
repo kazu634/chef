@@ -8,3 +8,10 @@
 #
 
 include_recipe "chef-td-agent"
+
+directory "/etc/td-agent/conf.d" do
+  owner "root"
+  group "root"
+
+  mode  0755
+end
