@@ -16,6 +16,8 @@ packages = %w(
   liblist-moreutils-perl
   libnet-cidr-perl
   libnet-server-perl
+  libjs-underscore
+  libjs-jquery
 )
 
 packages.each do |pkg|
