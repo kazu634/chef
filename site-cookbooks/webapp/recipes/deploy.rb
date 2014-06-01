@@ -14,3 +14,12 @@ directory "#{node['webapp']['home']}/apps" do
 
   mode    0755
 end
+
+# deploy the apps:
+git "#{node['webapp']['home']}/apps/gcal2dailyplanner" do
+  repository "https://github.com/kazu634/gcal2dailyplanner.git"
+  revision "master"
+  action :sync
+
+  not_if "test -e #{node['webapp']['home']}/apps/gcal2dailyplanner"
+end
