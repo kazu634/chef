@@ -16,6 +16,8 @@ packages = %w(
   liblist-moreutils-perl
   libnet-cidr-perl
   libnet-server-perl
+  libjs-underscore
+  libjs-jquery
 )
 
 packages.each do |pkg|
@@ -28,15 +30,15 @@ end
 
 munin_packages = {
   "/tmp/munin-common.deb" =>
-    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-common_2.1.5-1_all.deb",
+    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-common_2.1.6.1-1_all.deb",
   "/tmp/munin-doc.deb" =>
-    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-doc_2.1.5-1_all.deb",
+    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-doc_2.1.6.1-1_all.deb",
   "/tmp/munin-node.deb" =>
-    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-node_2.1.5-1_all.deb",
+    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-node_2.1.6.1-1_all.deb",
   "/tmp/munin-plugins-core.deb" =>
-    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-plugins-core_2.1.5-1_all.deb",
+    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-plugins-core_2.1.6.1-1_all.deb",
   "/tmp/munin-plugins-extra.deb" =>
-    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-plugins-extra_2.1.5-1_all.deb"
+    "http://ftp.jp.debian.org/debian/pool/main/m/munin/munin-plugins-extra_2.1.6.1-1_all.deb"
 }
 
 munin_packages.each do |dir, pkg|
