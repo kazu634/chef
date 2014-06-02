@@ -12,7 +12,7 @@ directory "#{node['webapp']['home']}/apps" do
   owner   "webapp"
   group   "webapp"
 
-  mode    0755
+  mode    0700
 end
 
 # deploy the apps:
