@@ -21,5 +21,8 @@ git "#{node['webapp']['home']}/apps/gcal2dailyplanner" do
   revision "master"
   action :sync
 
+  user "webapp"
+  group "webapp"
+
   not_if "test -e #{node['webapp']['home']}/apps/gcal2dailyplanner"
 end
