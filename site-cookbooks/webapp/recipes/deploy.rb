@@ -40,3 +40,18 @@ end
 link "/etc/nginx/sites-enabled/gcal" do
   to "/etc/nginx/sites-available/gcal"
 end
+
+# /etc/init.d/ scripts
+service "webapp_calendar" do
+  supports :restart => true,   :start => true,   :stop => true
+  action :nothing
+end
+
+cookbook_file "/etc/init.d/webapp_calendar" do
+  owner   "root"
+  group   "root"
+
+  mode    0755
+
+  notifies :enable,  "service[webapp_calendar]"
+end
