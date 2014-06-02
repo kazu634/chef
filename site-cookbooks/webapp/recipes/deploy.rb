@@ -26,3 +26,17 @@ git "#{node['webapp']['home']}/apps/gcal2dailyplanner" do
 
   not_if "test -e #{node['webapp']['home']}/apps/gcal2dailyplanner"
 end
+
+# nginx configuration
+cookbook_file "/etc/nginx/sites-available/gcal" do
+  owner "root"
+  group "root"
+
+  mode 0644
+
+  notifies :reload, "service[nginx]"
+end
+
+link "/etc/nginx/sites-enabled/gcal" do
+  to "/etc/nginx/sites-available/gcal"
+end
