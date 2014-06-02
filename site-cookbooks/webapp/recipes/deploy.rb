@@ -27,6 +27,14 @@ git "#{node['webapp']['home']}/apps/gcal2dailyplanner" do
   not_if "test -e #{node['webapp']['home']}/apps/gcal2dailyplanner"
 end
 
+# log storage directory:
+directory "/var/log/gcalendar" do
+  owner   "webapp"
+  group   "webapp"
+
+  mode    0755
+end
+
 # nginx configuration
 cookbook_file "/etc/nginx/sites-available/gcal" do
   owner "root"
