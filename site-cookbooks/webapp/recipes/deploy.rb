@@ -10,9 +10,9 @@
 # make directory for storing Web application(s):
 directory "#{node['webapp']['home']}/apps" do
   owner   "webapp"
-  group   "webapp"
+  group   "www-data"
 
-  mode    0700
+  mode    0770
 end
 
 # deploy the apps:
@@ -22,7 +22,7 @@ git "#{node['webapp']['home']}/apps/gcal2dailyplanner" do
   action :sync
 
   user "webapp"
-  group "webapp"
+  group "www-data"
 
   not_if "test -e #{node['webapp']['home']}/apps/gcal2dailyplanner"
 end
@@ -30,7 +30,7 @@ end
 # log storage directory:
 directory "/var/log/gcalendar" do
   owner   "webapp"
-  group   "webapp"
+  group   "www-data"
 
   mode    0755
 end
