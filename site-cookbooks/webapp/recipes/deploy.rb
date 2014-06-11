@@ -63,3 +63,14 @@ cookbook_file "/etc/init.d/webapp_calendar" do
 
   notifies :enable,  "service[webapp_calendar]"
 end
+
+
+# Log rotation configuration:
+cookbook_file "/etc/logrotate.d/gcal" do
+  owner "root"
+  group "root"
+
+  mode 0644
+
+  source "gcal.logrotate"
+end
