@@ -73,3 +73,9 @@ remote_file "/etc/motd.tail" do
 
   mode     0644
 end
+
+# Install `ruby-shadow`, because `chef` needs the package.
+gem_package "ruby-shadow" do
+  gem_binary "/opt/chef/embedded/bin/gem"
+  action :install
+end

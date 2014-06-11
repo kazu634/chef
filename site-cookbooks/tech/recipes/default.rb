@@ -9,10 +9,6 @@
 
 include_recipe "nginx"
 
-gem_package "ruby-shadow" do
-    action :install
-end
-
 user "tech" do
   home "/home/tech"
   shell "/bin/bash"
