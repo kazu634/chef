@@ -22,5 +22,12 @@ template "/etc/ssh/sshd_config" do
 end
 
 service "ssh" do
-    action :nothing
+  case node["platform"]
+  when "ubuntu"
+    if node["platform_version"].to_f >= 13.10
+      provider Chef::Provider::Service::Upstart
+    end
+  end
+
+  action :nothing
 end
