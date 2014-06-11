@@ -41,9 +41,23 @@ package "screen" do
   action :install
 end
 
-%w{ ruby rubygems }.each do |p|
-  package p do
+# Ruby installation
+case node["platform"]
+when "ubuntu"
+  # common package: ruby
+  package "ruby" do
     action :install
+  end
+
+  # install ruby gem
+  if 12.10 <= node["platform_version"].to_f
+    package "rubygems-integration" do
+      action :install
+    end
+  elsif node["platform_version"].to_f < 12.10
+    package "rubygems" do
+      action :install
+    end
   end
 end
 
