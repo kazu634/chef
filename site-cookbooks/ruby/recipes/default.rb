@@ -11,10 +11,6 @@ include_recipe "apt"
 include_recipe "build-essential"
 include_recipe "base"
 
-gem_package "ruby-shadow" do
-  action :install
-end
-
 pre_requisites = %w{libreadline-dev libssl-dev zlib1g-dev libssl1.0.0 libxml2-dev libxslt-dev}
 
 pre_requisites.each do |p|
