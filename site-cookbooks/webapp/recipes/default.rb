@@ -9,4 +9,4 @@
 
 include_recipe "webapp::prerequisites"
 
-include_recipe "webapp::deploy"
+include_recipe "webapp::gcal"
