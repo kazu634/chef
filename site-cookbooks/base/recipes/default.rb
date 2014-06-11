@@ -18,11 +18,30 @@ include_recipe "base::timezone"
 include_recipe "base::ntp"
 
 # only install amd64 package
-cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
-  source   "multiarch"
-  owner    "root"
-  group    "root"
-  mode     0644
+# http://d.hatena.ne.jp/ritchey/20121229
+case node["platform"]
+when "ubuntu"
+  if node["platform_version"].to_f >= 12.10
+    script "sudo dpkg --remove-architecture i386" do
+      interpreter "bash"
+
+      user "root"
+      group "root"
+
+      code <<-EOH
+      sudo dpkg --remove-architecture i386
+      EOH
+
+      not_if "dpkg --print-foreign-architectures | grep -v i386"
+    end
+  else
+    cookbook_file "/etc/dpkg/dpkg.cfg.d/multiarch" do
+      source   "multiarch"
+      owner    "root"
+      group    "root"
+      mode     0644
+    end
+  end
 end
 
 script "Language Settings" do

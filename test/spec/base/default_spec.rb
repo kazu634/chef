@@ -1,8 +1,7 @@
 require 'spec_helper'
 
-describe file('/etc/dpkg/dpkg.cfg.d/multiarch') do
-  it { should be_file }
-  it { should match_md5checksum '792101a3cae62c5ffc3f0adf8777a3dd' }
+describe command('dpkg --print-architecture | grep amd64') do
+  it { should return_exit_status 0 }
 end
 
 describe file('/etc/sudoers.d') do
