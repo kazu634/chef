@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# Thanks to komasaru for his Gist:
+# https://gist.github.com/komasaru/4471948
+
+NAME="WebApp::Calendar"
+ENV=production
+
+ROOT_DIR="/var/lib/webapp/apps/gcal2dailyplanner/"
+
+PID="/tmp/unicorn.pid"
+CONF="${ROOT_DIR}/config/unicorn.rb"
+
+OPTIONS=""
+
+CMD="cd ${ROOT_DIR} && bundle exec unicorn -c ${CONF} -E ${ENV} -D ${OPTIONS}"
+
+start()
+{
+  if [ -e $PID ]; then
+    echo "$NAME already started"
+    exit 1
+  fi
+  echo "start $NAME"
+  cd $ROOT_DIR
+  su - webapp -c "$CMD"
+}
+
+stop()
+{
+  if [ ! -e $PID ]; then
+    echo "$NAME not started"
+      exit 1
+      fi
+      echo "stop $NAME"
+      kill -QUIT `cat ${PID}`
+}
+
+force_stop()
+{
+  if [ ! -e $PID ]; then
+    echo "$NAME not started"
+    exit 1
+  fi
+  echo "stop $NAME"
+  kill -INT `cat ${PID}`
+}
+
+reload()
+{
+  if [ ! -e $PID ]; then
+    echo "$NAME not started"
+    start
+    exit 0
+  fi
+  echo "reload $NAME"
+  kill -HUP `cat ${PID}`
+}
+
+restart()
+{
+  stop
+  # Unicorn が停止し切らない内に起動しようとしないように
+  sleep 3
+  start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  force-stop)
+    force_stop
+    ;;
+  reload)
+    reload
+    ;;
+  restart)
+    restart
+    ;;
+  *)
+    echo "Syntax Error: release [start|stop|force-stop|reload|restart]"
+    ;;
+esac
