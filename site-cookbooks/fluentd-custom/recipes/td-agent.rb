@@ -8,6 +8,7 @@
 #
 
 include_recipe "chef-td-agent"
+include_recipe "iptables"
 
 directory "/etc/td-agent/conf.d" do
   owner "root"
@@ -40,6 +41,9 @@ if node[:td_agent][:forward]
 
     notifies :restart, "service[td-agent]"
   end
+
+  # allow access from 24224 port
+  iptables_rule "forward"
 end
 
 cookbook_file "/etc/monit/conf.d/td-agent.conf" do
