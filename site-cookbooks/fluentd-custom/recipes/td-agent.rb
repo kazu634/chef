@@ -27,6 +27,21 @@ cookbook_file "/etc/td-agent/td-agent.conf" do
   notifies :restart, "service[td-agent]"
 end
 
+# if the node accepts the forwarded logs
+if node[:td_agent][:forward]
+  # deploy the configuration file for accepting the forwarded logs
+  cookbook_file "/etc/td-agent/conf.d/forward.conf" do
+    source "forward.conf"
+
+    owner "root"
+    group "root"
+
+    mode 0644
+
+    notifies :restart, "service[td-agent]"
+  end
+end
+
 cookbook_file "/etc/monit/conf.d/td-agent.conf" do
   source "td-agent.monit"
 
