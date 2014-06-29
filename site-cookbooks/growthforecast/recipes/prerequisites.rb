@@ -16,7 +16,7 @@ script "apt-get build-dep rrdtool" do
   group "root"
 
   code <<-EOH
-  apt-get -y build-dep rrdtool
+  apt-get -y build-dep rrdtool || true
   EOH
 end
 
