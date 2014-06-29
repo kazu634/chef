@@ -1,68 +1,29 @@
-fluentd-custom Cookbook
-=======================
-TODO: Enter the cookbook description here.
+# fluentd-custom Cookbook
+The cookbook for installing official `td-agent` package.
 
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
+## How to use
 
-Requirements
-------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
+## Just installing td-agent
 
-e.g.
-#### packages
-- `toaster` - fluentd-custom needs toaster to brown your bagel.
+Just put the below line in your node file:
 
-Attributes
-----------
-TODO: List you cookbook attributes here.
-
-e.g.
-#### fluentd-custom::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['fluentd-custom']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
-
-Usage
------
-#### fluentd-custom::default
-TODO: Write usage instructions for each cookbook.
-
-e.g.
-Just include `fluentd-custom` in your node's `run_list`:
-
-```json
+```
 {
-  "name":"my_node",
   "run_list": [
-    "recipe[fluentd-custom]"
+      recipe['fluentd-custom']
   ]
 }
 ```
 
-Contributing
-------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
+## Receive log forwarding from remote hosts
 
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+Just put the below lines in your node file:
 
-License and Authors
--------------------
-Authors: TODO: List authors
+```
+{
+  "td_agent":{
+    "forward": true
+  },
+  "run_list": [ ... snip ... ]
+}
+```
