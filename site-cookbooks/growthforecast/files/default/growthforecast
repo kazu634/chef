@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER="growth"
-HOME="/var/lib/growthforecast/"
+HOME="/var/lib/growthforecast"
 
 source $HOME/perl5/perlbrew/etc/bashrc
 
@@ -19,17 +19,17 @@ start() {
                                                            --front-proxy 0.0.0.0 \
                                     >>$LOG_FILE 2>&1 &"
 
-    echo `pgrep -o -f 'growthforecast.pl'` >> ${PID_FILE}
+  echo `pgrep -o -f 'growthforecast.pl'` >> ${PID_FILE}
 }
 
 stop() {
   if [ -e $PID_FILE ]; then
     kill `cat $PID_FILE`
 
-      rm -f $PID_FILE
-      fi
+    rm -f $PID_FILE
+  fi
 
-      pkill -u growth perl
+  pkill -u growth perl
 }
 
 usage() {
@@ -37,17 +37,17 @@ usage() {
 }
 
 case $1 in
-    start)
-        start
-        ;;
-    stop)
-        stop
-        ;;
-    restart)
-        stop
-        start
-        ;;
-    *)
-        usage
-        ;;
+  start)
+    start
+  ;;
+  stop)
+    stop
+  ;;
+  restart)
+    stop
+    start
+  ;;
+  *)
+    usage
+  ;;
 esac
