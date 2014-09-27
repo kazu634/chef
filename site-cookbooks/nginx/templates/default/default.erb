@@ -1,6 +1,6 @@
 server {
-  listen 80;
-  listen [::]:80 ipv6only=on;
+  # allow access from localhost
+  listen localhost:80;
 
   root /usr/share/nginx/html;
   index index.html index.htm;
@@ -11,3 +11,11 @@ server {
 
   }
 }
+
+# Denies the access without the pre-defined virtual host.
+server {
+  listen 80 default_server;
+    server_name _;
+
+  return 444;
+  }
