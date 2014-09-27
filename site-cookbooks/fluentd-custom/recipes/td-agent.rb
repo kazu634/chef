@@ -43,7 +43,7 @@ if node[:td_agent][:forward]
   end
 
   # allow access from 24224 port
-  iptables_rule "forward"
+  iptables_rule "receiver"
 end
 
 cookbook_file "/etc/monit/conf.d/td-agent.conf" do
