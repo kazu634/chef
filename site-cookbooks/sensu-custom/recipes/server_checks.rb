@@ -25,7 +25,7 @@ sensu_check "swap" do
   command "/etc/sensu/plugins/check-swap.sh -w 30 -c 60"
   handlers ["default"]
   subscribers ["all"]
-  interval 3600
+  interval 40800
 end
 
 sensu_check "disk_usage" do
