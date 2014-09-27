@@ -19,7 +19,7 @@ sensu_snippet "twitter" do
     })
 end
 
-sensu_handler "default" do
+sensu_handler "twitter" do
   type      "pipe"
   command   "tw.rb"
 end
