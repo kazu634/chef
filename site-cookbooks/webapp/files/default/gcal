@@ -3,8 +3,10 @@ upstream gcal {
 }
 
 server {
-  server_name calendar.kazu634.com;
   listen 80;
+  server_name calendar.kazu634.com;
+
+  gzip on;
 
   access_log  /var/log/nginx/calendar.access.log ltsv;
   error_log   /var/log/nginx/calendar.error.log;
