@@ -31,8 +31,8 @@ end
 # if the node accepts the forwarded logs
 if node[:td_agent][:forward]
   # deploy the configuration file for accepting the forwarded logs
-  cookbook_file "/etc/td-agent/conf.d/forward.conf" do
-    source "forward.conf"
+  cookbook_file "/etc/td-agent/conf.d/receiver.conf" do
+    source "receiver.conf"
 
     owner "root"
     group "root"
