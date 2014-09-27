@@ -1,33 +1,27 @@
 {
-  "name": "data_bag_item_sensu_twitter",
-  "json_class": "Chef::DataBagItem",
-  "chef_type": "data_bag_item",
-  "data_bag": "sensu",
-  "raw_data": {
-    "id": "twitter",
-    "consumer_key": {
-      "encrypted_data": "lQCvryrpquyPiw8hJy0E0UiOTJ3F9VU08g0u+fzFh1Eh2ONLDHEBvXhrDrNR\nJpv9\n",
-      "iv": "oYWLo1SrB98ej+dI0qKCkQ==\n",
-      "version": 1,
-      "cipher": "aes-256-cbc"
-    },
-    "consumer_secret": {
-      "encrypted_data": "yhe8lMjD2wrsqxIn0XxJfNBfKJS6c2UV8rguHIKuOvryYIwJJ82jhTDAt54P\niJsxaSBkSIPgrknuDjnGB4NFIA==\n",
-      "iv": "6agz+27eD+XcRYIeIvY55A==\n",
-      "version": 1,
-      "cipher": "aes-256-cbc"
-    },
-    "oauth_token": {
-      "encrypted_data": "DofQjicJ50B/P8Co/A7hoYhrk1+Ow3TCwkOa0RFW8Qb0DbU965cKB5TGM2O6\nWkac8rXD+fTTOZw/iibnGJTT1d8XDoRgaFznIOotn7urEgs=\n",
-      "iv": "0AqBltf7aNITJCwNOGJLmg==\n",
-      "version": 1,
-      "cipher": "aes-256-cbc"
-    },
-    "oauth_token_secret": {
-      "encrypted_data": "Jog5t+T1W/YTamha+aczf95mQF9MuKP3TvMIQ5tHLu4OcHrfD8lTdPo2HHHI\nJg2FHuaUj94811vDPD03WiXI1w==\n",
-      "iv": "+5wUcmouMIZBGjII7+GA3A==\n",
-      "version": 1,
-      "cipher": "aes-256-cbc"
-    }
+  "id": "twitter",
+  "consumer_key": {
+    "encrypted_data": "IqIjSTAknCW+V9aaq28nH4LC9YK10x8+YYdfAjcXidQuz91g6YneGPQ3GQZf\ngLN9\n",
+    "iv": "apK10aVfju7WBC0Y62pneQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "consumer_secret": {
+    "encrypted_data": "CTEdYc0qmX2mYjVAYkKn7WreWG0RQuZIySgjsHTlJdPRrNPxlNq89q0N5cvE\nGNH7DTXECSQXWMLwyFrY4zhUqQ==\n",
+    "iv": "jWo1ShgIdbjtaX+0Cx+/rg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "oauth_token": {
+    "encrypted_data": "HFeT6iIGTraBZKqOVtrb1aT6IhuQ4jxkFXG7h1aLqiBLdFZTgHlOR3fY54xH\nYf0/dyiW1ZzM7IwlPLxrV5YVJ5/uL+0LdfmKkbEpzW5JPR0=\n",
+    "iv": "uSURZCU1QlmBn1fvb7pKCQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "oauth_token_secret": {
+    "encrypted_data": "5lIAypM3QE0imYv334La1o1EO9+e6bE8RVh6hTEk8N7xZ3LcOswHc8Y/CuHn\nApmk7yyBjEaHr4zgEf8IuVse9Q==\n",
+    "iv": "KJma5jV2lXhLV6GSpMKvXg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
   }
 }

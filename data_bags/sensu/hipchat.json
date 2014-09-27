@@ -1,0 +1,9 @@
+{
+  "id": "hipchat",
+  "apikey": {
+    "encrypted_data": "rOvZyniZ44oxi+pUTtSs4GTYkbzZSSvg4vJRfEgCt6AA+smEV3H4MzX/uizM\nHjzIKnIJtDfxveZTTXWypxhZwQ==\n",
+    "iv": "OECmYiXWXWdJ+07oDlcdwQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

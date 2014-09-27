@@ -19,9 +19,25 @@ sensu_snippet "twitter" do
     })
 end
 
-sensu_handler "default" do
+hipchat_auth = Chef::EncryptedDataBagItem.load("sensu", "hipchat")
+
+sensu_snippet "hipchat" do
+    content(
+      :apikey     => hipchat_auth["apikey"],
+      :apiversion => "v2",
+      :room       => "Kazu634-ops",
+      :from       => "Sensu"
+    )
+end
+
+sensu_handler "twitter" do
   type      "pipe"
   command   "tw.rb"
+end
+
+sensu_handler "default" do
+  type      "set"
+  handlers   [ "twitter", "hipchat" ]
 end
 
 sensu_handler "crit_only" do
