@@ -22,6 +22,18 @@
     end
 end
 
+# deploy the configuration file for forwarding the dstat data from the hosts
+cookbook_file "/etc/td-agent/conf.d/forwarder_dstat.conf" do
+  source "forwarder_dstat.conf"
+
+  owner "root"
+  group "root"
+
+  mode 0644
+
+  notifies :restart,  "service[td-agent]"
+end
+
 # if the node is the fluentd manager:
 if node[:td_agent][:forward]
   # deploy the configuration file for processing the dstat data from the hosts
