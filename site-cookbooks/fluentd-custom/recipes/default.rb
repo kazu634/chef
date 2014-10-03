@@ -10,3 +10,5 @@
 include_recipe "fluentd-custom::prerequisites"
 
 include_recipe "fluentd-custom::td-agent"
+
+include_recipe "fluentd-custom::dstat"
