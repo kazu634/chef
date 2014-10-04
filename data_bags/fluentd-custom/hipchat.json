@@ -1,0 +1,9 @@
+{
+  "id": "hipchat",
+  "api_token": {
+    "encrypted_data": "vPJveMzoREdQzk13hJxsXqgjNCpe95KBppLkOa3Km0uaO16N/ToZpn7fnzx4\nYUo+/w/S80+WPSACILRXEtDMwQ==\n",
+    "iv": "Cp0ei68X8+/f9yDNc5/Yuw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

@@ -1,0 +1,26 @@
+<match notification.**>
+  type copy
+
+  <store>
+    type buffered_hipchat
+    api_token <%= @api_token %>
+    default_room kazu634-ops
+    default_from fluentd
+    default_color yellow
+    default_notify 0
+    default_format html
+
+    buffer_type file
+    buffer_path /var/log/td-agent/buffer/notification_buffer*.buffer
+    flush_interval 60s
+    retry_limit 15
+    retry_wait 1s
+  </store>
+
+  <store>
+    type file
+    path /tmp/notificaiton.log
+    buffer_type file
+    buffer_path /var/log/td-agent/buffer/notification*.buffer
+  </store>
+</match>
