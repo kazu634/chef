@@ -28,7 +28,8 @@ cookbook_file "/etc/td-agent/td-agent.conf" do
   notifies :restart, "service[td-agent]"
 end
 
-# deploy the `td-agent` configuration file for forwarding the logs
+# deploy the `td-agent` configuration file for forwarding the logs,
+# only if the server is one of the clients.
 cookbook_file "/etc/td-agent/conf.d/forwarder.conf" do
   source "forwarder.conf"
 
@@ -37,10 +38,12 @@ cookbook_file "/etc/td-agent/conf.d/forwarder.conf" do
 
   mode  0644
 
+  not_if { node[:td_agent][:forward] }
+
   notifies :restart, "service[td-agent]"
 end
 
-# if the node accepts the forwarded logs
+# if the node is the manager:
 if node[:td_agent][:forward]
   # deploy the configuration file for accepting the forwarded logs
   cookbook_file "/etc/td-agent/conf.d/receiver.conf" do
