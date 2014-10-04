@@ -19,3 +19,15 @@
       gem_binary '/usr/lib/fluent/ruby/bin/fluent-gem'
   end
 end
+
+# deploy the configuration file for monitoring /var/log/monit.log
+cookbook_file "/etc/td-agent/conf.d/forwarder_monit.conf" do
+  source "forwarder_monit.conf"
+
+  owner "root"
+  group "root"
+
+  mode 0644
+
+  notifies :restart, "service[td-agent]"
+end
