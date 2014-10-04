@@ -54,3 +54,11 @@ cookbook_file "/etc/sensu/handlers/tw.rb" do
   group  "sensu"
   mode   0755
 end
+
+remote_file "/etc/sensu/handlers/hipchat.rb" do
+  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/handlers/notification/hipchat.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end

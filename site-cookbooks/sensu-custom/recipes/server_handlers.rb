@@ -35,6 +35,11 @@ sensu_handler "twitter" do
   command   "tw.rb"
 end
 
+sensu_handler "hipchat" do
+  type      "pipe"
+  command   "hipchat.rb"
+end
+
 sensu_handler "default" do
   type      "set"
   handlers   [ "twitter", "hipchat" ]
