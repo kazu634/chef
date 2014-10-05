@@ -18,3 +18,5 @@ include_recipe "fluentd-custom::aptitude"
 include_recipe "fluentd-custom::hipchat"
 
 include_recipe "fluentd-custom::monit"
+
+include_recipe "fluentd-custom::nginx"
