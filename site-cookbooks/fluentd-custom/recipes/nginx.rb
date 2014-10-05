@@ -22,3 +22,15 @@
       gem_binary '/usr/lib/fluent/ruby/bin/fluent-gem'
   end
 end
+
+# deploy the configuration file for monitoring nginx logs
+cookbook_file "/etc/td-agent/conf.d/forwarder_nginx.conf" do
+  source "forwarder_nginx.conf"
+
+  owner "root"
+  group "root"
+
+  mode 0644
+
+  notifies :restart, "service[td-agent]"
+end
