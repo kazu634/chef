@@ -9,50 +9,6 @@
 
 include_recipe "nginx"
 
-user "tech" do
-  home "/home/tech"
-  shell "/bin/bash"
-  password "$1$gE1b.NzY$/P8kwcxhOD2RZnw4lM.nz1"
-
-  supports :manage_home => true
-end
-
-directory "/home/tech/.ssh" do
-  owner "tech"
-  group "tech"
-
-  mode 0700
-end
-
-directory "/home/tech/public" do
-  owner "tech"
-  group "tech"
-
-  mode 0755
-end
-
-directory "/var/www/nginx-default/domain" do
-  owner "www-data"
-  group "root"
-
-  mode 0755
-  recursive true
-end
-
-link "/var/www/nginx-default/domain/tech" do
-  to "/home/tech/public"
-
-  owner "www-data"
-  group "root"
-end
-
-cookbook_file "/home/tech/.ssh/authorized_keys" do
-  owner "tech"
-  group "tech"
-
-  mode 0600
-end
-
 template "/etc/nginx/sites-available/tech" do
   source "tech.erb"
 
