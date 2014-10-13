@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "chef-td-agent"
+include_recipe "td-agent"
 include_recipe "iptables"
 
 ###################
