@@ -1,7 +1,12 @@
 {
   "name":"base",
-  "default_attributes":{},
-  "override_attributes":{},
+  "default_attributes":{
+    "omnibus_updater": {
+      "kill_chef_on_upgrade": false
+    }
+  },
+  "override_attributes":{
+  },
   "json_class":"Chef::Role",
   "description":"",
   "chef_type":"role",
@@ -10,5 +15,6 @@
     "recipe[monit]",
     "recipe[kazu634]",
     "recipe[nagios::nrpe]",
-    "recipe[fluentd-custom]"
+    "recipe[fluentd-custom]",
+    "recipe[omnibus_updater]"
     ]}

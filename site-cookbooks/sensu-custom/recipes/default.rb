@@ -22,7 +22,6 @@ if node["sensu-custom"]["server"]
   include_recipe "sensu::redis"
   include_recipe "sensu::server_service"
   include_recipe "sensu::api_service"
-  include_recipe "sensu::dashboard_service"
 
   include_recipe "nginx"
 
