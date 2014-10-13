@@ -5,31 +5,11 @@ server {
   access_log  /var/log/nginx/tech.access.log ltsv;
   error_log   /var/log/nginx/tech.error.log;
 
-  root /var/www/nginx-default/domain/tech/;
-  index index.html index.htm;
+  location /atom.xml {
+    return 301 http://blog.kazu634.com/feed/;
+  }
 
   location / {
-    gzip on;
-    try_files $uri $uri/ /  index.html;
-  }
-
-  location = /index.html {
-    gzip on;
-    expires 5m;
-  }
-
-  location ~* /.*\.(js|css)$ {
-    gzip on;
-    expires 3d;
-  }
-
-  location ~* /.*\.html$ {
-    gzip on;
-    expires 24h;
-  }
-
-  location /images {
-    gzip on;
-    expires max;
+    return 301 http://blog.kazu634.com/;
   }
 }
