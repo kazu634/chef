@@ -35,7 +35,7 @@ sensu_check "disk_usage" do
   interval 3600
 end
 
-%w{ blog tech jenkins }.each do |host|
+%w{ blog tech }.each do |host|
   sensu_check "#{host}.kazu634.com" do
     command "/usr/lib/nagios/plugins/check_http -H #{host}.kazu634.com -w 3 -c 5 -t 10"
     handlers ["default"]
