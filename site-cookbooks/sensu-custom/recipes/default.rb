@@ -26,6 +26,22 @@ if node["sensu-custom"]["server"]
   include_recipe "nginx"
 
   include_recipe "sensu-custom::server_settings"
+
+  # Modify the redis configuration for it to start successfully
+  # (older version of redis does not support the settings,
+  #  the redis cookbook deploys.)
+  script "modify the redis configuration" do
+    interpreter "bash"
+
+    user        "root"
+    group       "root"
+
+    code <<-EOH
+    sed -ie "s/^notify-keyspace-events/# notify-keyspace-events/" /etc/redis/6379.conf
+    EOH
+
+    only_if "grep '^notify-' /etc/redis/6379.conf"
+  end
 end
 
 include_recipe "sensu::client_service"
