@@ -1,0 +1,7 @@
+dependencies:
+  override:
+    - bundle exec rake init
+
+test:
+  override:
+    - bundle exec rake foodcritic
