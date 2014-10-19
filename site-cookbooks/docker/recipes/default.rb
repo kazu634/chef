@@ -16,16 +16,12 @@ apt_repository "docker" do
   distribution "docker"
 
   key "http://get.docker.io/gpg"
-
-  not_if "test -z ${DOCKER}"
 end
 
 package "lxc-docker" do
   action :install
 
   options "--force-yes"
-
-  not_if "test -z ${DOCKER}"
 end
 
 # if ec2, ln -s /mnt/docker /var/lib/docker
@@ -64,6 +60,4 @@ script "Pulling Ubuntu image" do
   code <<-EOH
   docker pull ubuntu
   EOH
-
-  not_if "test -z ${DOCKER}"
 end
