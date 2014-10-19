@@ -11,10 +11,8 @@
 %w{ fluent-plugin-rewrite-tag-filter
     fluent-plugin-grep
   }.each do |pkg|
-    gem_package pkg do
+    td_agent_gem pkg do
       action :upgrade
-
-      gem_binary '/usr/lib/fluent/ruby/bin/fluent-gem'
   end
 end
 

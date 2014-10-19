@@ -8,7 +8,6 @@
 #
 
 include_recipe "td-agent"
-include_recipe "iptables"
 
 ###################
 # the common part #
@@ -88,6 +87,11 @@ if node[:td_agent][:forward]
     notifies :restart, "service[td-agent]"
   end
 
-  # allow access from 24224 port
-  iptables_rule "receiver"
+  if node[:td_agent][:ssh]
+    # include the `iptables` cookbook
+    include_recipe "iptables"
+
+    # allow access from 24224 port
+    iptables_rule "receiver"
+  end
 end

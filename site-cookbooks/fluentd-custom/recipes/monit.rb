@@ -13,11 +13,9 @@
     fluent-plugin-grep
     fluent-plugin-record-reformer
   }.each do |pkg|
-    gem_package pkg do
+    td_agent_gem pkg do
       action :upgrade
-
-      gem_binary '/usr/lib/fluent/ruby/bin/fluent-gem'
-  end
+    end
 end
 
 # deploy the configuration file for monitoring /var/log/monit.log
