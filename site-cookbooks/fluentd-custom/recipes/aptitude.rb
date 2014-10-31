@@ -31,8 +31,8 @@ cookbook_file "/etc/td-agent/conf.d/forwarder_aptitude.conf" do
 end
 
 # deploy the configuration file for processing /var/log/apt/history.log
-cookbook_file "/etc/td-agent/conf.d/processor_dstat.conf" do
-  source "processor_dstat.conf"
+cookbook_file "/etc/td-agent/conf.d/processor_aptitude.conf" do
+  source "processor_aptitude.conf"
 
   owner "root"
   group "root"
