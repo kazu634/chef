@@ -214,7 +214,26 @@ template "/home/kazu634/.aws_setuprc" do
   })
 end
 
+secret_credential = aws_data_bag['SECRET_CREDENTIAL']
+
+template "/home/kazu634/.ssh/amazon.pem" do
+  source "amazon.pem.erb"
+
+  owner "kazu634"
+  group "kazu634"
+
+  mode 0600
+
+  variables({
+    :SECRET_CREDENTIAL => secret_credential
+  })
+end
+
+
+# ruby support
+
 if node['kazu634']['ruby_support']
   include_recipe "kazu634::ruby"
   include_recipe "kazu634::repo"
 end
+
