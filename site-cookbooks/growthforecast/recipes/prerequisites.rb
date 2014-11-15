@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "build-essential"
 include_recipe "nginx"
 
 script "apt-get build-dep rrdtool" do

@@ -9,7 +9,6 @@
 
 include_recipe "apt"
 include_recipe "monit"
-include_recipe "iptables"
 
 Encoding.default_external = Encoding::UTF_8
 
@@ -63,4 +62,8 @@ cookbook_file "/etc/monit/conf.d/nginx.conf" do
   notifies :restart, "service[monit]"
 end
 
-iptables_rule "nginx"
+# Configure `iptables` configuration, unless in testing.
+if node['nginx']['iptables']
+  include_recipe "iptables"
+  iptables_rule "nginx"
+end

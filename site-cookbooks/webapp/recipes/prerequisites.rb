@@ -34,3 +34,7 @@ ruby_setup "webapp" do
   version node['webapp']['ruby']
 end
 
+log "message" do
+  message "You should manually install Ruby as a `webapp` user. "
+  level :warn
+end

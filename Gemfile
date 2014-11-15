@@ -7,3 +7,5 @@ gem 'knife-solo_data_bag'
 gem 'foodcritic', "~> 3.0.0"
 gem 'serverspec'
 gem 'ci_reporter'
+gem 'test-kitchen', :git => 'https://github.com/test-kitchen/test-kitchen'
+gem 'kitchen-vagrant'
