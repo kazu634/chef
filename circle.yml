@@ -1,5 +1,5 @@
 dependencies:
-  override:
+  post:
     - bundle exec rake init
 
 test:
