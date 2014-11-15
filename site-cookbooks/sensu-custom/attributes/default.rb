@@ -37,3 +37,6 @@ default["sensu"]["dashboard"]["password"] = "secret"
 
 # server setting
 default["sensu-custom"]["server"]         = false
+
+# iptables configuration:
+default['sensu-custom']['iptables']       = true
