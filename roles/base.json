@@ -14,7 +14,6 @@
     "recipe[base]",
     "recipe[monit]",
     "recipe[kazu634]",
-    "recipe[nagios::nrpe]",
     "recipe[fluentd-custom]",
     "recipe[omnibus_updater]"
     ]}
