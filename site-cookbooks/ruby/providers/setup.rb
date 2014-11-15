@@ -73,7 +73,7 @@ action :install do
         su - #{user} -c "#{home}/.rbenv/bin/rbenv global #{ver}"
       EOH
 
-      only_if { node[:ruby][:install] }
+      only_if { node['ruby']['install'] }
     end
 
     template "#{home}/.bash_profile" do
