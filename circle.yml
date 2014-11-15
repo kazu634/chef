@@ -1,6 +1,6 @@
 dependencies:
   override:
-    - bundle exec rake init
+    - rake init
 
 test:
   override:
