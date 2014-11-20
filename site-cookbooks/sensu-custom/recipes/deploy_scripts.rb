@@ -40,8 +40,7 @@ remote_file "/etc/sensu/plugins/check-swap.sh" do
 end
 
 remote_file "/etc/sensu/plugins/check-disk.rb" do
-  source "https://raw2.github.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb"
-
+  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb"
   user   "sensu"
   group  "sensu"
   mode   0755

@@ -11,8 +11,12 @@ include_recipe "sensu-custom::server_checks"
 
 include_recipe "sensu-custom::server_handlers"
 
-include_recipe "iptables"
-iptables_rule  "rabbitmq"
+# Configure iptables settings, when in production:
+if node['sensu-custom']['iptables']
+  include_recipe "iptables"
+
+  iptables_rule  "rabbitmq"
+end
 
 %w{redis.conf rabbitmq.conf sensu-server.conf sensu-api.conf sensu-dashboard.conf}.each do |conf|
   cookbook_file "/etc/monit/conf.d/#{conf}" do
