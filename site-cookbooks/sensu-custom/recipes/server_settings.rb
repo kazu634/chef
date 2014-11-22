@@ -18,7 +18,7 @@ if node['sensu-custom']['iptables']
   iptables_rule  "rabbitmq"
 end
 
-%w{redis.conf rabbitmq.conf sensu-server.conf sensu-api.conf sensu-dashboard.conf}.each do |conf|
+%w{redis.conf rabbitmq.conf sensu-server.conf sensu-api.conf uchiwa.conf}.each do |conf|
   cookbook_file "/etc/monit/conf.d/#{conf}" do
     source conf
 

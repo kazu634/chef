@@ -32,12 +32,6 @@ default["sensu"]["api"]["host"]           = "sensu-api.kazu634.#{node['common'][
 default["sensu"]["api"]["bind"]           = "0000"
 default["sensu"]["api"]["port"]           = 4567
 
-#dashboard
-default["sensu"]["dashboard"]["bind"]     = "0.0.0.0"
-default["sensu"]["dashboard"]["port"]     = 8080
-default["sensu"]["dashboard"]["user"]     = "admin"
-default["sensu"]["dashboard"]["password"] = "secret"
-
 # server setting
 default["sensu-custom"]["server"]         = false
 default["sensu-custom"]["domain"]         = node['common']['domain']
