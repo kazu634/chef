@@ -4,10 +4,10 @@ driver:
 
 provisioner:
   name: chef_solo
+  environments_path: ../../environments
   encrypted_data_bag_secret_key_path: ../../.chef_databag_secret
   data_bags_path: ../../data_bags
   roles_path: ../../roles
-
 
 platforms:
   - name: ubuntu-12.04

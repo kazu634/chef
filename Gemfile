@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'chef'
-gem 'knife-solo', '~>0.3.0.pre4'
+gem 'knife-solo'
 gem 'berkshelf'
 gem 'knife-ec2'
 gem 'knife-solo_data_bag'
