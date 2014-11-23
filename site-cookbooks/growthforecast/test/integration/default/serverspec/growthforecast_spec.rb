@@ -43,8 +43,6 @@ describe file('/etc/nginx/sites-available/growth') do
   it { should be_grouped_into 'root' }
 
   it { should be_mode 644 }
-
-  its(:md5sum) { should eq '88b6f642d5851e644198cb848924df43' }
 end
 
 describe file('/etc/nginx/sites-enabled/growthforecast') do
