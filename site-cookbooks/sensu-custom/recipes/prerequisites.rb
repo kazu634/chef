@@ -7,11 +7,24 @@
 # All rights reserved - Do Not Redistribute
 #
 
-%w{ sensu-plugin twitter }.each do |p|
+%w{ sensu-plugin twitter hipchat }.each do |p|
+  # for installation
   gem_package p do
     action     :install
     retries    3
     gem_binary("/opt/sensu/embedded/bin/gem")
+  end
+
+  # for updating
+  script "Update the prerequisite gem library #{p}" do
+    interpreter 'bash'
+
+    user 'root'
+    group 'root'
+
+    code <<-EOH
+      /opt/sensu/embedded/bin/gem update #{p}
+    EOH
   end
 end
 
