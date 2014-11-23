@@ -13,19 +13,22 @@ default["sensu"]["apt_repo_url"]          = "http://repos.sensuapp.org/apt"
 default["sensu"]["yum_repo_url"]          = "http://repos.sensuapp.org"
 default["sensu"]["msi_repo_url"]          = "http://repos.sensuapp.org/msi"
 
+# domain name
+default_unless["common"]["domain"]        = 'com'
+
 #rabbitmq
-default["sensu"]["rabbitmq"]["host"]      = "rabbitmq.kazu634.com"
+default["sensu"]["rabbitmq"]["host"]      = "rabbitmq.kazu634.#{node['common']['domain']}"
 default["sensu"]["rabbitmq"]["port"]      = 5671
 default["sensu"]["rabbitmq"]["vhost"]     = "/sensu"
 default["sensu"]["rabbitmq"]["user"]      = "sensu"
 default["sensu"]["rabbitmq"]["password"]  = "password"
 
 #redis
-default["sensu"]["redis"]["host"]         = "redis.kazu634.com"
+default["sensu"]["redis"]["host"]         = "redis.kazu634.#{node['common']['domain']}"
 default["sensu"]["redis"]["port"]         = 6379
 
 #api
-default["sensu"]["api"]["host"]           = "sensu-api.kazu634.com"
+default["sensu"]["api"]["host"]           = "sensu-api.kazu634.#{node['common']['domain']}"
 default["sensu"]["api"]["bind"]           = "0000"
 default["sensu"]["api"]["port"]           = 4567
 
@@ -37,6 +40,7 @@ default["sensu"]["dashboard"]["password"] = "secret"
 
 # server setting
 default["sensu-custom"]["server"]         = false
+default["sensu-custom"]["domain"]         = node['common']['domain']
 
 # iptables configuration:
 default['sensu-custom']['iptables']       = true
