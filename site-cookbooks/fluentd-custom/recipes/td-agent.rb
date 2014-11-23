@@ -56,8 +56,8 @@ end
 
 # deploy the `td-agent` configuration file for forwarding the logs,
 # only if the server is one of the clients.
-cookbook_file "/etc/td-agent/conf.d/forwarder.conf" do
-  source "forwarder.conf"
+template "/etc/td-agent/conf.d/forwarder.conf" do
+  source "forwarder.erb"
 
   owner "root"
   group "root"
