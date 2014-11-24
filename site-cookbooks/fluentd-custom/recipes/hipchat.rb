@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if node[:td_agent][:forward]
+if node['td_agent']['forward']
   # Install prerequisite gems
   %w{ fluent-plugin-buffered-hipchat }.each do |pkg|
     td_agent_gem pkg do

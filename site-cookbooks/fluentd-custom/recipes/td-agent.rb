@@ -64,7 +64,7 @@ template "/etc/td-agent/conf.d/forwarder.conf" do
 
   mode  0644
 
-  not_if { node[:td_agent][:forward] }
+  not_if { node['td_agent']['forward'] }
 
   notifies :restart, "service[td-agent]"
 end
@@ -74,7 +74,7 @@ end
 ####################
 
 # if the node is the manager:
-if node[:td_agent][:forward]
+if node['td_agent']['forward']
   # deploy the configuration file for accepting the forwarded logs
   cookbook_file "/etc/td-agent/conf.d/receiver.conf" do
     source "receiver.conf"
@@ -87,7 +87,7 @@ if node[:td_agent][:forward]
     notifies :restart, "service[td-agent]"
   end
 
-  if node[:td_agent][:ssh]
+  if node['td_agent']['ssh']
     # include the `iptables` cookbook
     include_recipe "iptables"
 

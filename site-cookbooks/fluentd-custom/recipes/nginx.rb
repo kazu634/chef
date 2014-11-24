@@ -43,7 +43,7 @@ cookbook_file "/etc/td-agent/conf.d/processor_nginx.conf" do
   mode 0644
 
   # if the node is the fluentd manager:
-  only_if { node[:td_agent][:forward] }
+  only_if { node['td_agent']['forward'] }
 
   notifies :restart, "service[td-agent]"
 end
