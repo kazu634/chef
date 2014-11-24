@@ -36,7 +36,9 @@ directory "/var/log/gcalendar" do
 end
 
 # nginx configuration
-cookbook_file "/etc/nginx/sites-available/gcal" do
+template "/etc/nginx/sites-available/gcal" do
+  source 'gcal.erb'
+
   owner "root"
   group "root"
 
