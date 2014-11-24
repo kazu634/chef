@@ -11,8 +11,6 @@ include_recipe "fluentd-custom::prerequisites"
 
 include_recipe "fluentd-custom::td-agent"
 
-include_recipe "fluentd-custom::dstat"
-
 include_recipe "fluentd-custom::aptitude"
 
 include_recipe "fluentd-custom::hipchat"
