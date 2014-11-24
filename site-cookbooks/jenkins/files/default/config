@@ -13,33 +13,3 @@ Host github.com
     Port 22
     User git
 
-Host www3232u.sakura.ne.jp
-    HostName www3232u.sakura.ne.jp
-    IdentityFile ~/.ssh/id_rsa.chef
-    Port 10022
-    User tech
-
-Host home.kazu634.com
-    HostName     home.kazu634.com
-    Port         10022
-    User         vyatta
-    IdentityFile ~/.ssh/id_rsa.chef
-
-Host esxi
-    HostName     192.168.3.4
-    Port         22
-    User         root
-    ProxyCommand ssh home.kazu634.com nc -w 600 %h %p
-    IdentityFile ~/.ssh/id_rsa.chef
-
-Host sandbox
-    HostName     home.kazu634.com
-    Port         10023
-    User         kazu634
-    IdentityFile ~/.ssh/id_rsa.chef
-
-Host sandbox-test
-    HostName     home.kazu634.com
-    Port         10024
-    User         kazu634
-    IdentityFile ~/.ssh/id_rsa.chef
