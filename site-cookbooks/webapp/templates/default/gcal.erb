@@ -4,7 +4,7 @@ upstream gcal {
 
 server {
   listen 80;
-  server_name calendar.kazu634.com;
+  server_name calendar.kazu634.<%= node['webapp']['domain'] %>;
 
   gzip on;
 

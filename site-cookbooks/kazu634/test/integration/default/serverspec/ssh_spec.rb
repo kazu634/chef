@@ -49,7 +49,7 @@ describe file('/home/kazu634/.ssh/config') do
   it { should be_grouped_into 'kazu634' }
   it { should be_mode 664 }
 
-  its(:md5sum) { should eq '4fe67db8d596501f778e82eba5861f22' }
+  its(:md5sum) { should eq 'cfd932386f80899637bddbd55a4adb2e' }
 end
 
 describe file('/home/kazu634/.ssh/amazon.pem') do

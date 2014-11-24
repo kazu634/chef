@@ -11,8 +11,8 @@
   buffer_path /var/log/td-agent/buffer/forward*.buffer
 
   <server>
-    name growth.kazu634.com
-    host growth.kazu634.com
+    name growth.kazu634.<%= node['fluentd-custom']['domain'] %>
+    host growth.kazu634.<%= node['fluentd-custom']['domain'] %>
     port 24224
     weight 60
   </server>

@@ -37,7 +37,7 @@ template "/etc/nginx/sites-available/sensu" do
   group    "root"
   mode     0644
 
-  notifies :restart,  "service[nginx]"
+  notifies :restart, "service[nginx]"
 end
 
 link "/etc/nginx/sites-enabled/sensu" do

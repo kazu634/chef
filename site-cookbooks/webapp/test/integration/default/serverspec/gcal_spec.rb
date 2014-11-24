@@ -34,8 +34,6 @@ describe file('/etc/nginx/sites-available/gcal') do
   it { should be_grouped_into 'root' }
 
   it { should be_mode 644 }
-
-  its(:md5sum) { should eq 'e5f7625bb278f465c9fd1a528705e53d' }
 end
 
 describe file('/etc/nginx/sites-enabled/gcal') do

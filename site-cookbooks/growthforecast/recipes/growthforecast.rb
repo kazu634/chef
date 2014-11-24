@@ -56,7 +56,9 @@ cookbook_file "/etc/init.d/growthforecast" do
   notifies :start,   "service[growthforecast]"
 end
 
-cookbook_file "/etc/nginx/sites-available/growth" do
+template "/etc/nginx/sites-available/growth" do
+  source "growth.erb"
+
   owner "root"
   group "root"
 
