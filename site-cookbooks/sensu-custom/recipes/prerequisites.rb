@@ -7,6 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
+remote_file "/opt/sensu/embedded/ssl/cert.pem" do
+  source   "http://curl.haxx.se/ca/cacert.pem"
+
+  owner    "root"
+  group    "root"
+  mode     0644
+end
+
 %w{ sensu-plugin twitter hipchat }.each do |p|
   # for installation
   gem_package p do
@@ -26,12 +34,4 @@
       /opt/sensu/embedded/bin/gem update #{p}
     EOH
   end
-end
-
-remote_file "/opt/sensu/embedded/ssl/cert.pem" do
-  source   "http://curl.haxx.se/ca/cacert.pem"
-
-  owner    "root"
-  group    "root"
-  mode     0644
 end
