@@ -19,3 +19,14 @@ end
 describe file('/etc/nginx/sites-enabled/sensu') do
   it { should be_linked_to '/etc/nginx/sites-available/sensu' }
 end
+
+# Ubuntu 12.04 only.
+# Check whether `Rabbitmq` allows ssl poodle attack:
+
+platform_version = JSON.load(`ohai`)['platform_version']
+
+if platform_version == "12.04"
+  describe file('/etc/rabbitmq/rabbitmq.config') do
+    its(:content) { should match /ssl_allow_poodle_attack/ }
+  end
+end

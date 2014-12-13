@@ -43,6 +43,39 @@ if node["sensu-custom"]["server"]
 
     only_if "grep '^notify-' /etc/redis/6379.conf"
   end
+
+  # The Erlang that Ubuntu 12.04 installs does not apply the patch,
+  # which solves the SSL poodle attack problem.
+  # In order to workaround this issue in Ubuntu 12.04 environment,
+  # add "ssl_allow_poodle_attack,  true" to the configuration file.
+  script "modify the Rabbitmq configuration to allow SSL poodle attack" do
+    interpreter "bash"
+
+    user "root"
+    group "root"
+
+    code <<-EOH
+    TARGET_CNF="/etc/rabbitmq//rabbitmq.config"
+
+    # check whether `ssl_allow_poodle_attack` configuration already exists?:
+    grep 'ssl_allow_poodle_attack' ${TARGET_CNF} > /dev/null
+    RC=$?
+
+    # if it does not, add the configuration:
+    if [ ${RC} -gt 0 ]; then
+      LINE=$(grep -n 5671 ${TARGET_CNF} | cut -f 1 -d ':')
+
+      sed -i "${LINE}a {ssl_allow_poodle_attack, true}," ${TARGET_CNF}
+
+    fi
+
+    exit 0
+    EOH
+
+    only_if { node["platform_version"] == "12.04" }
+
+    notifies :restart, "service[rabbitmq-server]"
+  end
 end
 
 include_recipe "sensu::client_service"
