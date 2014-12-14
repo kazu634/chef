@@ -61,3 +61,52 @@ remote_file "/etc/sensu/handlers/hipchat.rb" do
   group  "sensu"
   mode   0755
 end
+
+# Sensu-Growthforecast integration:
+remote_file "/etc/sensu/plugins/cpu-pcnt-usage-metrics.rb" do
+  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/cpu-pcnt-usage-metrics.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end
+
+remote_file "/etc/sensu/plugins/disk-usage-metrics.rb" do
+  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/disk-usage-metrics.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end
+
+remote_file "/etc/sensu/plugins/load-metrics.rb" do
+  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/load-metrics.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end
+
+remote_file "/etc/sensu/plugins/memory-metrics.rb" do
+  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/memory-metrics.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end
+
+remote_file "/etc/sensu/plugins/metrics-net.rb" do
+  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/network/metrics-net.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end
+
+remote_file "/etc/sensu/plugins/metrics-netstat-tcp.rb" do
+  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/network/metrics-netstat-tcp.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end

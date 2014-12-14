@@ -52,3 +52,52 @@ end
     standalone true
   end
 end
+
+# Sensu-Growthforecast integration:
+sensu_check "cpu-pcnt-usage-metrics" do
+  type "metric"
+  command "cpu-pcnt-usage-metrics.rb --scheme host:`uname -n`.cpu"
+  handlers ["growthforecast"]
+  subscribers ["all"]
+  interval 62
+end
+
+sensu_check "disk-usage-metrics" do
+  type "metric"
+  command "disk-usage-metrics.rb --scheme host:`uname -n`.disk_usage -f"
+  handlers ["growthforecast"]
+  subscribers ["all"]
+  interval 3600
+end
+
+sensu_check "load-metrics" do
+  type "metric"
+  command "load-metrics.rb --scheme host:`uname -n`"
+  handlers ["growthforecast"]
+  subscribers ["all"]
+  interval 64
+end
+
+sensu_check "memory-metrics" do
+  type "metric"
+  command "memory-metrics.rb --scheme host:`uname -n`.memory"
+  handlers ["growthforecast"]
+  subscribers ["all"]
+  interval 64
+end
+
+sensu_check "metrics-net" do
+  type "metric"
+  command "metrics-net.rb --scheme host:`uname -n`.interface"
+  handlers ["growthforecast"]
+  subscribers ["all"]
+  interval 68
+end
+
+sensu_check "metrics-netstat-tcp" do
+  type "metric"
+  command "metrics-netstat-tcp.rb --scheme host:`uname -n`.netstat"
+  handlers ["growthforecast"]
+  subscribers ["all"]
+  interval 70
+end
