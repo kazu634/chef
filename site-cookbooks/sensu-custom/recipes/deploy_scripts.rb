@@ -110,3 +110,17 @@ remote_file "/etc/sensu/plugins/metrics-netstat-tcp.rb" do
   group  "sensu"
   mode   0755
 end
+
+directory "/etc/sensu/mutators" do
+  owner "root"
+  group "sensu"
+  mode  0755
+end
+
+remote_file "/etc/sensu/mutators/mutator.rb" do
+  source "https://gist.githubusercontent.com/kazu634/e44711faee1c2b55b088/raw/d70ce4cca46cd36d7afb16521c5ac91445773aa6/mutator.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end
