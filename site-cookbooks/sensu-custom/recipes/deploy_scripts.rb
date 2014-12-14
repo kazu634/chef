@@ -124,3 +124,11 @@ remote_file "/etc/sensu/mutators/mutator.rb" do
   group  "sensu"
   mode   0755
 end
+
+remote_file "/etc/sensu/handlers/growthforecast-handler.rb" do
+  source "https://gist.githubusercontent.com/kazu634/e44711faee1c2b55b088/raw/a690a34201409218d0d59fa066d661f561bbb145/growthforecast-handler.rb"
+
+  user   "sensu"
+  group  "sensu"
+  mode   0755
+end
