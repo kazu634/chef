@@ -9,6 +9,8 @@
 
 include_recipe "sensu-custom::server_checks"
 
+include_recipe "sensu-custom::server_mutators"
+
 include_recipe "sensu-custom::server_handlers"
 
 # Configure iptables settings, when in production:

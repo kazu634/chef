@@ -50,3 +50,9 @@ sensu_handler "crit_only" do
   command    "tw.rb"
   severities ["critical"]
 end
+
+sensu_handler "growthforecast" do
+  type "pipe"
+  command "growthforecast-handler.rb"
+  mutator "growthforecast-mutator"
+end
