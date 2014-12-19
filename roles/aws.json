@@ -6,6 +6,7 @@
   "chef_type":"role",
   "run_list":[
     "recipe[base]",
+    "recipe[peco]",
     "recipe[monit]",
     "recipe[kazu634]",
     "recipe[nagios::nrpe]"
