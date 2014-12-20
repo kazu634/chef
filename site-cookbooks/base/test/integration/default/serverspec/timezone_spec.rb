@@ -6,8 +6,6 @@ describe file('/etc/localtime') do
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
   it { should be_mode 644 }
-
-  its(:md5sum) { should eq 'f17769e8eb35e7a08cfedfe9b2f6b5ef' }
 end
 
 describe file('/etc/timezone') do
