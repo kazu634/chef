@@ -1,7 +1,19 @@
+machine:
+  services:
+    - docker
+
 dependencies:
   post:
     - bundle exec rake init
+    - bundle exec rake build
+    - wget https://raw.githubusercontent.com/kazu634/dotfiles/master/.chef_databag_secret -O /home/ubuntu/chef/.chef_databag_secret
+
+  cache_directories:
+    - "cookbooks"
+    - "docker/ubuntu1204.tar"
+    - "docker/ubuntu1404.tar"
 
 test:
   override:
     - bundle exec rake foodcritic
+    - bundle exec rake test
