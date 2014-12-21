@@ -9,3 +9,4 @@ test/spec/reports
 test/Rakefile
 *.swp
 .bundle
+docker/*.tar

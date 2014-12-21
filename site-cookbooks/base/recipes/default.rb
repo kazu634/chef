@@ -44,6 +44,8 @@ when "ubuntu"
   end
 end
 
+# Do not generate local configuration,
+# under `Circle CI` environment:
 script "Language Settings" do
   interpreter "bash"
 
@@ -55,6 +57,8 @@ script "Language Settings" do
   dpkg-reconfigure locales
   update-locale LANG=ja_JP.UTF-8
   EOH
+
+  only_if { node['virtualization']['system'] != "xen" }
 end
 
 directory "/etc/sudoers.d" do
