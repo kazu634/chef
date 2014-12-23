@@ -16,4 +16,5 @@ dependencies:
 test:
   override:
     - bundle exec rake foodcritic
-    - bundle exec rake test
+    - bundle exec rake test:
+        timeout: 3600
