@@ -3,11 +3,21 @@
 desc "Runs foodcritic linter"
 task :foodcritic do
   if Gem::Version.new("1.9.2") <= Gem::Version.new(RUBY_VERSION.dup)
-    sandbox = File.join(File.dirname('..'),  %w{tmp foodcritic})
-    prepare_foodcritic_sandbox(sandbox)
 
-    puts "Check the recipes:"
-    sh "bundle exec foodcritic --epic-fail \"~FC048\" #{sandbox}/site-cookbooks"
+    # retrieve the list of the modified cookbooks:
+    modified_cookbooks = `git diff --name-only master..$(git symbolic-ref HEAD) | grep site-cookbook`
+
+    # if no cookbooks are modified, skip `foodcritic`.
+    if modified_cookbooks.empty?
+      puts "No cookbooks are modified, so skip `foodcritic` check."
+    else
+      # Running `foodcritic` test:
+      sandbox = File.join(File.dirname('..'),  %w{tmp foodcritic})
+      prepare_foodcritic_sandbox(sandbox)
+
+      puts "Check the recipes:"
+      sh "bundle exec foodcritic --epic-fail \"~FC048\" #{sandbox}/site-cookbooks"
+    end
 
     # if jsonlint exists
     if FileTest.exist?("/usr/bin/jsonlint")
