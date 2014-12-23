@@ -7,6 +7,14 @@ task :build do
   # Retrieve the list of the modified files:
   modified_files = `git diff --name-only master..\`git symbolic-ref HEAD\``
 
+  # If no cookbooks are modified, exit task:
+  unless modified_files.include?("site-cookbooks")
+    puts "No cookbooks are modified, so skip building the docker images."
+
+    exit
+  end
+
+  # building the docker images:
   %w{ ubuntu1204 ubuntu1404 }.each do |target_env|
     # change directory to docker/ubuntuxxxx:
     cd "docker/#{target_env}/" do
