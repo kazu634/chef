@@ -5,7 +5,7 @@ task :foodcritic do
   if Gem::Version.new("1.9.2") <= Gem::Version.new(RUBY_VERSION.dup)
 
     # retrieve the list of the modified cookbooks:
-    modified_cookbooks = `git diff --name-only master..$(git symbolic-ref HEAD) | grep site-cookbook`
+    modified_cookbooks = `git diff --name-only master..$(git symbolic-ref HEAD) | grep site-cookbook | grep -v wordpress`
 
     # if no cookbooks are modified, skip `foodcritic`.
     if modified_cookbooks.empty?

@@ -5,7 +5,7 @@ require 'rake'
 desc "Build docker images"
 task :build do
   # Retrieve the list of the modified files:
-  modified_files = `git diff --name-only master..\`git symbolic-ref HEAD\``
+  modified_files = `git diff --name-only master..\`git symbolic-ref HEAD\` | grep -v wordpress`
 
   # If no cookbooks are modified, exit task:
   unless modified_files.include?("site-cookbooks")
