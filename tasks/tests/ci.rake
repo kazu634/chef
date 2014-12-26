@@ -6,7 +6,7 @@ desc "Run CI tests."
 task :test do
   cookbooks = `git diff --name-only master..$(git symbolic-ref HEAD) | grep site-cookbooks | cut -f 2 -d / | awk '!a[$0]++'`
 
-  cookbooks.split('\n').each do |cookbook|
+  cookbooks.split("\n").each do |cookbook|
     cookbook.strip!
 
     cd "site-cookbooks/#{cookbook}/" do
