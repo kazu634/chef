@@ -45,6 +45,17 @@ describe file('/etc/nginx/sites-available/growth') do
   it { should be_mode 644 }
 end
 
+describe file('/etc/nginx/.htpasswd_growth') do
+  it { should be_file }
+
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+
+  it { should be_mode 644 }
+
+  its(:md5sum) { should eq '9fca435405ba17cc06097615e890d2cc' }
+end
+
 describe file('/etc/nginx/sites-enabled/growthforecast') do
   it { should be_linked_to '/etc/nginx/sites-available/growth' }
 end

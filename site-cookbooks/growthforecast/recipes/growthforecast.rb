@@ -64,7 +64,16 @@ template "/etc/nginx/sites-available/growth" do
 
   mode 0644
 
-  notifies :reload, "service[nginx]"
+  notifies :restart, "service[nginx]"
+end
+
+cookbook_file "/etc/nginx/.htpasswd_growth" do
+  owner   "root"
+  group   "root"
+
+  mode    0644
+
+  notifies :restart, "service[nginx]"
 end
 
 link "/etc/nginx/sites-enabled/growthforecast" do
