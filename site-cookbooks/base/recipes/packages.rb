@@ -64,3 +64,8 @@ end
 package "dstat" do
   action :install
 end
+
+# curl installation:
+package "curl" do
+  action :install
+end
