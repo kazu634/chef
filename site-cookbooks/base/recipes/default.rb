@@ -69,6 +69,7 @@ directory "/etc/sudoers.d" do
   not_if   "test -e /etc/sudoers.d"
 end
 
+# motd configuration:
 remote_file "/etc/motd.tail" do
   source   "https://gist.githubusercontent.com/makocchi-git/9775443/raw/746887fbc6e1a7c6b120af0abcfe58701e8b4550/slime-allstar.txt"
 
@@ -76,6 +77,17 @@ remote_file "/etc/motd.tail" do
   group    "root"
 
   mode     0644
+end
+
+cookbook_file '/etc/update-motd.d/99-motd-update' do
+  source '99-motd-update'
+
+  owner 'root'
+  group 'root'
+
+  mode 0755
+
+  only_if { node["platform_version"].to_f >= 14.04 }
 end
 
 # Install `ruby-shadow`, because `chef` needs the package.
