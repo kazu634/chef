@@ -24,16 +24,26 @@ tmp_directories.each do |d|
    mode 0755
    recursive true
   end
+end
 
-  mount d do
-    pass 0
-    fstype "tmpfs"
-    device "tmpfs"
-    options "size=50m,noatime"
-    action [:mount, :enable]
+mount '/var/www/proxy/blog_cache' do
+  pass 0
+  fstype "tmpfs"
+  device "tmpfs"
+  options "size=100m,noatime"
+  action [:mount, :enable]
 
-    notifies :create, "directory[#{d}]"
-  end
+  notifies :create, "directory[/var/www/proxy/blog_cache]"
+end
+
+mount '/var/www/proxy/blog_tmp' do
+  pass 0
+  fstype "tmpfs"
+  device "tmpfs"
+  options "size=5m,noatime"
+  action [:mount, :enable]
+
+  notifies :create, "directory[/var/www/proxy/blog_tmp]"
 end
 
 remote_file "#{Chef::Config['file_cache_path']}/wordpress.tgz" do
