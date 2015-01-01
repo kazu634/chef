@@ -22,7 +22,7 @@ sensu_check "load_average" do
 end
 
 sensu_check "swap" do
-  command "/etc/sensu/plugins/check-swap.sh -w 30 -c 60"
+  command "/etc/sensu/plugins/check-swap.sh -w 150 -c 300"
   handlers ["default"]
   subscribers ["all"]
   interval 86400
