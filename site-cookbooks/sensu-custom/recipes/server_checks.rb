@@ -36,7 +36,7 @@ sensu_check 'disk_usage' do
 end
 
 %w(blog.kazu634.com everun.club).each do |host|
-  sensu_check "#{host}" do
+  sensu_check host do
     command "/usr/lib/nagios/plugins/check_http -H #{host} -w 3 -c 5 -t 10"
     handlers ['default']
     interval 60
