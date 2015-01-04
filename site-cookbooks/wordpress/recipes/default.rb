@@ -7,13 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "wordpress::prerequisites"
+include_recipe 'wordpress::prerequisites'
 
-include_recipe "wordpress::mysql"
+include_recipe 'wordpress::mysql'
 
-include_recipe "wordpress::php5-fpm"
+include_recipe 'wordpress::php5_fpm'
 
-include_recipe "wordpress::nginx"
+include_recipe 'wordpress::nginx'
 
-include_recipe "wordpress::wordpress"
-
+include_recipe 'wordpress::wordpress'

@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "nagios-plugins" do
+package 'nagios-plugins' do
   action :install
 
-  options "--no-install-recommends"
+  options '--no-install-recommends'
 end

@@ -1,3 +1,3 @@
 #!/usr/bin/env rake
 
-Dir['tasks/**/*.rake'].each {|path| load path }
+Dir['tasks/**/*.rake'].each { |path| load path }

@@ -1,5 +1,5 @@
 site :opscode
 
 metadata
-cookbook 'ruby', path: "../ruby"
-cookbook 'base', path: "../base"
+cookbook 'ruby', path: '../ruby'
+cookbook 'base', path: '../base'

@@ -7,128 +7,128 @@
 # All rights reserved - Do Not Redistribute
 #
 
-remote_file "/etc/sensu/plugins/check-procs.rb" do
-  source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb"
+remote_file '/etc/sensu/plugins/check-procs.rb' do
+  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/check-log.rb" do
-  source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/logging/check-log.rb"
+remote_file '/etc/sensu/plugins/check-log.rb' do
+  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/logging/check-log.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/check-load.rb" do
-  source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-load.rb"
+remote_file '/etc/sensu/plugins/check-load.rb' do
+  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-load.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/check-swap.sh" do
-  source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-swap.sh"
+remote_file '/etc/sensu/plugins/check-swap.sh' do
+  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-swap.sh'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/check-disk.rb" do
-  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb"
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+remote_file '/etc/sensu/plugins/check-disk.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb'
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-cookbook_file "/etc/sensu/handlers/tw.rb" do
-  source "tw.rb"
+cookbook_file '/etc/sensu/handlers/tw.rb' do
+  source 'tw.rb'
 
-  owner  "sensu"
-  group  "sensu"
-  mode   0755
+  owner 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/handlers/hipchat.rb" do
-  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/handlers/notification/hipchat.rb"
+remote_file '/etc/sensu/handlers/hipchat.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/handlers/notification/hipchat.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
 # Sensu-Growthforecast integration:
-remote_file "/etc/sensu/plugins/cpu-pcnt-usage-metrics.rb" do
-  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/cpu-pcnt-usage-metrics.rb"
+remote_file '/etc/sensu/plugins/cpu-pcnt-usage-metrics.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/cpu-pcnt-usage-metrics.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/disk-usage-metrics.rb" do
-  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/disk-usage-metrics.rb"
+remote_file '/etc/sensu/plugins/disk-usage-metrics.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/disk-usage-metrics.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/load-metrics.rb" do
-  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/load-metrics.rb"
+remote_file '/etc/sensu/plugins/load-metrics.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/load-metrics.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/memory-metrics.rb" do
-  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/memory-metrics.rb"
+remote_file '/etc/sensu/plugins/memory-metrics.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/memory-metrics.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/metrics-net.rb" do
-  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/network/metrics-net.rb"
+remote_file '/etc/sensu/plugins/metrics-net.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/network/metrics-net.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/plugins/metrics-netstat-tcp.rb" do
-  source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/network/metrics-netstat-tcp.rb"
+remote_file '/etc/sensu/plugins/metrics-netstat-tcp.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/network/metrics-netstat-tcp.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-directory "/etc/sensu/mutators" do
-  owner "root"
-  group "sensu"
-  mode  0755
+directory '/etc/sensu/mutators' do
+  owner 'root'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/mutators/mutator.rb" do
-  source "https://gist.githubusercontent.com/kazu634/e44711faee1c2b55b088/raw/d70ce4cca46cd36d7afb16521c5ac91445773aa6/mutator.rb"
+remote_file '/etc/sensu/mutators/mutator.rb' do
+  source 'https://gist.githubusercontent.com/kazu634/e44711faee1c2b55b088/raw/d70ce4cca46cd36d7afb16521c5ac91445773aa6/mutator.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end
 
-remote_file "/etc/sensu/handlers/growthforecast-handler.rb" do
-  source "https://gist.githubusercontent.com/kazu634/e44711faee1c2b55b088/raw/a690a34201409218d0d59fa066d661f561bbb145/growthforecast-handler.rb"
+remote_file '/etc/sensu/handlers/growthforecast-handler.rb' do
+  source 'https://gist.githubusercontent.com/kazu634/e44711faee1c2b55b088/raw/a690a34201409218d0d59fa066d661f561bbb145/growthforecast-handler.rb'
 
-  user   "sensu"
-  group  "sensu"
-  mode   0755
+  user 'sensu'
+  group 'sensu'
+  mode 0755
 end

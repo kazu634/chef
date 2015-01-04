@@ -1,10 +1,10 @@
-name             'wordpress'
-maintainer       'Kazuhiro MUSASHI'
+name 'wordpress'
+maintainer 'Kazuhiro MUSASHI'
 maintainer_email 'simoom634@yahoo.co.jp'
-license          'All rights reserved'
-description      'Installs/Configures wordpress'
+license 'All rights reserved'
+description 'Installs/Configures wordpress'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version '0.1.0'
 
-depends "nginx"
-depends "monit"
+depends 'nginx'
+depends 'monit'

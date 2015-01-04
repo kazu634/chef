@@ -3,7 +3,7 @@ require 'json'
 
 set :backend,  :exec
 
-%w{ redis.conf rabbitmq.conf sensu-server.conf sensu-api.conf }.each do |conf|
+%w(redis.conf rabbitmq.conf sensu-server.conf sensu-api.conf).each do |conf|
   describe file("/etc/monit/conf.d/#{conf}") do
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
@@ -26,7 +26,7 @@ end
 
 platform_version = JSON.load(`ohai`)['platform_version']
 
-if platform_version == "12.04"
+if platform_version == '12.04'
   describe file('/etc/rabbitmq/rabbitmq.config') do
     its(:content) { should match /ssl_allow_poodle_attack/ }
   end

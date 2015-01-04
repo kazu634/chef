@@ -7,21 +7,21 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if not FileTest.exists?("#{node['growthforecast']['home']}/perl5/perlbrew/bin/perlbrew")
+unless FileTest.exists?("#{node['growthforecast']['home']}/perl5/perlbrew/bin/perlbrew")
   remote_file "#{Chef::Config['file_cache_path']}/perlbrew.sh" do
-    source   "http://install.perlbrew.pl"
+    source 'http://install.perlbrew.pl'
 
-    owner    "growth"
-    group    "growth"
+    owner 'growth'
+    group 'growth'
 
-    mode     0644
+    mode 0644
   end
 
-  script "Install perlbrew." do
-    interpreter "bash"
+  script 'Install perlbrew.' do
+    interpreter 'bash'
 
-    user "root"
-    group "root"
+    user 'root'
+    group 'root'
 
     code <<-EOH
     su - growth -c "bash #{Chef::Config['file_cache_path']}/perlbrew.sh"
@@ -29,22 +29,22 @@ if not FileTest.exists?("#{node['growthforecast']['home']}/perl5/perlbrew/bin/pe
   end
 
   cookbook_file "#{node['growthforecast']['home']}/.bashrc" do
-    owner   "growth"
-    group   "growth"
+    owner 'growth'
+    group 'growth'
 
-    mode    0644
+    mode 0644
   end
 end
 
-script "Install Perl." do
-  interpreter "bash"
+script 'Install Perl.' do
+  interpreter 'bash'
 
-  user "growth"
-  group "growth"
+  user 'growth'
+  group 'growth'
 
-  environment({'PERLBREW_ROOT' => "#{node['growthforecast']['home']}/perl5/perlbrew",
-               'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew"
-              })
+  environment('PERLBREW_ROOT' => "#{node['growthforecast']['home']}/perl5/perlbrew",
+              'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew"
+              )
 
   code <<-EOH
   source #{node['growthforecast']['home']}/perl5/perlbrew/etc/bashrc
@@ -56,15 +56,15 @@ script "Install Perl." do
   not_if "test -e #{node['growthforecast']['home']}/perl5/perlbrew/perls/#{node['growthforecast']['perl']}/"
 end
 
-script "Install cpanm." do
-  interpreter "bash"
+script 'Install cpanm.' do
+  interpreter 'bash'
 
-  user "growth"
-  group "growth"
+  user 'growth'
+  group 'growth'
 
-  environment({'PERLBREW_ROOT' => "#{node['growthforecast']['home']}/perl5/perlbrew",
-               'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew"
-              })
+  environment('PERLBREW_ROOT' => "#{node['growthforecast']['home']}/perl5/perlbrew",
+              'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew"
+              )
 
   code <<-EOH
   source #{node['growthforecast']['home']}/perl5/perlbrew/etc/bashrc

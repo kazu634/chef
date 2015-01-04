@@ -1,5 +1,4 @@
 action :install do
-
   user = new_resource.user
   group = new_resource.group
 
@@ -9,14 +8,14 @@ action :install do
   unless @current_resource.versions.include?(ver)
 
     git "#{home}/.rbenv" do
-      action        :sync
+      action :sync
 
-      repo          "git://github.com/sstephenson/rbenv.git"
-      destination   "#{home}/.rbenv"
-      revision      "master"
+      repo 'git://github.com/sstephenson/rbenv.git'
+      destination "#{home}/.rbenv"
+      revision 'master'
 
-      user          user
-      group         group
+      user user
+      group group
     end
 
     directory "#{home}/.rbenv/plugins" do
@@ -27,41 +26,41 @@ action :install do
     end
 
     git "#{home}/.rbenv/plugins/ruby-build" do
-      action        :sync
+      action :sync
 
-      repo          "git://github.com/sstephenson/ruby-build.git"
-      destination   "#{home}/.rbenv/plugins/ruby-build"
-      revision      "master"
+      repo 'git://github.com/sstephenson/ruby-build.git'
+      destination "#{home}/.rbenv/plugins/ruby-build"
+      revision 'master'
 
-      user          user
-      group         group
+      user user
+      group group
     end
 
     git "#{home}/.rbenv/plugins/rbenv-default-gems" do
-      action        :sync
+      action :sync
 
-      repo          "git://github.com/sstephenson/rbenv-default-gems.git"
-      destination   "#{home}/.rbenv/plugins/rbenv-default-gems"
-      revision      "master"
+      repo 'git://github.com/sstephenson/rbenv-default-gems.git'
+      destination "#{home}/.rbenv/plugins/rbenv-default-gems"
+      revision 'master'
 
-      user          user
-      group         group
+      user user
+      group group
     end
 
     cookbook_file "#{home}/.rbenv/default-gems" do
-      source     "default-gems"
-      cookbook   "ruby"
+      source 'default-gems'
+      cookbook 'ruby'
 
-      owner      user
-      group      group
-      mode       0644
+      owner user
+      group group
+      mode 0644
     end
 
-    script "install ruby" do
-      interpreter "bash"
+    script 'install ruby' do
+      interpreter 'bash'
 
-      user "root"
-      group "root"
+      user 'root'
+      group 'root'
 
       timeout 7200
 
@@ -77,9 +76,9 @@ action :install do
     end
 
     template "#{home}/.bash_profile" do
-      cookbook "ruby"
+      cookbook 'ruby'
 
-      source "bash_profile"
+      source 'bash_profile'
 
       owner user
       group group
@@ -87,12 +86,11 @@ action :install do
 
   end
 
-  unless @current_resource.versions.include?(ver) and @new_resource.gems - @current_resource.gems  ==  []
+  unless @current_resource.versions.include?(ver) && @new_resource.gems - @current_resource.gems  ==  []
 
     new_resource.updated_by_last_action(true)
 
   end
-
 end
 
 def load_current_resource
@@ -102,7 +100,6 @@ def load_current_resource
   @current_resource.version(@new_resource.version)
 
   user = @new_resource.user
-  group = @new_resource.group
   ver = @new_resource.version
 
   home = home_dir_of(user)
@@ -128,11 +125,8 @@ def load_current_resource
   end
 end
 
-
 private
 
 def home_dir_of(user)
-
-  return `grep #{user} /etc/passwd | cut -f 6 -d ":"`.chomp
-
+  `grep #{user} /etc/passwd | cut -f 6 -d ":"`.chomp
 end

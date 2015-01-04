@@ -7,61 +7,61 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "zsh" do
+package 'zsh' do
   action :install
 
-  not_if "which zsh"
+  not_if 'which zsh'
 end
 
-apt_repository "git" do
-  uri            "http://ppa.launchpad.net/git-core/ppa/ubuntu"
-  distribution   node['lsb']['codename']
-  components     ['main']
+apt_repository 'git' do
+  uri 'http://ppa.launchpad.net/git-core/ppa/ubuntu'
+  distribution node['lsb']['codename']
+  components ['main']
   keyserver 'keyserver.ubuntu.com'
   key 'E1DF1F24'
 end
 
-package "git-core" do
+package 'git-core' do
   action :install
 
-  options "--force-yes"
+  options '--force-yes'
 end
 
-include_recipe "base::git_config"
+include_recipe 'base::git_config'
 
-package "vim-nox" do
-  action :install
-end
-
-package "debian-keyring" do
+package 'vim-nox' do
   action :install
 end
 
-package "screen" do
+package 'debian-keyring' do
+  action :install
+end
+
+package 'screen' do
   action :install
 end
 
 # Ruby installation
-case node["platform"]
-when "ubuntu"
+case node['platform']
+when 'ubuntu'
   # common package: ruby
-  package "ruby" do
+  package 'ruby' do
     action :install
   end
 
   # install ruby gem
-  if 12.10 <= node["platform_version"].to_f
-    package "rubygems-integration" do
+  if 12.10 <= node['platform_version'].to_f
+    package 'rubygems-integration' do
       action :install
     end
-  elsif node["platform_version"].to_f < 12.10
-    package "rubygems" do
+  elsif node['platform_version'].to_f < 12.10
+    package 'rubygems' do
       action :install
     end
   end
 end
 
 # curl installation:
-package "curl" do
+package 'curl' do
   action :install
 end

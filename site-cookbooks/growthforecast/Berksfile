@@ -1,5 +1,5 @@
 site :opscode
 
 metadata
-cookbook 'nginx', path: "../nginx"
-cookbook 'monit', path: "../monit"
+cookbook 'nginx', path: '../nginx'
+cookbook 'monit', path: '../monit'

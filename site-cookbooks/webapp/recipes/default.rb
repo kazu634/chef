@@ -7,6 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "webapp::prerequisites"
+include_recipe 'webapp::prerequisites'
 
-include_recipe "webapp::gcal"
+include_recipe 'webapp::gcal'

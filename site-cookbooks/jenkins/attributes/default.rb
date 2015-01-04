@@ -1,7 +1,7 @@
 # common configuration
-default["jenkins"]["hostname"]     = "jenkins"
+default['jenkins']['hostname']     = 'jenkins'
 
 # domain name
-default_unless["common"]["domain"] = 'com'
+default_unless['common']['domain'] = 'com'
 
-default["jenkins"]["domain"]       = "kazu634.#{node['common']['domain']}"
+default['jenkins']['domain']       = "kazu634.#{node['common']['domain']}"

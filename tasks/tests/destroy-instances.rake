@@ -2,7 +2,7 @@
 
 require 'rake'
 
-desc "Destroy all the `test-kitchen` instances"
+desc 'Destroy all the `test-kitchen` instances'
 task :destroy do
   cookbooks = `ls -1 site-cookbooks`
 
@@ -10,9 +10,7 @@ task :destroy do
     cookbook.strip!
 
     cd "site-cookbooks/#{cookbook}/" do
-
-      sh "bundle ex kitchen destroy all"
-
+      sh 'bundle ex kitchen destroy all'
     end
   end
 

@@ -7,13 +7,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "monit"
+include_recipe 'monit'
 
-cookbook_file "/etc/security/limits.d/90-nfile.conf" do
-  source "90-nfile.conf"
+cookbook_file '/etc/security/limits.d/90-nfile.conf' do
+  source '90-nfile.conf'
 
-  owner "root"
-  group "root"
+  owner 'root'
+  group 'root'
 
-  mode  0644
+  mode 0644
 end

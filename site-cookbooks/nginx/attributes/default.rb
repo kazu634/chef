@@ -1,1 +1,1 @@
-default["nginx"]["iptables"]=true
+default['nginx']['iptables'] = true

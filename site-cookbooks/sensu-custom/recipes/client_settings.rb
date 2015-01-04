@@ -9,13 +9,13 @@
 
 sensu_client `uname -n`.chomp do
   address node['ipaddress']
-  subscriptions ["all"]
+  subscriptions ['all']
 end
 
-cookbook_file "/etc/sudoers.d/sensu" do
-  source "sensu"
+cookbook_file '/etc/sudoers.d/sensu' do
+  source 'sensu'
 
-  owner  "root"
-  group  "root"
-  mode   0440
+  owner 'root'
+  group 'root'
+  mode 0440
 end

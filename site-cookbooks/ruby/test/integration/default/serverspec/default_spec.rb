@@ -33,4 +33,3 @@ end
 describe package('libreadline6-dev') do
   it { should be_installed }
 end
-

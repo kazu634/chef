@@ -10,19 +10,19 @@
 platform = ['ubuntu']
 platform_ver = ['12.04', '13.04']
 
-if platform.include?(node['platform']) and platform_ver.include?(node['platform_version'])
+if platform.include?(node['platform']) && platform_ver.include?(node['platform_version'])
 
-  %w{linux-image-generic-lts-raring linux-headers-generic-lts-raring apt-transport-https}.each do |pkg|
+  %w(linux-image-generic-lts-raring linux-headers-generic-lts-raring apt-transport-https).each do |pkg|
     package pkg do
       action :install
 
-      not_if "test -z ${DOCKER}"
+      not_if 'test -z ${DOCKER}'
     end
   end
 
 else
 
-  log "Docker does not support this platform." do
+  log 'Docker does not support this platform.' do
     level :warn
   end
 
