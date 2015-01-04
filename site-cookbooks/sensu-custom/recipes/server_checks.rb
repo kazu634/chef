@@ -15,17 +15,17 @@ sensu_check "monit_log" do
 end
 
 sensu_check "load_average" do
-  command "/etc/sensu/plugins/check-load.rb -w 1,2,3 -c 2,4,6 -p"
+  command "/etc/sensu/plugins/check-load.rb -w 1,1,1 -c 2,2,2 -p"
   handlers ["default"]
   subscribers ["all"]
   interval 300
 end
 
 sensu_check "swap" do
-  command "/etc/sensu/plugins/check-swap.sh -w 30 -c 60"
+  command "/etc/sensu/plugins/check-swap.sh -w 150 -c 300"
   handlers ["default"]
   subscribers ["all"]
-  interval 40800
+  interval 86400
 end
 
 sensu_check "disk_usage" do
@@ -35,9 +35,19 @@ sensu_check "disk_usage" do
   interval 3600
 end
 
-%w{ blog }.each do |host|
-  sensu_check "#{host}.kazu634.com" do
-    command "/usr/lib/nagios/plugins/check_http -H #{host}.kazu634.com -w 3 -c 5 -t 10"
+%w{ blog.kazu634.com everun.club }.each do |host|
+  sensu_check "#{host}" do
+    command "/usr/lib/nagios/plugins/check_http -H #{host} -w 3 -c 5 -t 10"
+    handlers ["default"]
+    interval 60
+    standalone true
+  end
+end
+
+basic_auth = Chef::EncryptedDataBagItem.load('sensu', 'auth')
+%w{ sensu.kazu634.com growth.kazu634.com }.each do |site|
+  sensu_check site do
+    command "/usr/lib/nagios/plugins/check_http -H #{site} -w 3 -c 5 -t 10 -a #{basic_auth[site]}"
     handlers ["default"]
     interval 60
     standalone true
