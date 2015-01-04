@@ -4,7 +4,7 @@ describe file('/usr/share/git-core/templates/hooks/pre-commit') do
   it { should be_readable }
   it { should be_executable }
 
-  its(:md5sum) { should eq 'b599b5ada7e27cb645c55c30b4e20efe'}
+  its(:md5sum) { should eq 'b599b5ada7e27cb645c55c30b4e20efe' }
 end
 
 describe file('/usr/share/git-core/templates/hooks/prepare-commit-msg') do

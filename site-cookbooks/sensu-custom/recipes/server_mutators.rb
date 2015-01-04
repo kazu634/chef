@@ -7,6 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-sensu_mutator "growthforecast-mutator" do
-  command "/etc/sensu/mutators/mutator.rb"
+sensu_mutator 'growthforecast-mutator' do
+  command '/etc/sensu/mutators/mutator.rb'
 end

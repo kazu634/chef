@@ -7,19 +7,19 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "ntp" do
+package 'ntp' do
   action :install
 end
 
-cookbook_file "/etc/ntp.conf" do
-  owner "root"
-  group "root"
+cookbook_file '/etc/ntp.conf' do
+  owner 'root'
+  group 'root'
 
   mode 0644
 
-  notifies :restart, "service[ntp]"
+  notifies :restart, 'service[ntp]'
 end
 
-service "ntp" do
+service 'ntp' do
   action :nothing
 end

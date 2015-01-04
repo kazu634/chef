@@ -7,35 +7,35 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "build-essential"
+include_recipe 'build-essential'
 
-include_recipe "sensu::default"
+include_recipe 'sensu::default'
 
-include_recipe "sensu-custom::prerequisites"
-include_recipe "sensu-custom::nagios-plugins"
+include_recipe 'sensu-custom::prerequisites'
+include_recipe 'sensu-custom::nagios_plugins'
 
-include_recipe "sensu-custom::client_settings"
-include_recipe "sensu-custom::deploy_scripts"
+include_recipe 'sensu-custom::client_settings'
+include_recipe 'sensu-custom::deploy_scripts'
 
-if node["sensu-custom"]["server"]
-  include_recipe "sensu::rabbitmq"
-  include_recipe "sensu::redis"
-  include_recipe "sensu::server_service"
-  include_recipe "sensu::api_service"
+if node['sensu-custom']['server']
+  include_recipe 'sensu::rabbitmq'
+  include_recipe 'sensu::redis'
+  include_recipe 'sensu::server_service'
+  include_recipe 'sensu::api_service'
 
-  include_recipe "nginx"
-  include_recipe "uchiwa"
+  include_recipe 'nginx'
+  include_recipe 'uchiwa'
 
-  include_recipe "sensu-custom::server_settings"
+  include_recipe 'sensu-custom::server_settings'
 
   # Modify the redis configuration for it to start successfully
   # (older version of redis does not support the settings,
   #  the redis cookbook deploys.)
-  script "modify the redis configuration" do
-    interpreter "bash"
+  script 'modify the redis configuration' do
+    interpreter 'bash'
 
-    user        "root"
-    group       "root"
+    user 'root'
+    group 'root'
 
     code <<-EOH
     sed -ie "s/^notify-keyspace-events/# notify-keyspace-events/" /etc/redis/6379.conf
@@ -48,11 +48,11 @@ if node["sensu-custom"]["server"]
   # which solves the SSL poodle attack problem.
   # In order to workaround this issue in Ubuntu 12.04 environment,
   # add "ssl_allow_poodle_attack,  true" to the configuration file.
-  script "modify the Rabbitmq configuration to allow SSL poodle attack" do
-    interpreter "bash"
+  script 'modify the Rabbitmq configuration to allow SSL poodle attack' do
+    interpreter 'bash'
 
-    user "root"
-    group "root"
+    user 'root'
+    group 'root'
 
     code <<-EOH
     TARGET_CNF="/etc/rabbitmq//rabbitmq.config"
@@ -72,10 +72,10 @@ if node["sensu-custom"]["server"]
     exit 0
     EOH
 
-    only_if { node["platform_version"] == "12.04" }
+    only_if { node['platform_version'] == '12.04' }
 
-    notifies :restart, "service[rabbitmq-server]"
+    notifies :restart, 'service[rabbitmq-server]'
   end
 end
 
-include_recipe "sensu::client_service"
+include_recipe 'sensu::client_service'

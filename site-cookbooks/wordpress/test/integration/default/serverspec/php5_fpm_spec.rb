@@ -10,4 +10,3 @@ describe file('/etc/php5/fpm/pool.d/www.conf') do
 
   its(:md5sum) { should eq '146dc83c13d5ce9fad2107bf57ed1ba6' }
 end
-

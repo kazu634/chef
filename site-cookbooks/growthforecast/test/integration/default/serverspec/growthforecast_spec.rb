@@ -59,4 +59,3 @@ end
 describe file('/etc/nginx/sites-enabled/growthforecast') do
   it { should be_linked_to '/etc/nginx/sites-available/growth' }
 end
-

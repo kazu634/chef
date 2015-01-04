@@ -8,28 +8,28 @@
 #
 
 # Use `nginx` as the front-end proxy
-include_recipe "nginx"
+include_recipe 'nginx'
 
 # Create user for webapp
-user "webapp" do
-  comment  "User for WebApp"
+user 'webapp' do
+  comment 'User for WebApp'
 
-  home     node['webapp']['home']
-  shell    "/bin/bash"
+  home node['webapp']['home']
+  shell '/bin/bash'
 
-  supports :manage_home => true
+  supports manage_home: true
 
-  system   true
+  system true
 end
 
 # Install Ruby
-include_recipe "ruby"
+include_recipe 'ruby'
 
-ruby_setup "webapp" do
+ruby_setup 'webapp' do
   action :install
 
-  user "webapp"
-  group "webapp"
+  user 'webapp'
+  group 'webapp'
 
   version node['webapp']['ruby']
 end

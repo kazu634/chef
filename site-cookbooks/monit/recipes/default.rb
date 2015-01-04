@@ -7,37 +7,37 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "monit" do
+package 'monit' do
   action :install
 end
 
-service "monit" do
+service 'monit' do
   action :disable
 end
 
-cookbook_file "/etc/monit/monitrc" do
-  source "monitrc"
-  mode   0600
-  owner "root"
-  group "root"
+cookbook_file '/etc/monit/monitrc' do
+  source 'monitrc'
+  mode 0600
+  owner 'root'
+  group 'root'
 
-  notifies :reload, "service[monit]"
+  notifies :reload, 'service[monit]'
 end
 
-template "/etc/init/monit.conf" do
-  source   "monit.conf.erb"
-  mode     0644
-  owner    "root"
-  group    "root"
+template '/etc/init/monit.conf' do
+  source 'monit.conf.erb'
+  mode 0644
+  owner 'root'
+  group 'root'
 
-  notifies :run, "script[initctl reload-configuration]"
+  notifies :run, 'script[initctl reload-configuration]'
 end
 
-script "initctl reload-configuration" do
-  interpreter "bash"
+script 'initctl reload-configuration' do
+  interpreter 'bash'
 
-  user "root"
-  group "root"
+  user 'root'
+  group 'root'
 
   code <<-EOH
   /etc/init.d/monit stop && update-rc.d -f monit remove

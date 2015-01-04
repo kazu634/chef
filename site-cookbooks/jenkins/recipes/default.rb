@@ -7,56 +7,56 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "apt"
-include_recipe "nginx"
-include_recipe "base"
+include_recipe 'apt'
+include_recipe 'nginx'
+include_recipe 'base'
 
-package "python-demjson" do
+package 'python-demjson' do
   action :install
 end
 
-apt_repository "jenkins" do
-  uri "http://pkg.jenkins-ci.org/debian"
+apt_repository 'jenkins' do
+  uri 'http://pkg.jenkins-ci.org/debian'
 
-  components ["binary/"]
+  components ['binary/']
 
-  key "http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key"
+  key 'http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key'
 
-  not_if "test -e /usr/share/jenkins/jenkins.war"
+  not_if 'test -e /usr/share/jenkins/jenkins.war'
 end
 
-package "jenkins" do
+package 'jenkins' do
   action :install
 
-  not_if "test -e /usr/share/jenkins/jenkins.war"
+  not_if 'test -e /usr/share/jenkins/jenkins.war'
 end
 
-service "jenkins" do
+service 'jenkins' do
   action [:start, :enable]
 end
 
-package "ttf-dejavu" do
+package 'ttf-dejavu' do
   action :install
 end
 
-template "/etc/nginx/sites-available/jenkins" do
-  source   "jenkins.erb"
+template '/etc/nginx/sites-available/jenkins' do
+  source 'jenkins.erb'
 
-  user     "root"
-  group    "root"
-  mode     0644
+  user 'root'
+  group 'root'
+  mode 0644
 
-  notifies :restart, "service[nginx]"
+  notifies :restart, 'service[nginx]'
 end
 
-link "/etc/nginx/sites-enabled/jenkins" do
-  to "/etc/nginx/sites-available/jenkins"
+link '/etc/nginx/sites-enabled/jenkins' do
+  to '/etc/nginx/sites-available/jenkins'
 
-  not_if "test -e /etc/nginx/sites-enabled/jenkins"
+  not_if 'test -e /etc/nginx/sites-enabled/jenkins'
 end
 
-service "nginx" do
+service 'nginx' do
   action :nothing
 end
 
-include_recipe "jenkins::env"
+include_recipe 'jenkins::env'

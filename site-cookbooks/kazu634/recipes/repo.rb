@@ -7,11 +7,11 @@
 ## All rights reserved - Do Not Redistribute
 ##
 
-git "/home/kazu634/repo/chef" do
-  repo "git://github.com/kazu634/chef.git"
+git '/home/kazu634/repo/chef' do
+  repo 'git://github.com/kazu634/chef.git'
 
-  user "kazu634"
-  group "kazu634"
+  user 'kazu634'
+  group 'kazu634'
 
   action :sync
 end

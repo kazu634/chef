@@ -23,7 +23,7 @@ describe file('/etc/motd.tail') do
   its(:md5sum) { should eq 'bb890cfc316f0875511576ad1d5599bc' }
 end
 
-if os[:release].to_f >= 14.04 and os[:family] == 'ubuntu'
+if os[:release].to_f >= 14.04 && os[:family] == 'ubuntu'
   describe file('/etc/update-motd.d/99-motd-update') do
     it { should be_file }
 

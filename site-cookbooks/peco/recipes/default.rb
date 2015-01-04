@@ -19,9 +19,9 @@ execute "tar zxf #{archive.path} -C #{install_dir.path} --strip-components 1" do
 end
 
 execute 'install peco' do
-  _binary = File.join(node['peco']['prefix'], 'bin/peco')
+  binary = File.join(node['peco']['prefix'], 'bin/peco')
 
-  command "cp #{File.join(install_dir.path, 'peco')} #{_binary} && chmod +x #{_binary}"
+  command "cp #{File.join(install_dir.path, 'peco')} #{binary} && chmod +x #{binary}"
 
-  not_if { File.exists?(_binary) }
+  not_if { File.exist?(binary) }
 end

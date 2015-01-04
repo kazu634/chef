@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "growthforecast::prerequisites"
+include_recipe 'growthforecast::prerequisites'
 
-include_recipe "growthforecast::perlbrew"
+include_recipe 'growthforecast::perlbrew'
 
-include_recipe "growthforecast::growthforecast"
+include_recipe 'growthforecast::growthforecast'

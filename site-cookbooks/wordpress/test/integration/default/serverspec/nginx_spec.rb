@@ -21,4 +21,3 @@ end
 describe file('/etc/nginx/sites-enabled/wordpress') do
   it { should be_linked_to '/etc/nginx/sites-available/wordpress' }
 end
-
