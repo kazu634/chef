@@ -12,7 +12,7 @@ describe file('/etc/cron.d/dstat') do
 
   it { should be_mode 644 }
 
-  its(:md5sum) { should eq '9609f360fde168691a2a4ca50cb7b7c9' }
+  its(:md5sum) { should eq '7609f1b32368d01fa671c80085971bce' }
 end
 
 describe file('/etc/rc.local') do
