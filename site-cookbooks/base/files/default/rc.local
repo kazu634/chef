@@ -1,0 +1,27 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Calculate the UNIX epoch time of "Tommorrow midnight":
+# ex: if today is 2014/12/31, then calculate 2015/1/1 00:00:00.
+tmp=$(date -d '1 days' '+%Y/%m/%d 00:00:00')
+tomorrow=$(date -d "${tmp}" '+%s')
+
+# Calculate the UNIX epoch time of now:
+now=$(date '+%s')
+
+# Calculate the remaining time of today
+result=`expr ${tomorrow} - ${now}`
+
+/usr/bin/dstat -t --top-cpu-adv --top-io --top-bio -lafip --nocolor --output /tmp/dstat_`date "+%Y%m%d"`.csv 1 ${result} > /dev/null 2>&1 &
+
+exit 0

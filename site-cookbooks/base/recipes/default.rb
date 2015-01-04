@@ -16,6 +16,7 @@ include_recipe "base::fortune"
 include_recipe "base::packages"
 include_recipe "base::timezone"
 include_recipe "base::ntp"
+include_recipe "base::collect_performance"
 
 # only install amd64 package
 # http://d.hatena.ne.jp/ritchey/20121229
