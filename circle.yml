@@ -5,7 +5,7 @@ machine:
 dependencies:
   post:
     - bundle exec rake init
-    - bundle exec rake build
+    - bundle exec rake ci:build
     - wget https://raw.githubusercontent.com/kazu634/dotfiles/master/.chef_databag_secret -O /home/ubuntu/chef/.chef_databag_secret
 
   cache_directories:
@@ -15,7 +15,7 @@ dependencies:
 
 test:
   override:
-    - bundle exec rake rubocop
+    - bundle exec rake rubocop:test
     - bundle exec rake foodcritic
-    - bundle exec rake test:
+    - bundle exec rake ci:test:
         timeout: 3600
