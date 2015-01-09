@@ -1,2 +1,3 @@
 # Port 24224 for fluentd
--A FWR -p tcp -m tcp,udp --dport 24224 -j ACCEPT
+-A FWR -p tcp --dport 24224 -j ACCEPT
+-A FWR -p udp --dport 24224 -j ACCEPT
