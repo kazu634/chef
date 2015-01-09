@@ -8,7 +8,7 @@ namespace :rubocop do
       # retrieve the list of the modified cookbooks:
       # rubocop:disable Metrics/LineLength
       modified_recipes =
-        `git diff --name-status master..$(git symbolic-ref HEAD) | grep site-cookbooks | grep -v ^D | awk '{ print $2 }'`
+        `git diff --name-status master..$(git symbolic-ref HEAD) | grep site-cookbooks | grep -v ^D | grep -v erb | awk '{ print $2 }'`
       # rubocop:enable Metrics/LineLength
 
       # if no cookbooks are modified, skip `rubocop`.
