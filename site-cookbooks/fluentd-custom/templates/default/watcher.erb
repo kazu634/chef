@@ -2,19 +2,15 @@
   type copy
 
   <store>
-    type buffered_hipchat
-    api_token <%= @api_token %>
-    default_room kazu634-ops
-    default_from fluentd
-    default_color yellow
-    default_notify 0
-    default_format html
-
-    buffer_type file
+    type buffered_slack
+    api_key <%= @api_token %>
+    team kazu634
+    channel %23ops
+    username kazu-chan
+    color danger
+    icon_emoji :ghost:
     buffer_path /var/log/td-agent/buffer/notification_buffer*.buffer
     flush_interval 60s
-    retry_limit 15
-    retry_wait 1s
   </store>
 
   <store>
