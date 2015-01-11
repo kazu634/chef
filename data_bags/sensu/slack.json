@@ -1,0 +1,9 @@
+{
+  "id": "slack",
+  "token": {
+    "encrypted_data": "JnxCXd43JEzqGSkvOVabXrd0lNRLOegVaJkhdjFAnSujeujOlcDodNMyY41K\n3xhX\n",
+    "iv": "cFh5uJExzkNgi5UP99nw6A==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

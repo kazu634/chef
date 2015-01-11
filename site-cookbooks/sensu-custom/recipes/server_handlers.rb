@@ -7,48 +7,25 @@
 # All rights reserved - Do Not Redistribute
 #
 
-twitter_auth = Chef::EncryptedDataBagItem.load('sensu', 'twitter')
+slack_auth = Chef::EncryptedDataBagItem.load('sensu', 'slack')
 
-sensu_snippet 'twitter' do
-  content(default: {
-            sensusub: 'all',
-            consumer_key: twitter_auth['consumer_key'],
-            consumer_secret: twitter_auth['consumer_secret'],
-            oauth_token: twitter_auth['oauth_token'],
-            oauth_token_secret: twitter_auth['oauth_token_secret']
-          })
+sensu_snippet 'slack' do
+  content(token: slack_auth['token'],
+          team_name: 'kazu634',
+          channel: '#ops',
+          message_prefix: '<!channel> ',
+          surround: '',
+          bot_name: 'kazu-chan')
 end
 
-hipchat_auth = Chef::EncryptedDataBagItem.load('sensu', 'hipchat')
-
-sensu_snippet 'hipchat' do
-  content(
-    apikey: hipchat_auth['apikey'],
-    apiversion: 'v2',
-    room: 'Kazu634-ops',
-    from: 'Sensu'
-  )
-end
-
-sensu_handler 'twitter' do
+sensu_handler 'slack' do
   type 'pipe'
-  command 'tw.rb'
-end
-
-sensu_handler 'hipchat' do
-  type 'pipe'
-  command 'hipchat.rb'
+  command 'slack.rb'
 end
 
 sensu_handler 'default' do
   type 'set'
-  handlers %w(twitter hipchat)
-end
-
-sensu_handler 'crit_only' do
-  type 'pipe'
-  command 'tw.rb'
-  severities ['critical']
+  handlers %w(slack)
 end
 
 sensu_handler 'growthforecast' do
