@@ -16,5 +16,5 @@ describe file('/etc/td-agent/conf.d/watcher.conf') do
 
   it { should be_mode 644 }
 
-  its(:md5sum) { should eq '10dacd357577be1ca9f02f1c68ac0862' }
+  its(:md5sum) { should eq '62a3abc63603f428eb873a2467799629' }
 end
