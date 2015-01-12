@@ -13,7 +13,7 @@ include_recipe 'fluentd-custom::td_agent'
 
 include_recipe 'fluentd-custom::aptitude'
 
-include_recipe 'fluentd-custom::hipchat'
+include_recipe 'fluentd-custom::slack'
 
 include_recipe 'fluentd-custom::monit'
 

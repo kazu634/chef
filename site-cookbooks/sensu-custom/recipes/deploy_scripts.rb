@@ -46,16 +46,9 @@ remote_file '/etc/sensu/plugins/check-disk.rb' do
   mode 0755
 end
 
-cookbook_file '/etc/sensu/handlers/tw.rb' do
-  source 'tw.rb'
-
-  owner 'sensu'
-  group 'sensu'
-  mode 0755
-end
-
-remote_file '/etc/sensu/handlers/hipchat.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/handlers/notification/hipchat.rb'
+# Slack notification:
+remote_file '/etc/sensu/handlers/slack.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/handlers/notification/slack.rb'
 
   user 'sensu'
   group 'sensu'

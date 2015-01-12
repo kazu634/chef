@@ -1,0 +1,9 @@
+{
+  "id": "slack",
+  "api_key": {
+    "encrypted_data": "VRMgppR+8udn7avj0z1KOOsNyWsbcQqJvYjsuiu4C3alVY/O4kgc+3XPbHrg\nBrR/\n",
+    "iv": "5TTAnyKTODXtWYGnWH0Jiw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

@@ -9,13 +9,13 @@
 
 if node['td_agent']['forward']
   # Install prerequisite gems
-  %w(fluent-plugin-buffered-hipchat).each do |pkg|
+  %w(fluent-plugin-slack).each do |pkg|
     td_agent_gem pkg do
       action :upgrade
     end
   end
 
-  hipchat_auth = Chef::EncryptedDataBagItem.load('fluentd-custom',  'hipchat')
+  slack_auth = Chef::EncryptedDataBagItem.load('fluentd-custom', 'slack')
 
   # deploy the configuration file for hipchat notification
   template '/etc/td-agent/conf.d/watcher.conf' do
@@ -27,9 +27,9 @@ if node['td_agent']['forward']
     mode 0644
 
     variables(
-      api_token: hipchat_auth['api_token']
+      api_token: slack_auth['api_key']
     )
 
-    notifies :restart,  'service[td-agent]'
+    notifies :restart, 'service[td-agent]'
   end
 end
