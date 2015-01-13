@@ -8,6 +8,7 @@
     "recipe[base]",
     "recipe[peco]",
     "recipe[monit]",
+    "recipe[notification]",
     "recipe[kazu634]",
     "recipe[nagios::nrpe]"
     ]}
