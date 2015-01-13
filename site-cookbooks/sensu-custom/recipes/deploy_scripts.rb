@@ -15,14 +15,6 @@ remote_file '/etc/sensu/plugins/check-procs.rb' do
   mode 0755
 end
 
-remote_file '/etc/sensu/plugins/check-log.rb' do
-  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/logging/check-log.rb'
-
-  user 'sensu'
-  group 'sensu'
-  mode 0755
-end
-
 remote_file '/etc/sensu/plugins/check-load.rb' do
   source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-load.rb'
 
