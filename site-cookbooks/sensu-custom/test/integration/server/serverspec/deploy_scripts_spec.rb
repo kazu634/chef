@@ -7,6 +7,7 @@ scripts = %w(/etc/sensu/plugins/check-procs.rb
              /etc/sensu/plugins/check-swap.sh
              /etc/sensu/plugins/check-disk.rb
              /etc/sensu/plugins/cpu-pcnt-usage-metrics.rb
+             /etc/sensu/plugins/check-file-exists.rb
              /etc/sensu/plugins/disk-usage-metrics.rb
              /etc/sensu/plugins/load-metrics.rb
              /etc/sensu/plugins/memory-metrics.rb
