@@ -56,6 +56,13 @@ end
   end
 end
 
+sensu_check 'reboot-required' do
+  command '/etc/sensu/plugins/check-file-exists.rb -c /var/run/reboot-required'
+  handlers ['default']
+  subscribers ['all']
+  interval 3600
+end
+
 # Sensu-Growthforecast integration:
 sensu_check 'cpu-pcnt-usage-metrics' do
   type 'metric'
