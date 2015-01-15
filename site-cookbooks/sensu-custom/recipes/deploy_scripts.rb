@@ -38,6 +38,13 @@ remote_file '/etc/sensu/plugins/check-disk.rb' do
   mode 0755
 end
 
+remote_file '/etc/sensu/plugins/check-file-exists.rb' do
+  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/files/check-file-exists.rb'
+  user 'sensu'
+  group 'sensu'
+  mode 0755
+end
+
 # Slack notification:
 remote_file '/etc/sensu/handlers/slack.rb' do
   source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/handlers/notification/slack.rb'
