@@ -7,6 +7,7 @@
   "run_list":[
     "recipe[base]",
     "recipe[peco]",
+    "recipe[serf]",
     "recipe[monit]",
     "recipe[notification]",
     "recipe[kazu634]",
