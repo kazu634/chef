@@ -5,7 +5,7 @@ require 'rake'
 namespace :ci do
   desc 'Run CI tests.'
   task :test do
-    cookbooks = `git diff --name-status master..$(git symbolic-ref HEAD) | grep site-cookbooks | grep -v ^D | grep -v wordpress | awk '{ print $2 }' | cut -f 2 -d /`
+    cookbooks = `git diff --name-status master..$(git symbolic-ref HEAD) | grep site-cookbooks | grep -v ^D | grep -v wordpress | awk '{ print $2 }' | cut -f 2 -d / | awk '!colname[$1]++{print $1}'`
 
     if cookbooks.empty?
       puts 'No cookbooks are modified. Skip CI testing.'
