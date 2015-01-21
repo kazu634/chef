@@ -14,6 +14,7 @@
     "recipe[base]",
     "recipe[monit]",
     "recipe[peco]",
+    "recipe[serf]",
     "recipe[notification]",
     "recipe[kazu634]",
     "recipe[fluentd-custom]",
