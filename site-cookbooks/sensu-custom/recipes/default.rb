@@ -9,6 +9,8 @@
 
 include_recipe 'build-essential'
 
+include_recipe 'monit'
+
 include_recipe 'sensu::default'
 
 include_recipe 'sensu-custom::prerequisites'
