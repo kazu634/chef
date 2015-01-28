@@ -10,8 +10,6 @@ describe file('/etc/monit/monitrc') do
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
   it { should be_mode 600 }
-
-  its(:md5sum) { should eq '3b82c533d8471c12246e9b2115a2c429' }
 end
 
 describe file('/etc/init/monit.conf') do
