@@ -19,3 +19,13 @@ cookbook_file '/etc/sudoers.d/sensu' do
   group 'root'
   mode 0440
 end
+
+cookbook_file '/etc/monit/conf.d/sensu-client.conf' do
+  source 'sensu-client.conf'
+
+  owner 'root'
+  group 'root'
+  mode 0644
+
+  notifies :reload, 'service[monit]'
+end
