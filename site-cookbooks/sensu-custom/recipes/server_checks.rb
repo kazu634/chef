@@ -47,7 +47,7 @@ basic_auth = Chef::EncryptedDataBagItem.load('sensu', 'auth')
   end
 end
 
-%w(home).each do |host|
+%w(home tagajo).each do |host|
   sensu_check "#{host}.kazu634.com" do
     command "/usr/bin/sudo /usr/lib/nagios/plugins/check_ping -H #{host}.kazu634.com -w 200,30% -c 500,50%"
     handlers ['default']
