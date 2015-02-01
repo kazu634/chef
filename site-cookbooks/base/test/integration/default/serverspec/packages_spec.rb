@@ -20,17 +20,23 @@ describe package('screen') do
   it { should be_installed }
 end
 
-describe package('ruby') do
-  it { should be_installed }
-end
-
 if os[:release] == '12.04'
+  describe package('ruby') do
+    it { should be_installed }
+  end
+
   describe package('rubygems') do
     it { should be_installed }
   end
-else
-  describe package('rubygems-integration') do
+elsif os[:release] == '14.04'
+  describe package('ruby2.0') do
     it { should be_installed }
+  end
+
+  %w(erb gem testrb irb rake ruby ri rdoc).each do |cmd|
+    describe file("/usr/bin/#{cmd}") do
+      it { should be_linked_to "/usr/bin/#{cmd}2.0" }
+    end
   end
 end
 
