@@ -10,9 +10,7 @@
 slack_auth = Chef::EncryptedDataBagItem.load('sensu', 'slack')
 
 sensu_snippet 'slack' do
-  content(token: slack_auth['token'],
-          team_name: 'kazu634',
-          channel: '#ops',
+  content(webhook_url: slack_auth['webhook_url'],
           message_prefix: '<!channel> ',
           surround: '',
           bot_name: 'kazu-chan')

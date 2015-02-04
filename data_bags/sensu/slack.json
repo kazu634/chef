@@ -1,8 +1,8 @@
 {
   "id": "slack",
-  "token": {
-    "encrypted_data": "JnxCXd43JEzqGSkvOVabXrd0lNRLOegVaJkhdjFAnSujeujOlcDodNMyY41K\n3xhX\n",
-    "iv": "cFh5uJExzkNgi5UP99nw6A==\n",
+  "webhook_url": {
+    "encrypted_data": "oHPpVnD4lOEDrphPbva+2qaagxsvhh3Xf1TUnmnfRxq1weyBuHf/P9f/E/O8\n7gNrkukeCdFjkNIgpdjVPgJZM4vngBboi1k7eYi1wVkfG+oigi5/UtnhKJ7x\nSXL1ve3qYiK+jlkhiQ5jND92P0NCWw==\n",
+    "iv": "2RN6iDElV4RgbRUIAiBgfA==\n",
     "version": 1,
     "cipher": "aes-256-cbc"
   }
