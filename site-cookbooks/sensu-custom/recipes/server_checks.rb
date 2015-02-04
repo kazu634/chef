@@ -74,7 +74,7 @@ end
 
 sensu_check 'disk-usage-metrics' do
   type 'metric'
-  command 'disk-usage-metrics.rb --scheme host:`uname -n`.disk_usage -f'
+  command 'disk-usage-metrics.rb --scheme host:`uname -n` -f'
   handlers ['growthforecast']
   subscribers ['all']
   interval 900
