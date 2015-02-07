@@ -81,3 +81,9 @@ if node['sensu-custom']['server']
 end
 
 include_recipe 'sensu::client_service'
+
+# Deploy the `fluentd` configuration file for
+# monitoring `Sensu` related logs:
+if node['recipes'].include?('fluentd-custom')
+  include_recipe 'sensu-custom::log_monitor'
+end
