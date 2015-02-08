@@ -28,6 +28,8 @@ execute 'unzip serf binary' do
   command "unzip -qo #{node['serf']['tmp_path']}"
 
   notifies :restart, 'service[serf]'
+
+  not_if "test -e /opt/serf/bin/serf"
 end
 
 file '/opt/serf/bin/serf' do
