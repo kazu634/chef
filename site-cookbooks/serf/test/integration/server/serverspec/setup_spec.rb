@@ -47,7 +47,3 @@ end
     its(:exit_status) { should eq 0 }
   end
 end
-
-describe service('serf') do
-  it { should be_enabled }
-end
