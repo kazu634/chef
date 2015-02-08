@@ -29,7 +29,7 @@ execute 'unzip serf binary' do
 
   notifies :restart, 'service[serf]'
 
-  not_if "test -e /opt/serf/bin/serf"
+  not_if 'test -e /opt/serf/bin/serf'
 end
 
 file '/opt/serf/bin/serf' do
