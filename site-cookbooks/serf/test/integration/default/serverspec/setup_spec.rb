@@ -25,7 +25,3 @@ describe file('/etc/serf/serf.json') do
   it { should be_grouped_into '_serf' }
   it { should be_mode 644 }
 end
-
-describe service('serf') do
-  it { should be_enabled }
-end
