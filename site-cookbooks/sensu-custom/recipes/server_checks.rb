@@ -61,6 +61,7 @@ sensu_check 'reboot-required' do
   handlers ['default']
   subscribers ['all']
   interval 3600
+  additional(subdue: { begin: '00:00 JST', end: '22:59 JST' })
 end
 
 # Sensu-Growthforecast integration:
