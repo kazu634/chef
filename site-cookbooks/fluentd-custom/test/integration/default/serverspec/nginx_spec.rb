@@ -22,6 +22,4 @@ describe file('/etc/td-agent/conf.d/forwarder_nginx.conf') do
   it { should be_grouped_into 'root' }
 
   it { should be_mode 644 }
-
-  its(:md5sum) { should eq 'a3691c8faf97379ad9f3bfa04a42ae16' }
 end

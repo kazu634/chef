@@ -17,8 +17,6 @@ describe file('/etc/td-agent/conf.d/forwarder_aptitude.conf') do
   it { should be_grouped_into 'root' }
 
   it { should be_mode 644 }
-
-  its(:md5sum) { should eq '9a7e6886784a470c3a1969b9c7318fc3' }
 end
 
 describe file('/etc/td-agent/conf.d/processor_aptitude.conf') do
@@ -28,6 +26,4 @@ describe file('/etc/td-agent/conf.d/processor_aptitude.conf') do
   it { should be_grouped_into 'root' }
 
   it { should be_mode 644 }
-
-  its(:md5sum) { should eq '80909e534062bea11b99fc1ba79d61f9' }
 end
