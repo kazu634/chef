@@ -19,6 +19,4 @@ describe file('/etc/td-agent/conf.d/forwarder_monit.conf') do
   it { should be_grouped_into 'root' }
 
   it { should be_mode 644 }
-
-  its(:md5sum) { should eq '98c18526181ae758943337fbcc834910' }
 end

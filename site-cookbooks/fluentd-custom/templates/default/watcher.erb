@@ -1,22 +1,25 @@
 <match notification.**>
-  type copy
+  type forest
+  subtype copy
 
-  <store>
-    type buffered_slack
-    api_key <%= @api_token %>
-    team kazu634
-    channel %23ops
-    username kazu-chan
-    color danger
-    icon_emoji :ghost:
-    buffer_path /var/log/td-agent/buffer/notification_buffer*.buffer
-    flush_interval 60s
-  </store>
+  <template>
+    <store>
+      type buffered_slack
+      api_key <%= @api_token %>
+      team kazu634
+      channel %23ops
+      username kazu-chan
+      color ${tag_parts[1]}
+      icon_emoji :rabbit:
+      buffer_path /var/log/td-agent/buffer/notification_${tag_parts[1]}_buffer*.buffer
+      flush_interval 60s
+    </store>
 
-  <store>
-    type file
-    path /tmp/notificaiton.log
-    buffer_type file
-    buffer_path /var/log/td-agent/buffer/notification*.buffer
-  </store>
+    <store>
+      type file
+      path /tmp/notificaiton.log
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/notification_${tag_parts[1]}_*.buffer
+    </store>
+  </template>
 </match>
