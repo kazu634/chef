@@ -53,6 +53,7 @@ end
     handlers ['default']
     interval 60
     standalone true
+    additional(:occurrences => 3)
   end
 end
 
