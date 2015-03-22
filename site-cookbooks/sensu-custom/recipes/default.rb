@@ -78,14 +78,14 @@ if node['sensu-custom']['server']
 
     notifies :restart, 'service[rabbitmq-server]'
   end
+
+  # Deploy the `fluentd` configuration file for
+  #   - monitoring `fluentd` processes:
+  include_recipe 'sensu-custom::td_agent_process_monitor' if node['recipes'].include?('fluentd-custom')
 end
 
 include_recipe 'sensu::client_service'
 
 # Deploy the `fluentd` configuration file for
 #   - monitoring `Sensu` related logs:
-#   - monitoring `fluentd` processes:
-if node['recipes'].include?('fluentd-custom')
-  include_recipe 'sensu-custom::log_monitor'
-  include_recipe 'sensu-custom::td_agent_process_monitor'
-end
+include_recipe 'sensu-custom::log_monitor' if node['recipes'].include?('fluentd-custom')
