@@ -3,6 +3,7 @@ require 'serverspec'
 set :backend,  :exec
 
 scripts = %w(/etc/sensu/plugins/check-procs.rb
+             /etc/sensu/plugins/check-log.rb
              /etc/sensu/plugins/check-load.rb
              /etc/sensu/plugins/check-swap.sh
              /etc/sensu/plugins/check-disk.rb
