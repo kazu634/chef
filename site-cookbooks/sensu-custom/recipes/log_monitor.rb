@@ -22,6 +22,8 @@ sensu_check 'td-agent-log' do
   handlers ['default']
   subscribers ['all']
   interval 600
+
+  only_if { node['sensu-custom']['server'] }
 end
 
 # deploy the configuration file for monitoring /var/log/sensu/sensu-client.log
