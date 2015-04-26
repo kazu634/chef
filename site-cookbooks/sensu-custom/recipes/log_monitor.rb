@@ -18,10 +18,12 @@ end
 
 # check `/var/log/td-agent/td-agent.log` to check whether `td-agent` is working properly.
 sensu_check 'td-agent-log' do
-  command '/usr/bin/sudo /etc/sensu/plugins/check-log.rb -f /var/log/td-agent/td-agent.log --exclude info -s /var/tmp/'
+  command "/usr/bin/sudo /etc/sensu/plugins/check-log.rb -f /var/log/td-agent/td-agent.log --pattern '.*' --exclude info -s /var/tmp/"
   handlers ['default']
   subscribers ['all']
   interval 600
+
+  only_if { node['sensu-custom']['server'] }
 end
 
 # deploy the configuration file for monitoring /var/log/sensu/sensu-client.log
