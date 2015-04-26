@@ -20,6 +20,10 @@ events {
     # accept as many connections as possible
     multi_accept on;
 
+    # mutex config:
+    accept_mutex on;
+    accept_mutex_delay 100ms; # default: 500 -> 100 ms
+
     # optmized to serve many clients with each thread, essential for linux
     use epoll;
 }
