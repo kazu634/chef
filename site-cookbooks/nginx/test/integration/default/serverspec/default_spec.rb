@@ -11,7 +11,7 @@ describe file('/etc/nginx/nginx.conf') do
   it { should be_grouped_into 'root' }
   it { should be_mode 644 }
 
-  its(:md5sum) { should eq 'b5852a9db61465e7e2c8430a1511e8b8' }
+  its(:md5sum) { should eq '62450662229d2ce4a33f0316c1218547' }
 end
 
 describe file('/etc/nginx/sites-available/default') do
@@ -30,7 +30,6 @@ end
 
 describe service('nginx') do
   it { should be_enabled }
-  it { should be_running }
 end
 
 describe file('/etc/monit/conf.d/nginx.conf') do
