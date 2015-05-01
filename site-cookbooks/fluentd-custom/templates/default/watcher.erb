@@ -5,13 +5,13 @@
   <template>
     <store>
       type buffered_slack
-      api_key <%= @api_token %>
+      webhook_url <%= @webhook_url %>
       team kazu634
       channel %23ops
       username kazu-chan
       color ${tag_parts[1]}
-      icon_emoji :rabbit:
-      buffer_path /var/log/td-agent/buffer/notification_${tag_parts[1]}_buffer*.buffer
+      icon_emoji :honeybee:
+      buffer_path /var/log/td-agent/buffer/notification_${tag_parts[1]}_${tag_parts[2]}_buffer*.buffer
       flush_interval 60s
     </store>
 
@@ -19,7 +19,7 @@
       type file
       path /tmp/notificaiton.log
       buffer_type file
-      buffer_path /var/log/td-agent/buffer/notification_${tag_parts[1]}_*.buffer
+      buffer_path /var/log/td-agent/buffer/notification_${tag_parts[1]}_${tag_parts[2]}_*.buffer
     </store>
   </template>
 </match>
