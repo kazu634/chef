@@ -27,7 +27,7 @@ if node['td_agent']['forward']
     mode 0644
 
     variables(
-      api_token: slack_auth['api_key']
+      webhook_url: slack_auth['webhook_url']
     )
 
     notifies :restart, 'service[td-agent]'
