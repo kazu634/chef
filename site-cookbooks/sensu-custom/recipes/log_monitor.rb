@@ -18,7 +18,7 @@ end
 
 # check `/var/log/td-agent/td-agent.log` to check whether `td-agent` is working properly.
 sensu_check 'td-agent-log' do
-  command "/usr/bin/sudo /etc/sensu/plugins/check-log.rb -f /var/log/td-agent/td-agent.log --pattern '.*' --exclude info -s /var/tmp/"
+  command "/usr/bin/sudo /etc/sensu/plugins/check-log.rb -f /var/log/td-agent/td-agent.log --pattern '.*' --exclude '(info|^ |</ROOT>)' -s /var/tmp/"
   handlers ['default']
   subscribers ['all']
   interval 600
