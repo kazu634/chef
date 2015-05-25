@@ -30,3 +30,13 @@ end
 link '/etc/nginx/sites-enabled/wordpress' do
   to '/etc/nginx/sites-available/wordpress'
 end
+
+cookbook_file '/etc/monit/conf.d/wordpress-log.conf' do
+  source 'wordpress-log.conf'
+
+  owner 'root'
+  group 'root'
+  mode 0644
+
+  notifies :reload, 'service[monit]'
+end
