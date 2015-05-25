@@ -21,3 +21,10 @@ end
 describe file('/etc/nginx/sites-enabled/wordpress') do
   it { should be_linked_to '/etc/nginx/sites-available/wordpress' }
 end
+
+describe file('/etc/monit/conf.d/wordpress-log.conf') do
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+
+  it { should be_mode 644 }
+end
