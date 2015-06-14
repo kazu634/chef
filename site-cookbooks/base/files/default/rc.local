@@ -22,6 +22,8 @@ now=$(date '+%s')
 # Calculate the remaining time of today
 result=`expr ${tomorrow} - ${now}`
 
-/usr/bin/dstat -tlafip --nocolor --output /tmp/dstat_`date "+%Y%m%d"`.csv 1 ${result} > /dev/null 2>&1 &
+/usr/bin/dstat -tlafip --nocolor --output /tmp/metrics_`date "+%Y%m%d"`.csv 1 ${result} > /dev/null 2>&1 &
+/usr/bin/dstat -t --top-cpu-adv --top-latency-avg --top-io-adv --top-bio-adv \
+                  --nocolor --output /tmp/processes_`date +\%Y\%m\%d`.csv 1 ${result} > /dev/null 2>&1
 
 exit 0
