@@ -1,4 +1,4 @@
 # Record `dstat` output to /tmp/dstat_YYYYMMDD.csv daily.
 
 0 0 * * * root /usr/bin/dstat -tlafip --nocolor --output /tmp/metrics_`date +\%Y\%m\%d`.csv 1 86400 > /dev/null 2>&1
-0 0 * * * root /usr/bin/dstat -t --top-cpu-adv --top-latency-avg --top-io-adv --top-bio-adv --nocolor --output /tmp/processes_`date +\%Y\%m\%d`.csv 1 86400 > /dev/null 2>&1
+0 0 * * * root /usr/bin/dstat -t --top-cpu-adv --top-latency-avg --top-io --top-bio-adv --nocolor --output /tmp/processes_`date +\%Y\%m\%d`.csv 1 86400 > /dev/null 2>&1
