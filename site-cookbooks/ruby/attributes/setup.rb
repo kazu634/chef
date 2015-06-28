@@ -1,5 +1,5 @@
 ## base settings
-default['ruby']['version'] = '2.0.0-p247'
+default['ruby']['version'] = '2.1.5'
 default['ruby']['gems'] = ['bundler']
 default['ruby']['install'] = true
 
