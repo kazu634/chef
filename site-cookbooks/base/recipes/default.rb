@@ -97,3 +97,7 @@ gem_package 'ruby-shadow' do
   gem_binary '/opt/chef/embedded/bin/gem'
   action :install
 end
+
+# Log the Dropped Packets to `/var/log/syslog`:
+include_recipe 'iptables'
+iptables_rule 'packet_drop_log'

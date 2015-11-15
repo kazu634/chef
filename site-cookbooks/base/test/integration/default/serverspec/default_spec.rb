@@ -32,3 +32,8 @@ if os[:release].to_f >= 14.04 && os[:family] == 'ubuntu'
     its(:md5sum) { should eq '864ab49c4f5e857ef7f87bec0b129e1d' }
   end
 end
+
+# `iptables` rule to log the dropped packets:
+# describe iptables do
+#   it { should have_rule '-A FWR -m limit --limit 3/hour -j LOG --log-prefix' }
+# end
