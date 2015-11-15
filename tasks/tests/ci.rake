@@ -15,7 +15,9 @@ namespace :ci do
         cookbook.strip!
 
         cd "site-cookbooks/#{cookbook}/" do
-          sh 'bundle ex kitchen verify all --concurrency=2 --destroy=always'
+          # if `test-kitchen` uses `Virtualbox`, skip CI testing.
+          # Otherwise, do the CI testing:
+          sh 'grep vagrant .kitchen.yml > /dev/null || bundle ex kitchen verify all --concurrency=2 --destroy=always'
         end
       end
     end
