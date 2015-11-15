@@ -34,6 +34,6 @@ if os[:release].to_f >= 14.04 && os[:family] == 'ubuntu'
 end
 
 # `iptables` rule to log the dropped packets:
-# describe iptables do
-#   it { should have_rule '-A FWR -m limit --limit 3/hour -j LOG --log-prefix' }
-# end
+describe iptables do
+  it { should have_rule '-A FWR -m limit --limit 3/hour -j LOG --log-prefix' }
+end
