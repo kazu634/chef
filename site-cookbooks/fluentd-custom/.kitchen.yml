@@ -25,7 +25,6 @@ suites:
   - name: server
     run_list:
       - recipe[fluentd-custom::default]
-      - recipe[base::packages]
     attributes:
       td_agent:
         forward: true

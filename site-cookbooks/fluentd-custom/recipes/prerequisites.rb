@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe 'apt'
+include_recipe 'build-essential'
 include_recipe 'monit'
 
 cookbook_file '/etc/security/limits.d/90-nfile.conf' do
