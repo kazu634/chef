@@ -1,7 +1,6 @@
 ---
 driver:
-  name: docker
-  socket: <%= ENV['DOCKER_HOST'] %>
+  name: vagrant
 
 provisioner:
   name: chef_solo
@@ -11,21 +10,21 @@ provisioner:
 
 platforms:
   - name: ubuntu-12.04
-    driver_config:
-      image: kazu634:ubuntu1204
+    driver:
+      box: ubuntu-12.04
+      box_url: ../../images/vagrant/builds/ubuntu-12.04.virtualbox.box
   - name: ubuntu-14.04
-    driver_config:
-      image: kazu634:ubuntu1404
+    driver:
+      box: ubuntu-14.04
+      box_url: ../../images/vagrant/builds/ubuntu-14.04.virtualbox.box
 
 suites:
   - name: default
     run_list:
       - recipe[sensu-custom::default]
-    attributes: { nginx: { iptables: false },
-                  sensu-custom: { iptables: false } }
+    attributes: { nginx: { iptables: false } }
   - name: server
     run_list:
       - recipe[sensu-custom::default]
     attributes: { nginx: { iptables: false },
-                  sensu-custom: { iptables: false,
-                                  server: true } }
+                  sensu-custom: { server: true } }
