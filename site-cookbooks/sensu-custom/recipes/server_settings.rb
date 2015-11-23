@@ -13,14 +13,12 @@ include_recipe 'sensu-custom::server_mutators'
 
 include_recipe 'sensu-custom::server_handlers'
 
-# Configure iptables settings, when in production:
-if node['sensu-custom']['iptables']
-  include_recipe 'iptables'
+# iptables setting:
+include_recipe 'iptables'
 
-  iptables_rule 'redis'
-  iptables_rule 'rabbitmq'
-  iptables_rule 'sensu-iptables'
-end
+iptables_rule 'redis'
+iptables_rule 'rabbitmq'
+iptables_rule 'sensu-iptables'
 
 %w(redis.conf rabbitmq.conf sensu-server.conf sensu-api.conf uchiwa.conf).each do |conf|
   cookbook_file "/etc/monit/conf.d/#{conf}" do
