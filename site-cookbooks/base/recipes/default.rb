@@ -18,6 +18,7 @@ include_recipe 'base::timezone'
 include_recipe 'base::ntp'
 include_recipe 'base::collect_performance'
 include_recipe 'base::kernel'
+include_recipe 'base::iptables'
 
 # only install amd64 package
 # http://d.hatena.ne.jp/ritchey/20121229
@@ -97,7 +98,3 @@ gem_package 'ruby-shadow' do
   gem_binary '/opt/chef/embedded/bin/gem'
   action :install
 end
-
-# Log the Dropped Packets to `/var/log/syslog`:
-include_recipe 'iptables'
-iptables_rule 'packet_drop_log'
