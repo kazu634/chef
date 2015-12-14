@@ -39,3 +39,11 @@ describe file('/etc/monit/conf.d/nginx.conf') do
 
   its(:md5sum) { should eq '4d7f0276e7efea61d687a2886cfa5569' }
 end
+
+describe port(80) do
+  it { should be_listening.with('tcp') }
+end
+
+describe iptables do
+  it { should have_rule '-A FWR -p tcp -m tcp --dport 80 -j ACCEPT' }
+end
