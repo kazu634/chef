@@ -13,5 +13,3 @@ default_unless['common']['domain']  = 'com'
 default['serf']['domain'] = "kazu634.#{node['common']['domain']}"
 
 default['serf']['manager'] = false
-
-default['serf']['iptables'] = true

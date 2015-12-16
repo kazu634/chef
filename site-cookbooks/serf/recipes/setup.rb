@@ -74,8 +74,7 @@ service 'serf' do
   action [:enable, :start]
 end
 
-# Configure `iptables` configuration, unless in testing.
-if node['serf']['iptables']
-  include_recipe 'iptables'
-  iptables_rule 'serf'
-end
+# Configure `iptables` configuration:
+include_recipe 'iptables'
+
+iptables_rule 'serf'
