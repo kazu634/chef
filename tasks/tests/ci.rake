@@ -42,7 +42,7 @@ namespace :ci do
     # building the docker images:
     %w(ubuntu1204 ubuntu1404).each do |target_env|
       # change directory to docker/ubuntuxxxx:
-      cd "docker/#{target_env}/" do
+      cd "images/docker/#{target_env}/" do
         # If the modified files include "Dockerfile" and the docker image exists:
         if modified_files.include?('Dockerfile') && File.exist?("../#{target_env}.tar")
           # Delete the docker image:
