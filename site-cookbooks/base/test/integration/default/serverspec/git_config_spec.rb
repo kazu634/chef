@@ -1,5 +1,9 @@
 require 'serverspec'
 
+describe package('git-core') do
+  it { should be_installed }
+end
+
 describe file('/usr/share/git-core/templates/hooks/pre-commit') do
   it { should be_readable }
   it { should be_executable }
