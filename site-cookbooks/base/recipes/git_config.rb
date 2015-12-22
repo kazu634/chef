@@ -7,6 +7,20 @@
 # All rights reserved - Do Not Redistribute
 #
 
+apt_repository 'git' do
+  uri 'http://ppa.launchpad.net/git-core/ppa/ubuntu'
+  distribution node['lsb']['codename']
+  components ['main']
+  keyserver 'keyserver.ubuntu.com'
+  key 'E1DF1F24'
+end
+
+package 'git-core' do
+  action :install
+
+  options '--force-yes'
+end
+
 remote_file '/usr/share/git-core/templates/hooks/pre-push' do
   source 'https://gist.github.com/kazu634/8267388/raw/e9202cd4c29a66723c88d2be05f3cd19413d2137/pre-push'
 
