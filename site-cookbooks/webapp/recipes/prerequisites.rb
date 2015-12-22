@@ -7,7 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# Use `nginx` as the front-end proxy
+# install `git`:
+include_recipe 'base::git_config'
+
+# use `nginx` as the front-end proxy
 include_recipe 'nginx'
 
 # Create user for webapp
