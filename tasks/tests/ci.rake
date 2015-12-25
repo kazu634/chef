@@ -1,6 +1,7 @@
 #!/usr/bin/env rake
 
 require 'rake'
+require 'parallel'
 
 namespace :ci do
   desc 'Run CI tests.'
@@ -11,6 +12,9 @@ namespace :ci do
       puts 'No cookbooks are modified. Skip CI testing.'
       exit 0
     else
+      # Delete `Berksfile.lock`:
+      sh 'find `pwd`/site-cookbooks/ -type f -name "Berksfile.lock" | xargs -t rm'
+
       cookbooks.split("\n").each do |cookbook|
         cookbook.strip!
 
@@ -72,5 +76,19 @@ namespace :ci do
     end
 
     sh 'docker images | grep none | awk \'{ print $3 }\' | xargs -n 1 -t docker rmi -f'
+  end
+
+  desc 'Build vagrant images'
+  task :vagrant do
+    cd 'images/vagrant/' do
+      cmds = [
+          'packer build -only=virtualbox-iso ubuntu-12.04-amd64.json',
+          'packer build -only=virtualbox-iso ubuntu-14.04-amd64.json'
+      ]
+
+      Parallel.each(cmds, in_threads: 2) {|cmd|
+        sh "#{cmd}"
+      }
+    end
   end
 end
