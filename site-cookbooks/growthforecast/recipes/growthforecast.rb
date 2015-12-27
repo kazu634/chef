@@ -17,8 +17,7 @@ script 'Install GrowthForecast.' do
               'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew",
               'PERLBREW_PATH' => "#{node['growthforecast']['home']}/perl5/perlbrew/bin:/home/growth/perl5/perlbrew/perls/#{node['growthforecast']['perl']}/bin",
               'PERLBREW_PERL' => node['growthforecast']['perl'],
-              'HOME'          => node['growthforecast']['home']
-              )
+              'HOME'          => node['growthforecast']['home'])
 
   code <<-EOH
   source #{node['growthforecast']['home']}/perl5/perlbrew/etc/bashrc
