@@ -1,0 +1,3 @@
+[submodule "images/vagrant"]
+	path = images/vagrant
+	url = git@github.com:chef/bento.git

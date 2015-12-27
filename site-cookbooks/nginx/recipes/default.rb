@@ -62,8 +62,7 @@ cookbook_file '/etc/monit/conf.d/nginx.conf' do
   notifies :restart, 'service[monit]'
 end
 
-# Configure `iptables` configuration, unless in testing.
-if node['nginx']['iptables']
-  include_recipe 'iptables'
-  iptables_rule 'nginx'
-end
+# Configure `iptables` configuration:
+include_recipe 'iptables'
+
+iptables_rule 'nginx'

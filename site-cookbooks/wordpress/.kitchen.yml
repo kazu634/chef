@@ -12,13 +12,14 @@ provisioner:
 platforms:
   - name: ubuntu-12.04
     driver:
-      box: ubuntu-1204x64
+      box: ubuntu-12.04
+      box_url: ../../images/vagrant/builds/ubuntu-12.04.virtualbox.box
   - name: ubuntu-14.04
     driver:
-      box: ubuntu-1404x64
+      box: ubuntu-14.04
+      box_url: ../../images/vagrant/builds/ubuntu-14.04.virtualbox.box
 
 suites:
   - name: default
     run_list:
       - recipe[wordpress::default]
-    attributes: { nginx: { iptables: false } }

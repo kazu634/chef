@@ -63,3 +63,8 @@ describe file('/etc/td-agent/conf.d/receiver.conf') do
 
   its(:md5sum) { should eq '670ce5197a54ef67374279cb8067b89d' }
 end
+
+describe iptables do
+  it { should have_rule '-A FWR -p tcp -m tcp --dport 24224 -j ACCEPT' }
+  it { should have_rule '-A FWR -p udp -m udp --dport 24224 -j ACCEPT' }
+end

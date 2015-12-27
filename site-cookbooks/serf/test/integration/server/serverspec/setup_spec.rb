@@ -47,3 +47,8 @@ end
     its(:exit_status) { should eq 0 }
   end
 end
+
+describe iptables do
+  it { should have_rule('-A FWR -p tcp -m tcp --dport 7946 -j ACCEPT') }
+  it { should have_rule('-A FWR -p udp -m udp --dport 7946 -j ACCEPT') }
+end

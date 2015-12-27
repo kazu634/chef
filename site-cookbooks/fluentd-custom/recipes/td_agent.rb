@@ -87,11 +87,9 @@ if node['td_agent']['forward']
     notifies :restart, 'service[td-agent]'
   end
 
-  if node['td_agent']['ssh']
-    # include the `iptables` cookbook
-    include_recipe 'iptables'
+  # include the `iptables` cookbook
+  include_recipe 'iptables'
 
-    # allow access from 24224 port
-    iptables_rule 'receiver'
-  end
+  # allow access from 24224 port
+  iptables_rule 'receiver'
 end

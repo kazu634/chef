@@ -6,10 +6,8 @@ namespace :rubocop do
     if Gem::Version.new('1.9.2') <= Gem::Version.new(RUBY_VERSION.dup)
 
       # retrieve the list of the modified cookbooks:
-      # rubocop:disable Metrics/LineLength
       modified_recipes =
         `git diff --name-status master..$(git symbolic-ref HEAD) | egrep -v "(^D|\.erb)" | grep ".rb" | awk '{ print $2 }'`
-      # rubocop:enable Metrics/LineLength
 
       # if no cookbooks are modified, skip `rubocop`.
       if modified_recipes.empty?

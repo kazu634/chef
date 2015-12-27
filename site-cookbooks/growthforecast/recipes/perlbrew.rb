@@ -43,8 +43,7 @@ script 'Install Perl.' do
   group 'growth'
 
   environment('PERLBREW_ROOT' => "#{node['growthforecast']['home']}/perl5/perlbrew",
-              'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew"
-              )
+              'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew")
 
   code <<-EOH
   source #{node['growthforecast']['home']}/perl5/perlbrew/etc/bashrc
@@ -63,8 +62,7 @@ script 'Install cpanm.' do
   group 'growth'
 
   environment('PERLBREW_ROOT' => "#{node['growthforecast']['home']}/perl5/perlbrew",
-              'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew"
-              )
+              'PERLBREW_HOME' => "#{node['growthforecast']['home']}/.perlbrew")
 
   code <<-EOH
   source #{node['growthforecast']['home']}/perl5/perlbrew/etc/bashrc

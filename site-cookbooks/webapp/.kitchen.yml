@@ -21,6 +21,4 @@ suites:
   - name: default
     run_list:
       - recipe[webapp::default]
-    attributes: { nginx: { iptables: false },
-                  base: { ssh: false },
-                  ruby: { install: false }}
+    attributes: { ruby: { install: false } }
