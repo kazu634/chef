@@ -82,13 +82,13 @@ namespace :ci do
   task :vagrant do
     cd 'images/vagrant/' do
       cmds = [
-          'packer build -only=virtualbox-iso ubuntu-12.04-amd64.json',
-          'packer build -only=virtualbox-iso ubuntu-14.04-amd64.json'
+        'packer build -only=virtualbox-iso ubuntu-12.04-amd64.json',
+        'packer build -only=virtualbox-iso ubuntu-14.04-amd64.json'
       ]
 
-      Parallel.each(cmds, in_threads: 2) {|cmd|
+      Parallel.each(cmds, in_threads: 2) do |cmd|
         sh "#{cmd}"
-      }
+      end
     end
   end
 end
