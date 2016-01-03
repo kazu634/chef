@@ -10,6 +10,8 @@
 include_recipe 'apt'
 include_recipe 'monit'
 
+include_recipe 'nginx::kernel'
+
 Encoding.default_external = Encoding::UTF_8
 
 apt_repository 'nginx' do
