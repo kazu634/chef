@@ -12,9 +12,6 @@ namespace :ci do
       puts 'No cookbooks are modified. Skip CI testing.'
       exit 0
     else
-      # Delete `Berksfile.lock`:
-      sh 'find `pwd`/site-cookbooks/ -type f -name "Berksfile.lock" | xargs -t rm'
-
       cookbooks.split("\n").each do |cookbook|
         cookbook.strip!
 
