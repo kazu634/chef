@@ -8,7 +8,7 @@
 #
 
 # kernel parameters:
-%w( 90-net-core-somaxconn.conf ).each do |conf|
+%w( 90-nginx.conf ).each do |conf|
   cookbook_file "/etc/sysctl.d/#{conf}" do
     owner 'root'
     group 'root'
