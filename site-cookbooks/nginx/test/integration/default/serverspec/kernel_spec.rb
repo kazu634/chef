@@ -2,7 +2,7 @@ require 'serverspec'
 
 set :backend,  :exec
 
-describe file('/etc/sysctl.d/90-net-core-somaxconn.conf') do
+describe file('/etc/sysctl.d/90-nginx.conf') do
   it { should be_file }
 
   it { should be_owned_by 'root' }
@@ -10,5 +10,5 @@ describe file('/etc/sysctl.d/90-net-core-somaxconn.conf') do
 
   it { should be_mode 644 }
 
-  its(:content) { should match /net.core.somaxconn = 4096/ }
+  its(:md5sum) { should eq '9175890bdd803295a4dd6250bcee1971' }
 end
