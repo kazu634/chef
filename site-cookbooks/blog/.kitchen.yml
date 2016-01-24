@@ -1,0 +1,25 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+  encrypted_data_bag_secret_key_path: ../../.chef_databag_secret
+  data_bags_path: ../../data_bags
+  roles_path: ../../roles
+
+platforms:
+  - name: ubuntu-12.04
+    driver:
+      box: ubuntu-12.04
+      box_url: ../../images/vagrant/builds/ubuntu-12.04.virtualbox.box
+  - name: ubuntu-14.04
+    driver:
+      box: ubuntu-14.04
+      box_url: ../../images/vagrant/builds/ubuntu-14.04.virtualbox.box
+
+suites:
+  - name: default
+    run_list:
+      - recipe[blog::default]
+    attributes: { blog: { production: false } }
