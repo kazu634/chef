@@ -6,3 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+include_recipe 'nginx'
+include_recipe 'monit'
+
+include_recipe 'blog::ssl'
+include_recipe 'blog::nginx'
