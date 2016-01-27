@@ -35,20 +35,24 @@ template '/etc/nginx/nginx.conf' do
   action :create
 end
 
-template '/etc/nginx/sites-available/default' do
-  source 'default.erb'
-  owner 'root'
-  group 'root'
-  mode 0644
-  action :create
+%w( default maintenance ).each do |conf|
+  template "/etc/nginx/sites-available/#{conf}" do
+    source "#{conf}.erb"
+    owner 'root'
+    group 'root'
+    mode 0644
+    action :create
+  end
 end
 
-link '/etc/nginx/sites-enabled/default' do
-  to '/etc/nginx/sites-available/default'
+link '/etc/nginx/sites-enabled/maintenance' do
+  to '/etc/nginx/sites-available/maintenance'
   owner 'root'
   group 'root'
   mode 0644
   notifies :restart, 'service[nginx]'
+
+  not_if { File.exist?('/etc/nginx/sites-enabled/maintenance') || File.exist?('/etc/nginx/sites-enabled/default')}
 end
 
 service 'nginx' do

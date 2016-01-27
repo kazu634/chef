@@ -30,8 +30,14 @@ describe file('/etc/nginx/sites-available/default') do
   it { should be_mode 644 }
 end
 
-describe file('/etc/nginx/sites-enabled/default') do
-  it { should be_linked_to '/etc/nginx/sites-available/default' }
+describe file('/etc/nginx/sites-available/maintenance') do
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  it { should be_mode 644 }
+end
+
+describe file('/etc/nginx/sites-enabled/maintenance') do
+  it { should be_linked_to '/etc/nginx/sites-available/maintenance' }
 end
 
 describe file('/etc/logrotate.d/nginx') do
