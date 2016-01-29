@@ -22,8 +22,10 @@ NGINXBUILD = '/home/webadm/nginx-build/nginx-build'
 version = node['nginx']['version']
 # ---
 
-package 'libgeoip-dev' do
-  action :install
+%w( libgeoip-dev curl ).each do |p|
+  package p do
+    action :install
+  end
 end
 
 directory WORKDIR do
@@ -33,18 +35,21 @@ directory WORKDIR do
 end
 
 unless File.exist?(NGINXBUILD)
-  remote_file TARBALL do
-    source 'https://github.com/cubicdaiya/nginx-build/releases/download/v0.6.5/nginx-build-linux-amd64-0.6.5.tar.gz'
-    owner USER
+  bash 'Download nginx-build' do
+    cwd WORKDIR
+    code <<-EOH
+    latest=$(curl -fsSI https://github.com/cubicdaiya/nginx-build/releases/latest | tr -d '\r' | awk -F'/' '/^Location:/{print $NF}')
+    curl -fsSL https://github.com/cubicdaiya/nginx-build/releases/download/${latest}/nginx-build-linux-amd64-${latest/v/}.tar.gz -o #{TARBALL}
+    EOH
+    user USER
     group GROUP
-    mode 0755
   end
 
   bash 'extract nginx-build' do
     cwd WORKDIR
     code <<-EOH
     tar xf #{TARBALL}
-    chown webadm:webadm #{WORKDIR}/nginx-build
+    chown webadm:webadm #{NGINXBUILD}
     EOH
     user USER
     group GROUP
