@@ -76,7 +76,7 @@ bash 'Install nginx' do
   EOH
   user 'root'
 
-  not_if { File.exist?('/usr/share/nginx/sbin/nginx') }
+  not_if "/usr/share/nginx/sbin/nginx -v 2>&1 | grep #{version}"
 end
 
 cookbook_file '/etc/init.d/nginx' do
