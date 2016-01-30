@@ -13,6 +13,9 @@
   "interface": "eth0",
   "profile": "wan",
   "encrypt_key": "jEHtR8ufU7H9wVPkR3yucw==",
+  <% if @AWS['AWS']  == true %>
+  "advertise": "<%= @AWS['PUBLIC_IP'] %>",
+  <% end %>
 
   "event_handlers": [
     "/etc/serf/handlers/handler.rb"
