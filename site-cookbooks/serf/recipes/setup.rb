@@ -34,12 +34,36 @@ remote_file '/etc/init/serf.conf' do
   mode 00644
 end
 
+# Judges if the server is a member of AWS EC2 server:
+begin
+  require 'net/http'
+
+  uri = URI.parse('http://169.254.169.254/latest/meta-data/public-ipv4')
+  timeout(3) do
+    response = Net::HTTP.get_response(uri)
+
+    AWS = true
+    PUBLIC_IP = response.body
+  end
+
+rescue
+  AWS = false
+  PUBLIC_IP = nil
+end
+
 # Deploy the `serf` config file:
 if node['serf']['manager']
-  cookbook_file '/etc/serf/serf.json' do
+  template '/etc/serf/serf.json' do
+    source 'serf-master.json.erb'
+
     owner node['serf']['user']
     group node['serf']['group']
     mode 00644
+
+    variables AWS: {
+      AWS: AWS,
+      PUBLIC_IP: PUBLIC_IP
+    }
 
     notifies :restart, 'service[serf]'
   end
@@ -63,6 +87,11 @@ else
     owner node['serf']['user']
     group node['serf']['group']
     mode 00644
+
+    variables AWS: {
+      AWS: AWS,
+      PUBLIC_IP: PUBLIC_IP
+    }
 
     notifies :restart, 'service[serf]'
   end
