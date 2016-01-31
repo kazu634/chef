@@ -12,17 +12,20 @@ include_recipe 'nginx::webadm'
 
 # ---
 # Variables & Constants
-USER = 'webadm'
-GROUP = 'webadm'
+USER        = 'webadm'
+GROUP       = 'webadm'
 
-WORKDIR = '/home/webadm/nginx-build/'
-TARBALL = '/home/webadm/nginx-build/nginx-build.tar.gz'
-NGINXBUILD = '/home/webadm/nginx-build/nginx-build'
+WORKDIR     = '/home/webadm/nginx-build/'
+TARBALL     = '/home/webadm/nginx-build/nginx-build.tar.gz'
+NGINXBUILD  = '/home/webadm/nginx-build/nginx-build'
 
-version = node['nginx']['version']
+version     = node['nginx']['version']
+
+vtag        = ''
+tag_version = ''
 # ---
 
-%w( libgeoip-dev curl ).each do |p|
+%w( libgeoip-dev ).each do |p|
   package p do
     action :install
   end
@@ -34,26 +37,43 @@ directory WORKDIR do
   mode 0755
 end
 
-unless File.exist?(NGINXBUILD)
-  bash 'Download nginx-build' do
-    cwd WORKDIR
-    code <<-EOH
-    latest=$(curl -fsSI https://github.com/cubicdaiya/nginx-build/releases/latest | tr -d '\r' | awk -F'/' '/^Location:/{print $NF}')
-    curl -fsSL https://github.com/cubicdaiya/nginx-build/releases/download/${latest}/nginx-build-linux-amd64-${latest/v/}.tar.gz -o #{TARBALL}
-    EOH
-    user USER
-    group GROUP
-  end
+# -------------------------------------------
+# Calculating the latest `nginx-build` version:
+# -------------------------------------------
+begin
+  require 'net/http'
 
-  bash 'extract nginx-build' do
-    cwd WORKDIR
-    code <<-EOH
+  uri = URI.parse('https://github.com/cubicdaiya/nginx-build/releases/latest')
+
+  timeout(3) do
+    response = Net::HTTP.get_response(uri)
+
+    if response.body =~ %r{tag\/(v\d+\.\d+\.\d+)}
+      vtag        = $1
+      tag_version = vtag.sub('v', '')
+    end
+  end
+rescue
+  # Abort the chef client process:
+  raise 'Cannot connect to http://github.com.'
+end
+
+remote_file TARBALL do
+  source "https://github.com/cubicdaiya/nginx-build/releases/download/#{vtag}/nginx-build-linux-amd64-#{tag_version}.tar.gz"
+
+  owner USER
+  group GROUP
+  mode 0755
+end
+
+bash 'extract nginx-build' do
+  cwd WORKDIR
+  code <<-EOH
     tar xf #{TARBALL}
     chown webadm:webadm #{NGINXBUILD}
-    EOH
-    user USER
-    group GROUP
-  end
+  EOH
+  user USER
+  group GROUP
 end
 
 cookbook_file "#{WORKDIR}/configure.sh" do
