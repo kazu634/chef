@@ -22,7 +22,7 @@ NGINXBUILD = '/home/webadm/nginx-build/nginx-build'
 version = node['nginx']['version']
 # ---
 
-%w( libgeoip-dev curl ).each do |p|
+%w( libgeoip-dev ).each do |p|
   package p do
     action :install
   end
