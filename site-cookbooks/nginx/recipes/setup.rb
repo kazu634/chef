@@ -50,9 +50,20 @@ link '/etc/nginx/sites-enabled/maintenance' do
   owner 'root'
   group 'root'
   mode 0644
+
   notifies :restart, 'service[nginx]'
 
   not_if { File.exist?('/etc/nginx/sites-enabled/maintenance') || File.exist?('/etc/nginx/sites-enabled/default') }
+end
+
+cookbook_file '/etc/monit/conf.d/nginx.conf' do
+  source 'nginx.conf'
+
+  user 'root'
+  group 'root'
+  mode 0644
+
+  notifies :restart, 'service[monit]'
 end
 
 service 'nginx' do
