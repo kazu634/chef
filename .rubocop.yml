@@ -11,3 +11,6 @@ AllCops:
 Style/CommandLiteral:
   EnforcedStyle: mixed
   AllowInnerBackticks: true
+
+Style/PerlBackrefs:
+  Enabled: false
