@@ -14,8 +14,8 @@
   "interface": "eth0",
   "encrypt_key": "jEHtR8ufU7H9wVPkR3yucw==",
   "profile": "wan",
-  <% if @AWS['AWS']  == true %>
-  "advertise": "<%= @AWS['PUBLIC_IP'] %>",
+  <% if @AWS  == true %>
+  "advertise": "<%= @PUBLIC_IP %>",
   <% end %>
 
   "reconnect_timeout": "30m",
