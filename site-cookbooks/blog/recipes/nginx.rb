@@ -46,3 +46,13 @@ template '/etc/cron.d/blog' do
 
   variables :fqdn => node['blog']['FQDN']
 end
+
+cookbook_file '/etc/monit/conf.d/blog-log.conf' do
+  source 'blog-log.conf'
+
+  owner 'root'
+  group 'root'
+  mode 0644
+
+  notifies :reload, 'service[monit]'
+end
