@@ -60,10 +60,9 @@ if node['serf']['manager']
     group node['serf']['group']
     mode 00644
 
-    variables AWS: {
+    variables(
       AWS: AWS,
-      PUBLIC_IP: PUBLIC_IP
-    }
+      PUBLIC_IP: PUBLIC_IP)
 
     notifies :restart, 'service[serf]'
   end
@@ -88,10 +87,9 @@ else
     group node['serf']['group']
     mode 00644
 
-    variables AWS: {
+    variables(
       AWS: AWS,
-      PUBLIC_IP: PUBLIC_IP
-    }
+      PUBLIC_IP: PUBLIC_IP)
 
     notifies :restart, 'service[serf]'
   end
