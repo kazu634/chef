@@ -7,7 +7,7 @@ namespace :rubocop do
 
       # retrieve the list of the modified cookbooks:
       modified_recipes =
-        `git diff --name-status master..$(git symbolic-ref HEAD) | egrep -v "(^D|\.erb)" | grep ".rb" | awk '{ print $2 }'`
+        `git diff --name-status master..$(git symbolic-ref HEAD) | egrep -v "(^D|\.erb|metadata\.rb)" | grep ".rb" | awk '{ print $2 }'`
 
       # if no cookbooks are modified, skip `rubocop`.
       if modified_recipes.empty?
