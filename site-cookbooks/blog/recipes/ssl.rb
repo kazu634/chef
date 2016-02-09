@@ -53,7 +53,7 @@ if node['blog']['production']
     group 'webadm'
     mode 0755
 
-    variables :fqdn => node['blog']['FQDN']
+    variables fqdn: node['blog']['FQDN']
   end
 
   template '/etc/cron.d/ssl' do
@@ -62,6 +62,6 @@ if node['blog']['production']
     group 'root'
     mode 0644
 
-    variables :fqdn => node['blog']['FQDN']
+    variables fqdn: node['blog']['FQDN']
   end
 end

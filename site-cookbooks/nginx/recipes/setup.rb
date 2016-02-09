@@ -52,7 +52,7 @@ link '/etc/nginx/sites-enabled/maintenance' do
   mode 0644
   notifies :restart, 'service[nginx]'
 
-  not_if { File.exist?('/etc/nginx/sites-enabled/maintenance') || File.exist?('/etc/nginx/sites-enabled/default')}
+  not_if { File.exist?('/etc/nginx/sites-enabled/maintenance') || File.exist?('/etc/nginx/sites-enabled/default') }
 end
 
 service 'nginx' do

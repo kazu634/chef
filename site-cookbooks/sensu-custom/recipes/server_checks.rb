@@ -120,4 +120,3 @@ sensu_check 'check-ssl-cert' do
   interval 86400
   standalone true
 end
-

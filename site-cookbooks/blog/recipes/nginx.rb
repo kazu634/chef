@@ -13,7 +13,7 @@ template '/etc/nginx/sites-available/blog' do
   group 'root'
   mode 0644
 
-  variables :fqdn => node['blog']['FQDN']
+  variables fqdn: node['blog']['FQDN']
 end
 
 link '/etc/nginx/sites-enabled/blog' do
@@ -44,7 +44,7 @@ template '/etc/cron.d/blog' do
   group 'root'
   mode 0644
 
-  variables :fqdn => node['blog']['FQDN']
+  variables fqdn: node['blog']['FQDN']
 end
 
 cookbook_file '/etc/monit/conf.d/blog-log.conf' do
