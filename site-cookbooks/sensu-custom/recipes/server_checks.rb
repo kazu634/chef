@@ -113,3 +113,10 @@ sensu_check 'metrics-netstat-tcp' do
   subscribers ['all']
   interval 70
 end
+
+sensu_check 'check-ssl-cert' do
+  command 'check-ssl-cert.rb -h blog.kazu634.com -w 30 -c 15 -p 443'
+  handlers ['default']
+  interval 86400
+  standalone true
+end

@@ -1,27 +1,7 @@
-server {
-  # allow access from localhost
-  listen 80 reuseport backlog=1024;
-
-  root /usr/share/nginx/html;
-  index index.html index.htm;
-
-  location / {
-    gzip on;
-    gzip_types text/css text/javascript;
-    gzip_vary on;
-
-    gzip_static always;
-    gunzip on;
-
-    try_files $uri $uri/ /index.html;
-
-  }
-}
-
 # Denies the access without the pre-defined virtual host.
-# server {
-#   listen 80 default_server;
-#   server_name _;
-#
-#   return 444;
-# }
+server {
+  listen 80 default_server;
+  server_name _;
+
+  return 444;
+}
