@@ -20,7 +20,7 @@ end
 keys = []
 
 data_bag_item('ssh_keys', 'keys')['hosts'].each do |host|
-  host.each do |_item,  value|
+  host.each do |_item, value|
     keys.push(value)
   end
 end
@@ -40,11 +40,8 @@ end
 # SSH secret key for Chef execution
 ssh_data_bag = Chef::EncryptedDataBagItem.load('kazu634', 'ssh_keys')
 
-secret_key_data = ssh_data_bag['secret_keys']
-
-secret_key_data.each do |data|
-  host = data['name']
-  secret_key = data['secret_key']
+%w( github bitbucket chef ).each do |host|
+  secret_key = ssh_data_bag[host]
 
   template "/home/kazu634/.ssh/id_rsa.#{host}" do
     source 'secret_key.erb'
@@ -69,7 +66,7 @@ end
 
 # AWS setting
 
-aws_data_bag = Chef::EncryptedDataBagItem.load('kazu634',  'AWS')
+aws_data_bag = Chef::EncryptedDataBagItem.load('kazu634', 'AWS')
 
 secret_credential = aws_data_bag['SECRET_CREDENTIAL']
 

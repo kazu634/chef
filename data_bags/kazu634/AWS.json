@@ -1,27 +1,21 @@
 {
-  "name": "data_bag_item_kazu634_AWS",
-  "json_class": "Chef::DataBagItem",
-  "chef_type": "data_bag_item",
-  "data_bag": "kazu634",
-  "raw_data": {
-    "id": "AWS",
-    "ACCESS_KEY": {
-      "encrypted_data": "eoeGJVWqnb6JGQK0MAQhAEZilSSNjxm+FCfU/pg+M3Jyw3cCC/AExt1twm+b\ng8cc\n",
-      "iv": "fZC+SSXbcsUN/tfron2ZDQ==\n",
-      "version": 1,
-      "cipher": "aes-256-cbc"
-    },
-    "SECRET_KEY": {
-      "encrypted_data": "u+yS/UgYx/ug2vTqESfiK5MvPsAtjGFzBeadkbSLVPk+or1h4afYiwFZigGh\ncLqQnW57W8V/ju+KeV40TYt9kQ==\n",
-      "iv": "r1mYpQ7EbXdOqPgeQ2IcWA==\n",
-      "version": 1,
-      "cipher": "aes-256-cbc"
-    },
-    "SECRET_CREDENTIAL": {
-      "encrypted_data": "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\nr4hewlJl4uufGO3AZocI/U4N\n",
-      "iv": "2/QLdopwMccEA5KdtvG0EA==\n",
-      "version": 1,
-      "cipher": "aes-256-cbc"
-    }
+  "id": "AWS",
+  "ACCESS_KEY": {
+    "encrypted_data": "afhw7/67M3neJ2JC+4UC/7kCDlxQoG/fva34O2YUW/AGUc9lQto6MmUbptRh\nxpTR\n",
+    "iv": "c/+QthTBf8fULz7CC9x98g==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "SECRET_KEY": {
+    "encrypted_data": "Pp30Gtq2ys29PjqhKlKx/AiDhnff/j9k85RScJ6M6kBmUtSNBDdrRxxvPYaE\nH6HtcAaK1p1n3SbHfw7Q7Qux5w==\n",
+    "iv": "sUqURZg8ha/ZPwwxktGvsQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "SECRET_CREDENTIAL": {
+    "encrypted_data": "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\nVLLzIzUas1xX2XjWGVS2ucsC\n",
+    "iv": "y/EIKS/pod1vpcuQfpNvsg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
   }
 }
