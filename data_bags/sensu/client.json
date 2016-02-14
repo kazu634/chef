@@ -1,0 +1,9 @@
+{
+  "id": "client",
+  "foo": {
+    "encrypted_data": "QxLrjAXlZXL+8U1btFhtWJcrtQJ1qzJ6eleljiuIboY=\n",
+    "iv": "h/w9+LIxoN94ovEZwWNnow==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

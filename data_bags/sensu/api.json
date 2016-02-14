@@ -1,0 +1,9 @@
+{
+  "id": "api",
+  "foo": {
+    "encrypted_data": "vrCabW73i5ArfIMxyhf2HqjuQ0WGcUrzwkyBr10uG9w=\n",
+    "iv": "fBp/dfjqFpcR6BzSb0twhQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}
