@@ -8,10 +8,6 @@ describe user('growth') do
   it { should have_login_shell '/bin/bash' }
 end
 
-describe package('nginx') do
-  it { should be_installed }
-end
-
 describe package('fonts-ipafont') do
   it { should be_installed }
 end
