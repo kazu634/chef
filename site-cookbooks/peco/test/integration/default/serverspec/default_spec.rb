@@ -12,5 +12,5 @@ describe file('/usr/local/bin/peco') do
 end
 
 describe command('/usr/local/bin/peco --version') do
-  its(:stdout) { should be_include 'peco: v' }
+  its(:stderr) { should be_include 'peco: v' }
 end

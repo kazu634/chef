@@ -1,0 +1,9 @@
+{
+  "id": "config",
+  "foo": {
+    "encrypted_data": "IYJhp5ckiC9e6OxP9WGmaSI8n27iE/6N6A4nX2Dt9Hg=\n",
+    "iv": "L/TLMmMQUEMgGZPxRNkFWw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

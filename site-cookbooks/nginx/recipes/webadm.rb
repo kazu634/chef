@@ -55,11 +55,8 @@ end
 # SSH secret key for Chef execution
 ssh_data_bag = Chef::EncryptedDataBagItem.load('kazu634', 'ssh_keys')
 
-secret_key_data = ssh_data_bag['secret_keys']
-
-secret_key_data.each do |data|
-  host = data['name']
-  secret_key = data['secret_key']
+%w( github bitbucket chef ).each do |host|
+  secret_key = ssh_data_bag[host]
 
   template "/home/webadm/.ssh/id_rsa.#{host}" do
     source 'secret_key.erb'

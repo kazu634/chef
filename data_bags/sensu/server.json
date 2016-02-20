@@ -1,0 +1,9 @@
+{
+  "id": "server",
+  "foo": {
+    "encrypted_data": "KOm+WDx+zf/8apgdYhQWAOgYzupN6OSQAmF731xaEus=\n",
+    "iv": "WhmaF2WkKoFjy0HlDGxNgw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}
