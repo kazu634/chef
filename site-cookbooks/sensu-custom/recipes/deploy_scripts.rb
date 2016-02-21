@@ -8,7 +8,7 @@
 #
 
 remote_file '/etc/sensu/plugins/check-procs.rb' do
-  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-process-checks/master/bin/check-process.rb'
 
   user 'sensu'
   group 'sensu'
@@ -16,7 +16,7 @@ remote_file '/etc/sensu/plugins/check-procs.rb' do
 end
 
 remote_file '/etc/sensu/plugins/check-log.rb' do
-  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/logging/check-log.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-logs/master/bin/check-log.rb'
 
   user 'sensu'
   group 'sensu'
@@ -24,7 +24,7 @@ remote_file '/etc/sensu/plugins/check-log.rb' do
 end
 
 remote_file '/etc/sensu/plugins/check-load.rb' do
-  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-load.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-load-checks/master/bin/check-load.rb'
 
   user 'sensu'
   group 'sensu'
@@ -32,7 +32,7 @@ remote_file '/etc/sensu/plugins/check-load.rb' do
 end
 
 remote_file '/etc/sensu/plugins/check-swap.sh' do
-  source 'https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-swap.sh'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-memory-checks/master/bin/check-swap.sh'
 
   user 'sensu'
   group 'sensu'
@@ -40,14 +40,14 @@ remote_file '/etc/sensu/plugins/check-swap.sh' do
 end
 
 remote_file '/etc/sensu/plugins/check-disk.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-disk-checks/master/bin/check-disk-usage.rb'
   user 'sensu'
   group 'sensu'
   mode 0755
 end
 
 remote_file '/etc/sensu/plugins/check-file-exists.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/files/check-file-exists.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-filesystem-checks/master/bin/check-file-exists.rb'
   user 'sensu'
   group 'sensu'
   mode 0755
@@ -55,7 +55,7 @@ end
 
 # Slack notification:
 remote_file '/etc/sensu/handlers/slack.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/handlers/notification/slack.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-slack/master/bin/handler-slack.rb'
 
   user 'sensu'
   group 'sensu'
@@ -64,7 +64,7 @@ end
 
 # Sensu-Growthforecast integration:
 remote_file '/etc/sensu/plugins/cpu-pcnt-usage-metrics.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/cpu-pcnt-usage-metrics.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-cpu-checks/master/bin/metrics-cpu-pcnt-usage.rb'
 
   user 'sensu'
   group 'sensu'
@@ -72,7 +72,7 @@ remote_file '/etc/sensu/plugins/cpu-pcnt-usage-metrics.rb' do
 end
 
 remote_file '/etc/sensu/plugins/disk-usage-metrics.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/disk-usage-metrics.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-disk-checks/master/bin/metrics-disk-usage.rb'
 
   user 'sensu'
   group 'sensu'
@@ -80,7 +80,7 @@ remote_file '/etc/sensu/plugins/disk-usage-metrics.rb' do
 end
 
 remote_file '/etc/sensu/plugins/load-metrics.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/load-metrics.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-load-checks/master/bin/metrics-load.rb'
 
   user 'sensu'
   group 'sensu'
@@ -88,7 +88,7 @@ remote_file '/etc/sensu/plugins/load-metrics.rb' do
 end
 
 remote_file '/etc/sensu/plugins/memory-metrics.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/memory-metrics.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-memory-checks/master/bin/metrics-memory.rb'
 
   user 'sensu'
   group 'sensu'
@@ -96,7 +96,7 @@ remote_file '/etc/sensu/plugins/memory-metrics.rb' do
 end
 
 remote_file '/etc/sensu/plugins/metrics-net.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/network/metrics-net.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-network-checks/master/bin/metrics-net.rb'
 
   user 'sensu'
   group 'sensu'
@@ -104,7 +104,7 @@ remote_file '/etc/sensu/plugins/metrics-net.rb' do
 end
 
 remote_file '/etc/sensu/plugins/metrics-netstat-tcp.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/network/metrics-netstat-tcp.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-network-checks/master/bin/metrics-netstat-tcp.rb'
 
   user 'sensu'
   group 'sensu'
@@ -134,7 +134,7 @@ remote_file '/etc/sensu/handlers/growthforecast-handler.rb' do
 end
 
 remote_file '/etc/sensu/plugins/check-ssl-cert.rb' do
-  source 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/ssl/check-ssl-cert.rb'
+  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-ssl/master/bin/check-ssl-cert.rb'
 
   user 'sensu'
   group 'sensu'
