@@ -17,6 +17,7 @@ start() {
                                                            --data-dir ${HOME}/appdata \
                                                            --host 127.0.0.1 \
                                                            --front-proxy 0.0.0.0 \
+                                                           --enable-float-number \
                                     >>$LOG_FILE 2>&1 &"
 
   echo `pgrep -o -f 'growthforecast.pl'` >> ${PID_FILE}
