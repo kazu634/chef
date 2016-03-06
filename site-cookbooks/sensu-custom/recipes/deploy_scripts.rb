@@ -62,55 +62,6 @@ remote_file '/etc/sensu/handlers/slack.rb' do
   mode 0755
 end
 
-# Sensu-Growthforecast integration:
-remote_file '/etc/sensu/plugins/cpu-pcnt-usage-metrics.rb' do
-  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-cpu-checks/master/bin/metrics-cpu-pcnt-usage.rb'
-
-  user 'sensu'
-  group 'sensu'
-  mode 0755
-end
-
-remote_file '/etc/sensu/plugins/disk-usage-metrics.rb' do
-  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-disk-checks/master/bin/metrics-disk-usage.rb'
-
-  user 'sensu'
-  group 'sensu'
-  mode 0755
-end
-
-remote_file '/etc/sensu/plugins/load-metrics.rb' do
-  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-load-checks/master/bin/metrics-load.rb'
-
-  user 'sensu'
-  group 'sensu'
-  mode 0755
-end
-
-remote_file '/etc/sensu/plugins/memory-metrics.rb' do
-  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-memory-checks/master/bin/metrics-memory.rb'
-
-  user 'sensu'
-  group 'sensu'
-  mode 0755
-end
-
-remote_file '/etc/sensu/plugins/metrics-net.rb' do
-  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-network-checks/master/bin/metrics-net.rb'
-
-  user 'sensu'
-  group 'sensu'
-  mode 0755
-end
-
-remote_file '/etc/sensu/plugins/metrics-netstat-tcp.rb' do
-  source 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-network-checks/master/bin/metrics-netstat-tcp.rb'
-
-  user 'sensu'
-  group 'sensu'
-  mode 0755
-end
-
 directory '/etc/sensu/mutators' do
   owner 'root'
   group 'sensu'
