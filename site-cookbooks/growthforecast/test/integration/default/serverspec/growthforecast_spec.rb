@@ -28,7 +28,7 @@ describe file('/etc/init.d/growthforecast') do
 
   it { should be_mode 755 }
 
-  its(:md5sum) { should eq '1e356bb9d9241cafa8652394ef1d34fa' }
+  its(:md5sum) { should eq '7213e69ff134b47e7011e9c79d49dd9e' }
 end
 
 describe service('growthforecast') do
