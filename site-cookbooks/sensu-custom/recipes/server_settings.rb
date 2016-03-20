@@ -42,10 +42,23 @@ template '/etc/nginx/sites-available/sensu' do
   notifies :restart, 'service[nginx]'
 end
 
-link '/etc/nginx/sites-enabled/sensu' do
-  to '/etc/nginx/sites-available/sensu'
+bash 'Delete the nginx maintenance file' do
+  user 'root'
+  group 'root'
 
-  not_if 'test -e /etc/nginx/sites-enabled/sensu'
+  code <<-EOH
+  rm /etc/nginx/sites-enabled/maintenance
+  EOH
+
+  only_if { File.exist?('/etc/nginx/sites-enabled/maintenance') }
+end
+
+%w( sensu default ).each do |conf|
+  link "/etc/nginx/sites-enabled/#{conf}" do
+    to "/etc/nginx/sites-available/#{conf}"
+
+    not_if "test -e /etc/nginx/sites-enabled/#{conf}"
+  end
 end
 
 service 'nginx' do
