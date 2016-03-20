@@ -1,6 +1,6 @@
 require 'serverspec'
 
-set :backend,  :exec
+set :backend, :exec
 
 describe file('/var/lib/growthforecast/appdata') do
   it { should be_directory }
@@ -36,7 +36,7 @@ describe service('growthforecast') do
   it { should be_running }
 end
 
-describe file('/etc/nginx/sites-available/growth') do
+describe file('/etc/nginx/sites-available/growthforecast') do
   it { should be_file }
 
   it { should be_owned_by 'root' }
@@ -57,5 +57,5 @@ describe file('/etc/nginx/.htpasswd_growth') do
 end
 
 describe file('/etc/nginx/sites-enabled/growthforecast') do
-  it { should be_linked_to '/etc/nginx/sites-available/growth' }
+  it { should be_linked_to '/etc/nginx/sites-available/growthforecast' }
 end

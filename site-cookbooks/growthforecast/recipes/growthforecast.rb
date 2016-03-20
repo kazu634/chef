@@ -41,7 +41,7 @@ directory '/var/log/growthforecast' do
 end
 
 service 'growthforecast' do
-  supports restart: true,   start: true,   stop: true
+  supports restart: true, start: true, stop: true
   action :nothing
 end
 
@@ -83,7 +83,7 @@ bash 'Delete the nginx maintenance file' do
   rm /etc/nginx/sites-enabled/maintenance
   EOH
 
-  only_if { File.exists?('/etc/nginx/sites-enabled/maintenance') }
+  only_if { File.exist?('/etc/nginx/sites-enabled/maintenance') }
 end
 
 %w( growthforecast default ).each do |conf|
