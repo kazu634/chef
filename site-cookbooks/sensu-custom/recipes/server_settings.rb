@@ -50,7 +50,7 @@ bash 'Delete the nginx maintenance file' do
   rm /etc/nginx/sites-enabled/maintenance
   EOH
 
-  only_if { File.exists?('/etc/nginx/sites-enabled/maintenance') }
+  only_if { File.exist?('/etc/nginx/sites-enabled/maintenance') }
 end
 
 %w( sensu default ).each do |conf|
