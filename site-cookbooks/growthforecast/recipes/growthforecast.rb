@@ -41,7 +41,7 @@ directory '/var/log/growthforecast' do
 end
 
 service 'growthforecast' do
-  supports restart: true,   start: true,   stop: true
+  supports restart: true, start: true, stop: true
   action :nothing
 end
 
@@ -55,7 +55,7 @@ cookbook_file '/etc/init.d/growthforecast' do
   notifies :start,   'service[growthforecast]'
 end
 
-template '/etc/nginx/sites-available/growth' do
+template '/etc/nginx/sites-available/growthforecast' do
   source 'growth.erb'
 
   owner 'root'
@@ -75,6 +75,19 @@ cookbook_file '/etc/nginx/.htpasswd_growth' do
   notifies :restart, 'service[nginx]'
 end
 
-link '/etc/nginx/sites-enabled/growthforecast' do
-  to '/etc/nginx/sites-available/growth'
+bash 'Delete the nginx maintenance file' do
+  user 'root'
+  group 'root'
+
+  code <<-EOH
+  rm /etc/nginx/sites-enabled/maintenance
+  EOH
+
+  only_if { File.exist?('/etc/nginx/sites-enabled/maintenance') }
+end
+
+%w( growthforecast default ).each do |conf|
+  link "/etc/nginx/sites-enabled/#{conf}" do
+    to "/etc/nginx/sites-available/#{conf}"
+  end
 end
