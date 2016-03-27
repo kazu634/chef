@@ -42,6 +42,8 @@ end
     group 'root'
     mode 0644
     action :create
+
+    notifies :restart, 'service[nginx]'
   end
 end
 
