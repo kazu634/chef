@@ -15,7 +15,7 @@ remote_file '/opt/sensu/embedded/ssl/cert.pem' do
   mode 0644
 end
 
-%w(sensu-plugin growthforecast erubis).each do |p|
+%w(sensu-plugin growthforecast erubis sys-filesystem).each do |p|
   # for installation
   gem_package p do
     action :upgrade
