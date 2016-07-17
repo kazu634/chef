@@ -32,8 +32,11 @@ end
 service 'ssh' do
   case node['platform']
   when 'ubuntu'
-    if node['platform_version'].to_f >= 13.10
+    case
+    when node['platform_version'].to_f == 14.04
       provider Chef::Provider::Service::Upstart
+    when node['platform_version'].to_f >= 16.04
+      provider Chef::Provider::Service::Systemd
     end
   end
 
