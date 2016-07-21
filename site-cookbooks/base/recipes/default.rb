@@ -19,6 +19,7 @@ include_recipe 'base::ntp'
 include_recipe 'base::collect_performance'
 include_recipe 'base::kernel'
 include_recipe 'base::iptables'
+include_recipe 'base::unnecessary'
 
 # only install amd64 package
 # http://d.hatena.ne.jp/ritchey/20121229
