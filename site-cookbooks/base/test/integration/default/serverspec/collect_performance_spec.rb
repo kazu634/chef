@@ -23,5 +23,5 @@ describe file('/etc/rc.local') do
 
   it { should be_mode 755 }
 
-  its(:md5sum) { should eq 'b83e0ef76e29526b924b71b9905340d2' }
+  its(:md5sum) { should eq '2df94e67d37efb47ff11014fbe5beb0e' }
 end

@@ -10,8 +10,9 @@
 %w( apparmor iscsid lxc lxcfs lxd-containers lxd open-iscsi ).each do |s|
   service s do
     ignore_failure true
-    action [:disable,  :stop]
+    action [:disable, :stop]
+    provider Chef::Provider::Service::Systemd
 
-    only_if node['platform_version'].to_f == 16.04
+    only_if { node['platform_version'].to_f == 16.04 }
   end
 end
