@@ -31,8 +31,11 @@ end
 # Ruby installation
 case node['platform']
 when 'ubuntu'
-  # For Ubuntu 14.04:
-  if 14.04 == node['platform_version'].to_f
+  case node['platform_version'].to_f
+  when 16.04
+    # It seems that Ruby is already installed...
+
+  when 14.04
     package 'ruby2.0' do
       action :install
     end
@@ -46,8 +49,7 @@ when 'ubuntu'
       end
     end
 
-  # For Ubuntu 12.04:
-  elsif 12.04 == node['platform_version'].to_f
+  when 12.04
     package 'ruby' do
       action :install
     end

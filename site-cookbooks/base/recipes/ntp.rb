@@ -11,14 +11,28 @@ package 'ntp' do
   action :install
 end
 
-cookbook_file '/etc/ntp.conf' do
-  owner 'root'
-  group 'root'
+if node['platform_version'].to_f < 16.04 then
+  cookbook_file '/etc/ntp.conf' do
+    owner 'root'
+    group 'root'
 
-  mode 0644
+    mode 0644
 
-  notifies :restart, 'service[ntp]'
+    notifies :restart, 'service[ntp]'
+  end
+
+elsif 16.04 == node['platform_version'].to_f then
+  cookbook_file '/etc/ntp.conf' do
+    owner 'root'
+    group 'root'
+    source 'ntp_1604.conf'
+
+    mode 0644
+
+    notifies :restart, 'service[ntp]'
+  end
 end
+
 
 service 'ntp' do
   action :nothing
