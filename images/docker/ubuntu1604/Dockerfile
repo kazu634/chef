@@ -1,4 +1,4 @@
-From ubuntu:12.04
+From ubuntu:16.04
 
 RUN sed -i "s/archive.ubuntu.com/jp.archive.ubuntu.com/" /etc/apt/sources.list && \
     apt-get update && \
