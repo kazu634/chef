@@ -37,7 +37,7 @@ namespace :ci do
     end
 
     # building the docker images:
-    %w(ubuntu1204 ubuntu1404).each do |target_env|
+    %w(ubuntu1204 ubuntu1404 ubuntu1604).each do |target_env|
       # change directory to docker/ubuntuxxxx:
       cd "images/docker/#{target_env}/" do
         # If the modified files include "Dockerfile" and the docker image exists:
@@ -80,7 +80,8 @@ namespace :ci do
     cd 'images/vagrant/' do
       cmds = [
         'packer build -only=virtualbox-iso ubuntu-12.04-amd64.json',
-        'packer build -only=virtualbox-iso ubuntu-14.04-amd64.json'
+        'packer build -only=virtualbox-iso ubuntu-14.04-amd64.json',
+        'packer build -only=virtualbox-iso ubuntu-16.04-amd64.json'
       ]
 
       Parallel.each(cmds, in_threads: 2) do |cmd|
