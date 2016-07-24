@@ -37,24 +37,27 @@ namespace :ci do
     end
 
     # building the docker images:
+    CACHE_DIR = "/home/ubuntu/docker"
+    sh "mkdir -p #{CACHE_DIR}"
+
     %w(ubuntu1204 ubuntu1404 ubuntu1604).each do |target_env|
       # change directory to docker/ubuntuxxxx:
       cd "images/docker/#{target_env}/" do
         # If the modified files include "Dockerfile" and the docker image exists:
-        if modified_files.include?('Dockerfile') && File.exist?("../#{target_env}.tar")
+        if modified_files.include?('Dockerfile') && File.exist?("#{CACHE_DIR}/#{target_env}.tar")
           # Delete the docker image:
-          File.unlink("../#{target_env}.tar")
+          File.unlink("#{CACHE_DIR}/#{target_env}.tar")
         end
 
         # If the docker image exists:
-        if File.exist?("../#{target_env}.tar")
+        if File.exist?("#{CACHE_DIR}/#{target_env}.tar")
           # Load it:
-          sh "docker load --input ../#{target_env}.tar"
+          sh "docker load --input #{CACHE_DIR}/#{target_env}.tar"
 
           # otherwise build the docker image:
         else
           sh "docker build -t kazu634:#{target_env} --rm=true --no-cache=true ."
-          sh "docker save -o ../#{target_env}.tar kazu634:#{target_env}"
+          sh "docker save -o #{CACHE_DIR}/#{target_env}.tar kazu634:#{target_env}"
         end
       end
     end
