@@ -1,6 +1,6 @@
 require 'serverspec'
 
-set :backend,  :exec
+set :backend, :exec
 
 describe package('monit') do
   it { should be_installed }
@@ -22,6 +22,6 @@ when os[:release].to_f < 16.04
     its(:md5sum) { should eq 'b8ac9f6d996a2ebf75ada70e8a8f2ccb' }
   end
 
-when os[:release].to_f ==  16.04
+when os[:release].to_f == 16.04
   # do nothing
 end
