@@ -58,7 +58,7 @@ script 'Language Settings' do
 
   code <<-EOH
   locale-gen ja_JP.UTF-8
-  dpkg-reconfigure locales
+  dpkg-reconfigure --frontend=noninteractive locales
   update-locale LANG=ja_JP.UTF-8
   EOH
 
