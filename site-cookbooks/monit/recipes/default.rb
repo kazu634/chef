@@ -24,25 +24,31 @@ cookbook_file '/etc/monit/monitrc' do
   notifies :reload, 'service[monit]'
 end
 
-template '/etc/init/monit.conf' do
-  source 'monit.conf.erb'
-  mode 0644
-  owner 'root'
-  group 'root'
+case
+when node['platform_version'].to_f < 16.04
+  template '/etc/init/monit.conf' do
+    source 'monit.conf.erb'
+    mode 0644
+    owner 'root'
+    group 'root'
 
-  notifies :run, 'script[initctl reload-configuration]'
-end
+    notifies :run, 'script[initctl reload-configuration]'
+  end
 
-script 'initctl reload-configuration' do
-  interpreter 'bash'
+  script 'initctl reload-configuration' do
+    interpreter 'bash'
 
-  user 'root'
-  group 'root'
+    user 'root'
+    group 'root'
 
-  code <<-EOH
-  /etc/init.d/monit stop && update-rc.d -f monit remove
-  initctl reload-configuration
-  EOH
+    code <<-EOH
+    /etc/init.d/monit stop && update-rc.d -f monit remove
+    initctl reload-configuration
+    EOH
 
-  action :nothing
+    action :nothing
+  end
+
+when node['platform_version'].to_f < 16.04
+  # do nothing
 end
