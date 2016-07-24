@@ -14,8 +14,7 @@ dependencies:
 
   cache_directories:
     - "cookbooks"
-    - "docker/ubuntu1204.tar"
-    - "docker/ubuntu1404.tar"
+    - "~/docker"
 
 test:
   override:
