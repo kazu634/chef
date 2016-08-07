@@ -64,4 +64,9 @@ if node['blog']['production']
 
     variables fqdn: node['blog']['FQDN']
   end
+
+  link '/etc/nginx/sites-enabled/blog' do
+    to '/etc/nginx/sites-available/blog'
+    notifies :restart, 'service[nginx]'
+  end
 end

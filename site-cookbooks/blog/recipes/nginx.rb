@@ -16,11 +16,6 @@ template '/etc/nginx/sites-available/blog' do
   variables fqdn: node['blog']['FQDN']
 end
 
-link '/etc/nginx/sites-enabled/blog' do
-  to '/etc/nginx/sites-available/blog'
-  notifies :restart, 'service[nginx]'
-end
-
 directory '/var/www/blog' do
   owner 'www-data'
   group 'webadm'
