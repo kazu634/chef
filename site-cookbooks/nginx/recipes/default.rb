@@ -9,12 +9,13 @@
 
 include_recipe 'apt'
 include_recipe 'build-essential'
-include_recipe 'monit'
+include_recipe 'monit' if node['platform_version'].to_f < 16.04
 
 include_recipe 'nginx::kernel'
 
 include_recipe 'nginx::build'
-
 include_recipe 'nginx::setup'
+
+include_recipe 'nginx::respawn'
 
 include_recipe 'nginx::letsencrypt'
