@@ -1,16 +1,12 @@
 require 'serverspec'
 
-set :backend,  :exec
+set :backend, :exec
 
 describe file('/etc/nginx/sites-available/blog') do
   it { should be_file }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
   it { should be_mode 644 }
-end
-
-describe file('/etc/nginx/sites-enabled/blog') do
-  it { should be_linked_to '/etc/nginx/sites-available/blog' }
 end
 
 describe file('/var/www/blog') do

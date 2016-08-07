@@ -47,15 +47,13 @@ end
   end
 end
 
-link '/etc/nginx/sites-enabled/maintenance' do
-  to '/etc/nginx/sites-available/maintenance'
+link '/etc/nginx/sites-enabled/default' do
+  to '/etc/nginx/sites-available/default'
   owner 'root'
   group 'root'
   mode 0644
 
   notifies :restart, 'service[nginx]'
-
-  not_if { File.exist?('/etc/nginx/sites-enabled/maintenance') || File.exist?('/etc/nginx/sites-enabled/default') }
 end
 
 cookbook_file '/etc/logrotate.d/nginx' do
