@@ -1,6 +1,6 @@
 require 'serverspec'
 
-set :backend,  :exec
+set :backend, :exec
 
 %w( body fastcgi proxy scgi uwsgi ).each do |d|
   describe file("/var/lib/nginx/#{d}") do

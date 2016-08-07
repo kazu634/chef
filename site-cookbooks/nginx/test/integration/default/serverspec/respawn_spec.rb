@@ -1,6 +1,6 @@
 require 'serverspec'
 
-set :backend,  :exec
+set :backend, :exec
 
 case os[:release].to_f
 when 16.04
