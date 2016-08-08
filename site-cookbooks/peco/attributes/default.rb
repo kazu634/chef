@@ -1,5 +1,5 @@
 # default values:
 
-default['peco']['version'] = '0.3.2'
-default['peco']['url']     = "https://github.com/peco/peco/releases/download/v#{node['peco']['version']}/peco_linux_amd64.tar.gz"
+default['peco']['url']     = 'https://github.com/peco/peco/releases/download/'
+default['peco']['tarball'] = 'peco_linux_amd64.tar.gz'
 default['peco']['prefix']  = '/usr/local'
