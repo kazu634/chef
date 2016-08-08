@@ -19,6 +19,11 @@ platforms:
       box: ubuntu-14.04
       box_url: ../../images/vagrant/builds/ubuntu-14.04.virtualbox.box
 
+  - name: ubuntu-16.04
+    driver:
+      box: ubuntu-16.04
+      box_url: ../../images/vagrant/builds/ubuntu-16.04.virtualbox.box
+
 suites:
   - name: default
     run_list:
