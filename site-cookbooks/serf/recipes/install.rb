@@ -21,7 +21,6 @@ end
 
 # Unzip serf binary
 execute 'unzip serf binary' do
-  user node['serf']['user']
   cwd '/opt/serf/bin/'
 
   # -q = quiet, -o = overwrite existing files
