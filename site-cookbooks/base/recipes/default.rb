@@ -50,6 +50,10 @@ end
 
 # Do not generate local configuration,
 # under `Circle CI` environment:
+package 'language-pack-ja-base' do
+  action: install
+end
+
 script 'Language Settings' do
   interpreter 'bash'
 
