@@ -9,7 +9,6 @@
     "recipe[base]",
     "recipe[monit]",
     "recipe[peco]",
-    "recipe[serf]",
     "recipe[kazu634]",
     "recipe[fluentd-custom]"
     ]}
