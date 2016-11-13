@@ -13,7 +13,7 @@ remote_file '/etc/serf/serf.json.example' do
 
   owner node['serf']['user']
   group node['serf']['group']
-  mode 00644
+  mode 0o644
 end
 
 # Download init.d script:
@@ -22,7 +22,7 @@ remote_file '/etc/init.d/serf' do
 
   owner 'root'
   group 'root'
-  mode 00755
+  mode 0o755
 end
 
 # Download upstart configuration file:
@@ -31,24 +31,23 @@ remote_file '/etc/init/serf.conf' do
 
   owner 'root'
   group 'root'
-  mode 00644
+  mode 0o644
 end
 
 # Judges if the server is a member of AWS EC2 server:
-begin
-  require 'net/http'
+require 'net/http'
 
-  uri = URI.parse('http://169.254.169.254/latest/meta-data/public-ipv4')
-  timeout(3) do
-    response = Net::HTTP.get_response(uri)
+uri = URI.parse('http://169.254.169.254/latest/meta-data/public-ipv4')
+timeout(3) do
+  response = Net::HTTP.get_response(uri)
 
+  if response.code == '200'
     AWS = true
     PUBLIC_IP = response.body
+  else
+    AWS = false
+    PUBLIC_IP = nil
   end
-
-rescue
-  AWS = false
-  PUBLIC_IP = nil
 end
 
 # Deploy the `serf` config file:
@@ -58,11 +57,12 @@ if node['serf']['manager']
 
     owner node['serf']['user']
     group node['serf']['group']
-    mode 00644
+    mode 0o644
 
     variables(
       AWS: AWS,
-      PUBLIC_IP: PUBLIC_IP)
+      PUBLIC_IP: PUBLIC_IP
+    )
 
     notifies :restart, 'service[serf]'
   end
@@ -70,10 +70,10 @@ if node['serf']['manager']
   cookbook_file '/etc/serf/handlers/handler.rb' do
     owner node['serf']['user']
     group node['serf']['group']
-    mode 00755
+    mode 0o755
   end
 
-  %w( growthforecast slack-notify ).each do |gem|
+  %w(growthforecast slack-notify).each do |gem|
     gem_package gem do
       action :upgrade
       gem_binary '/opt/chef/embedded/bin/gem'
@@ -85,11 +85,12 @@ else
 
     owner node['serf']['user']
     group node['serf']['group']
-    mode 00644
+    mode 0o644
 
     variables(
       AWS: AWS,
-      PUBLIC_IP: PUBLIC_IP)
+      PUBLIC_IP: PUBLIC_IP
+    )
 
     notifies :restart, 'service[serf]'
   end
