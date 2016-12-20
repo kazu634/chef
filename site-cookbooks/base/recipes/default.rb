@@ -20,6 +20,7 @@ include_recipe 'base::collect_performance'
 include_recipe 'base::kernel'
 include_recipe 'base::iptables'
 include_recipe 'base::unnecessary'
+include_recipe 'base::aws-ec2'
 
 # only install amd64 package
 # http://d.hatena.ne.jp/ritchey/20121229
