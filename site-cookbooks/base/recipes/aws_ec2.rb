@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if !node[:ec2].nil? && node[:ec2][:instance_type] =~ /^t2.(micro|nano)/
+if !node['ec2'].nil? && node['ec2']['instance_type'] =~ /^t2.(micro|nano)/
   bash 'create swapfile' do
     user 'root'
     code <<-EOC
