@@ -20,6 +20,7 @@ include_recipe 'base::collect_performance'
 include_recipe 'base::kernel'
 include_recipe 'base::iptables'
 include_recipe 'base::unnecessary'
+include_recipe 'base::aws_ec2'
 
 # only install amd64 package
 # http://d.hatena.ne.jp/ritchey/20121229
@@ -43,7 +44,7 @@ when 'ubuntu'
       source 'multiarch'
       owner 'root'
       group 'root'
-      mode 0644
+      mode 0o644
     end
   end
 end
@@ -72,7 +73,7 @@ end
 directory '/etc/sudoers.d' do
   owner 'root'
   group 'root'
-  mode 0755
+  mode 0o755
 
   not_if 'test -e /etc/sudoers.d'
 end
@@ -84,7 +85,7 @@ remote_file '/etc/motd.tail' do
   owner 'root'
   group 'root'
 
-  mode 0644
+  mode 0o644
 end
 
 cookbook_file '/etc/update-motd.d/99-motd-update' do
@@ -93,7 +94,7 @@ cookbook_file '/etc/update-motd.d/99-motd-update' do
   owner 'root'
   group 'root'
 
-  mode 0755
+  mode 0o755
 
   only_if { node['platform_version'].to_f >= 14.04 }
 end
