@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if not node[:ec2].nil? and node[:ec2][:instance_type] =~ /^t2.(micro|nano)/
+if !node[:ec2].nil? && node[:ec2][:instance_type] =~ /^t2.(micro|nano)/
   bash 'create swapfile' do
     user 'root'
     code <<-EOC
@@ -15,7 +15,7 @@ if not node[:ec2].nil? and node[:ec2][:instance_type] =~ /^t2.(micro|nano)/
     chmod 600 /swap.img
     mkswap /swap.img
     EOC
-    only_if "test ! -f /swap.img -a `cat /proc/swaps | wc -l` -eq 1"
+    only_if 'test ! -f /swap.img -a `cat /proc/swaps | wc -l` -eq 1'
   end
 
   mount '/dev/null' do # swap file entry for fstab
@@ -26,6 +26,6 @@ if not node[:ec2].nil? and node[:ec2][:instance_type] =~ /^t2.(micro|nano)/
 
   bash 'activate swap' do
     code 'swapon -ae'
-    only_if "test `cat /proc/swaps | wc -l` -eq 1"
+    only_if 'test `cat /proc/swaps | wc -l` -eq 1'
   end
 end
