@@ -6,3 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+include_recipe 'consul::prerequisites'
+
+include_recipe 'consul::install'
+
+include_recipe 'consul::setup'
