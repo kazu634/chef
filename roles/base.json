@@ -7,6 +7,7 @@
   "chef_type":"role",
   "run_list":[
     "recipe[base]",
+    "recipe[consul]",
     "recipe[monit]",
     "recipe[peco]",
     "recipe[kazu634]",
