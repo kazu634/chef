@@ -16,6 +16,5 @@
     "recipe[peco]",
     "recipe[serf]",
     "recipe[kazu634]",
-    "recipe[fluentd-custom]",
-    "recipe[omnibus_updater]"
+    "recipe[fluentd-custom]"
     ]}
