@@ -12,5 +12,6 @@ include_recipe 'consul::prerequisites'
 include_recipe 'consul::install'
 
 include_recipe 'consul::setup'
+include_recipe 'consul::dnsmasq'
 
 include_recipe 'consul::monitoring'

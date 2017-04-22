@@ -12,6 +12,11 @@ package 'unzip' do
   action :install
 end
 
+# Install `dnsmasq`:
+package 'dnsmasq' do
+  action :install
+end
+
 # Create consul user/group
 group node['consul']['group'] do
   action :create
