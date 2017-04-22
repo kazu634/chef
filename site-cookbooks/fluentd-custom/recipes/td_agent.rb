@@ -85,6 +85,17 @@ if node['td_agent']['forward']
     notifies :restart, 'service[td-agent]'
   end
 
+  # deploy the configuration file for `consul`:
+  template '/etc/consul.d/service-td-agent.json' do
+    source 'service-td-agent.json'
+
+    owner '_consul'
+    group '_consul'
+
+    mode 0o644
+
+    notifies :restart, 'service[consul]'
+  end
   # include the `iptables` cookbook
   include_recipe 'iptables'
 

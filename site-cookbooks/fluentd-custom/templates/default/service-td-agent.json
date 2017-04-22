@@ -1,0 +1,6 @@
+{
+  "service": {
+    "name": "td-agent",
+    "port": 24224
+  }
+}
