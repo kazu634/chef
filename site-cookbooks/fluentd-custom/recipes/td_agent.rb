@@ -42,14 +42,6 @@ cookbook_file '/etc/monit/conf.d/td-agent.conf' do
   notifies :restart, 'service[monit]'
 end
 
-# Enable `td-agent` to read the logs which cannot be opened by td-agent user.
-bash 'Execute td-agent as a root' do
-  user 'root'
-  code <<-EOH
-  sed -i 's/USER=td-agent/USER=root/' /etc/init.d/td-agent
-  EOH
-end
-
 ###################
 # The Client part #
 ###################
