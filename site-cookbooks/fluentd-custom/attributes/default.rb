@@ -4,5 +4,4 @@ default['td_agent']['version']      = '2'
 default['td_agent']['forward']      = false
 default['td_agent']['base']         = true
 
-# domain configuration
-default['fluentd-custom']['role'] = 'primary'
+default['td_agent']['role'] = 'primary'
