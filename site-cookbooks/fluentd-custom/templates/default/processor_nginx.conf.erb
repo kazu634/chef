@@ -1,0 +1,22 @@
+######################
+# Receive nginx logs #
+######################
+
+<match fwd.raw.nginx>
+  @type s3
+  aws_key_id <%= @aws_key_id %>
+  aws_sec_key <%= @aws_sec_key %>
+
+  s3_bucket kazu634-logfiles
+  s3_region ap-northeast-1
+  path nginx/
+  buffer_path /fluentd/log/s3*.log.buffer
+
+  format ltsv
+
+  time_slice_format %Y%m%d%H
+  time_slice_wait 10m
+  utc
+
+  buffer_chunk_limit 256m
+</match>

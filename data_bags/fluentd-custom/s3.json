@@ -1,0 +1,15 @@
+{
+  "id": "s3",
+  "aws_key_id": {
+    "encrypted_data": "HCvl95o+JPPejsyAsZAcpYnV1qhL/UXo5abGGHsfAOQQUcFGCzIsawYrwhEv\nlE10\n",
+    "iv": "m5drOYRpW/SYj5ypOLat/g==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "aws_sec_key": {
+    "encrypted_data": "AVJITp1KVbSTmW7p/gzSmnmwUNpbUkUvh6XrhRJioKIBrYPit2/cxycSinGs\nBSSQLA7KaSAWhaTgg5iqgi9ByQ==\n",
+    "iv": "2RPGBI1/F5+0Dg+0gOJM3g==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}
