@@ -8,7 +8,7 @@
 #
 
 # Install prerequisite gems
-%w( fluent-plugin-s3 ).each do |pkg|
+%w(fluent-plugin-s3).each do |pkg|
   td_agent_gem pkg do
     action :upgrade
   end
@@ -21,7 +21,7 @@ cookbook_file '/etc/td-agent/conf.d/forwarder_nginx.conf' do
   owner 'root'
   group 'root'
 
-  mode 0644
+  mode 0o644
 
   notifies :restart, 'service[td-agent]'
 end
@@ -35,7 +35,7 @@ template '/etc/td-agent/conf.d/processor_nginx.conf' do
   owner 'root'
   group 'root'
 
-  mode 0644
+  mode 0o644
 
   variables(
     aws_key_id: s3_auth['aws_key_id'],

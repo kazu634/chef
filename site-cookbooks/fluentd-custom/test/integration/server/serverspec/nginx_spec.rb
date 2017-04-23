@@ -2,7 +2,7 @@ require 'serverspec'
 
 set :backend, :exec
 
-%w( fluent-plugin-s3 ).each do |pkg|
+%w(fluent-plugin-s3).each do |pkg|
   describe command("/opt/td-agent/embedded/bin/fluent-gem list | grep #{pkg}") do
     its(:exit_status) { should eq 0 }
   end
