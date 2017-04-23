@@ -48,6 +48,16 @@ group 'adm' do
   append true
 end
 
+# Deploy the hosts file:
+template '/etc/hosts' do
+  source 'hosts.erb'
+
+  owner 'root'
+  group 'root'
+
+  mode 0o644
+end
+
 ###################
 # The Client part #
 ###################
