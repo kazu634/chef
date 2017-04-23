@@ -17,7 +17,7 @@ directory '/etc/td-agent/conf.d' do
   owner 'root'
   group 'root'
 
-  mode 0755
+  mode 0o755
 end
 
 cookbook_file '/etc/td-agent/td-agent.conf' do
@@ -26,7 +26,7 @@ cookbook_file '/etc/td-agent/td-agent.conf' do
   owner 'root'
   group 'root'
 
-  mode 0644
+  mode 0o644
 
   notifies :restart, 'service[td-agent]'
 end
@@ -37,17 +37,9 @@ cookbook_file '/etc/monit/conf.d/td-agent.conf' do
   owner 'root'
   group 'root'
 
-  mode 0644
+  mode 0o644
 
   notifies :restart, 'service[monit]'
-end
-
-# Enable `td-agent` to read the logs which cannot be opened by td-agent user.
-bash 'Execute td-agent as a root' do
-  user 'root'
-  code <<-EOH
-  sed -i 's/USER=td-agent/USER=root/' /etc/init.d/td-agent
-  EOH
 end
 
 ###################
@@ -62,7 +54,7 @@ template '/etc/td-agent/conf.d/forwarder.conf' do
   owner 'root'
   group 'root'
 
-  mode 0644
+  mode 0o644
 
   not_if { node['td_agent']['forward'] }
 
@@ -82,7 +74,7 @@ if node['td_agent']['forward']
     owner 'root'
     group 'root'
 
-    mode 0644
+    mode 0o644
 
     notifies :restart, 'service[td-agent]'
   end

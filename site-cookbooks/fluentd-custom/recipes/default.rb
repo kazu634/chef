@@ -18,5 +18,3 @@ include_recipe 'fluentd-custom::slack'
 include_recipe 'fluentd-custom::monit'
 
 include_recipe 'fluentd-custom::nginx'
-
-include_recipe "fluentd-custom::dstat"

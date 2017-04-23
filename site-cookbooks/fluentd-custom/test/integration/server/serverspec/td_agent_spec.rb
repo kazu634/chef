@@ -42,17 +42,6 @@ describe file('/etc/monit/conf.d/td-agent.conf') do
   its(:md5sum) { should eq 'b540eae27614f6e3321e4c838dbda039' }
 end
 
-describe file('/etc/init.d/td-agent') do
-  it { should be_file }
-
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into 'root' }
-
-  it { should be_mode 755 }
-
-  its(:content) { should match /USER=root/ }
-end
-
 describe file('/etc/td-agent/conf.d/receiver.conf') do
   it { should be_file }
 

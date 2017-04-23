@@ -8,14 +8,7 @@
 #
 
 # Install prerequisite gems
-%w(fluent-plugin-rewrite-tag-filter
-   fluent-plugin-amplifier-filter
-   fluent-plugin-growthforecast
-   fluent-plugin-forest
-   fluent-plugin-numeric-counter
-   fluent-plugin-datacounter
-   fluent-plugin-flowcounter
-).each do |pkg|
+%w(fluent-plugin-s3).each do |pkg|
   td_agent_gem pkg do
     action :upgrade
   end
@@ -28,19 +21,26 @@ cookbook_file '/etc/td-agent/conf.d/forwarder_nginx.conf' do
   owner 'root'
   group 'root'
 
-  mode 0644
+  mode 0o644
 
   notifies :restart, 'service[td-agent]'
 end
 
 # deploy the configuration file for processing nginx logs
-cookbook_file '/etc/td-agent/conf.d/processor_nginx.conf' do
-  source 'processor_nginx.conf'
+s3_auth = Chef::EncryptedDataBagItem.load('fluentd-custom', 's3')
+
+template '/etc/td-agent/conf.d/processor_nginx.conf' do
+  source 'processor_nginx.conf.erb'
 
   owner 'root'
   group 'root'
 
-  mode 0644
+  mode 0o644
+
+  variables(
+    aws_key_id: s3_auth['aws_key_id'],
+    aws_sec_key: s3_auth['aws_sec_key']
+  )
 
   # if the node is the fluentd manager:
   only_if { node['td_agent']['forward'] }
