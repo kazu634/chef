@@ -42,6 +42,12 @@ cookbook_file '/etc/monit/conf.d/td-agent.conf' do
   notifies :restart, 'service[monit]'
 end
 
+group 'adm' do
+  action :modify
+  members 'td-agent'
+  append true
+end
+
 ###################
 # The Client part #
 ###################
