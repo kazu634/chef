@@ -10,7 +10,7 @@
   s3_bucket kazu634-logfiles
   s3_region ap-northeast-1
   path nginx/
-  buffer_path /fluentd/log/s3*.log.buffer
+  buffer_path /var/log/td-agent/buffer/s3*.log.buffer
 
   format ltsv
 
