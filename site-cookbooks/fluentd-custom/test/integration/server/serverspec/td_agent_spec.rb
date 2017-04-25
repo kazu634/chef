@@ -57,3 +57,7 @@ describe iptables do
   it { should have_rule '-A FWR -p tcp -m tcp --dport 24224 -j ACCEPT' }
   it { should have_rule '-A FWR -p udp -m udp --dport 24224 -j ACCEPT' }
 end
+
+describe user('td-agent') do
+  it { should belong_to_group 'adm' }
+end
