@@ -41,3 +41,7 @@ describe file('/etc/monit/conf.d/td-agent.conf') do
 
   its(:md5sum) { should eq 'b540eae27614f6e3321e4c838dbda039' }
 end
+
+describe user('td-agent') do
+  it { should belong_to_group 'adm' }
+end
