@@ -1,10 +1,5 @@
 {
   "name":"base",
-  "default_attributes":{
-    "omnibus_updater": {
-      "kill_chef_on_upgrade": false
-    }
-  },
   "override_attributes":{
   },
   "json_class":"Chef::Role",
@@ -16,6 +11,5 @@
     "recipe[peco]",
     "recipe[serf]",
     "recipe[kazu634]",
-    "recipe[fluentd-custom]",
-    "recipe[omnibus_updater]"
+    "recipe[fluentd-custom]"
     ]}
