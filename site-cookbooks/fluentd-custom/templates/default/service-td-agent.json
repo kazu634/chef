@@ -1,0 +1,7 @@
+{
+  "service": {
+    "name": "td-agent",
+    "tags": ["<%= node['td_agent']['role'] %>"],
+    "port": 24224
+  }
+}

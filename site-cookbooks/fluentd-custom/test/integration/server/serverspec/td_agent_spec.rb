@@ -61,3 +61,24 @@ end
 describe user('td-agent') do
   it { should belong_to_group 'adm' }
 end
+
+describe file('/etc/consul.d/service-td-agent.json') do
+  it { should be_owned_by '_consul' }
+  it { should be_grouped_into '_consul' }
+  it { should be_mode 644 }
+end
+
+describe file('/etc/td-agent/conf.d/forwarder.conf') do
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  it { should be_mode 644 }
+end
+
+describe file('/etc/hosts') do
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  it { should be_mode 644 }
+
+  its(:content) { should match /primary.td-agent.service.consul/ }
+  its(:content) { should match /backup.td-agent.service.consul/ }
+end

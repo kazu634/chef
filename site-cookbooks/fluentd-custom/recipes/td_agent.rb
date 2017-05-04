@@ -48,21 +48,24 @@ group 'adm' do
   append true
 end
 
-###################
-# The Client part #
-###################
-
-# deploy the `td-agent` configuration file for forwarding the logs,
-# only if the server is one of the clients.
-template '/etc/td-agent/conf.d/forwarder.conf' do
-  source 'forwarder.erb'
+# Deploy the hosts file:
+template '/etc/hosts' do
+  source 'hosts.erb'
 
   owner 'root'
   group 'root'
 
   mode 0o644
+end
 
-  not_if { node['td_agent']['forward'] }
+# deploy the `td-agent` configuration file for forwarding the logs,
+cookbook_file '/etc/td-agent/conf.d/forwarder.conf' do
+  source 'forwarder.conf'
+
+  owner 'root'
+  group 'root'
+
+  mode 0o644
 
   notifies :restart, 'service[td-agent]'
 end
@@ -85,6 +88,17 @@ if node['td_agent']['forward']
     notifies :restart, 'service[td-agent]'
   end
 
+  # deploy the configuration file for `consul`:
+  template '/etc/consul.d/service-td-agent.json' do
+    source 'service-td-agent.json'
+
+    owner '_consul'
+    group '_consul'
+
+    mode 0o644
+
+    notifies :restart, 'service[consul]'
+  end
   # include the `iptables` cookbook
   include_recipe 'iptables'
 
