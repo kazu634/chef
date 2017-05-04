@@ -8,6 +8,7 @@
 #
 
 include_recipe 'td-agent'
+include_recipe 'consul'
 
 ###################
 # the common part #
