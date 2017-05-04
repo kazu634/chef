@@ -58,21 +58,14 @@ template '/etc/hosts' do
   mode 0o644
 end
 
-###################
-# The Client part #
-###################
-
 # deploy the `td-agent` configuration file for forwarding the logs,
-# only if the server is one of the clients.
-template '/etc/td-agent/conf.d/forwarder.conf' do
-  source 'forwarder.erb'
+cookbook_file '/etc/td-agent/conf.d/forwarder.conf' do
+  source 'forwarder.conf'
 
   owner 'root'
   group 'root'
 
   mode 0o644
-
-  not_if { node['td_agent']['forward'] }
 
   notifies :restart, 'service[td-agent]'
 end
