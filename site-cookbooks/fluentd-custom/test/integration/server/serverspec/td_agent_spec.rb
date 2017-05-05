@@ -50,7 +50,7 @@ describe file('/etc/td-agent/conf.d/receiver.conf') do
 
   it { should be_mode 644 }
 
-  its(:md5sum) { should eq '670ce5197a54ef67374279cb8067b89d' }
+  its(:md5sum) { should eq '72e43665e78a5f49195e6c23045c342f' }
 end
 
 describe iptables do
