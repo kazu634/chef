@@ -25,3 +25,5 @@ include_recipe 'fluentd-custom::auth'
 include_recipe 'fluentd-custom::consul'
 
 include_recipe 'fluentd-custom::cron-apt'
+
+include_recipe 'fluentd-custom::dpkg'
