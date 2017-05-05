@@ -1,25 +1,41 @@
-<match notification.**>
-  type forest
-  subtype copy
+<label @notify>
+  <match monit consul>
+    @type copy
 
-  <template>
     <store>
-      type slack
-      webhook_url <%= @webhook_url %>
+      @type slack
+      webhook_url https://hooks.slack.com/services/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
       team kazu634
       channel %23ops
       username kazu-chan
-      color ${tag_parts[1]}
+      color danger
       icon_emoji :honeybee:
-      buffer_path /var/log/td-agent/buffer/notification_${tag_parts[1]}_${tag_parts[2]}_buffer*.buffer
       flush_interval 60s
     </store>
 
     <store>
-      type file
-      path /tmp/notificaiton.log
-      buffer_type file
-      buffer_path /var/log/td-agent/buffer/notification_${tag_parts[1]}_${tag_parts[2]}_*.buffer
+      @type file
+      path /tmp/notify-monit-consul.log
     </store>
-  </template>
-</match>
+  </match>
+
+  <match **>
+    @type copy
+
+    <store>
+      @type slack
+      webhook_url https://hooks.slack.com/services/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
+      team kazu634
+      channel %23ops
+      username kazu-chan
+      color good
+      icon_emoji :honeybee:
+      flush_interval 60s
+    </store>
+
+    <store>
+      @type file
+      path /tmp/notify-others.log
+    </store>
+  </match>
+</label>
