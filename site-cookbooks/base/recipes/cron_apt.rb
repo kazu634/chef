@@ -16,7 +16,7 @@ cookbook_file '/etc/cron-apt/config' do
 
   owner 'root'
   group 'root'
-  mode 0644
+  mode 0o644
 end
 
 cookbook_file '/etc/cron-apt/action.d/3-download' do
@@ -24,7 +24,7 @@ cookbook_file '/etc/cron-apt/action.d/3-download' do
 
   owner 'root'
   group 'root'
-  mode 0644
+  mode 0o644
 end
 
 script 'Generate /etc/apt/security.sources.list' do
@@ -38,4 +38,29 @@ script 'Generate /etc/apt/security.sources.list' do
   EOH
 
   not_if 'test -s /etc/apt/security.sources.list'
+end
+
+script 'Put dummy log files' do
+  interpreter 'bash'
+
+  user 'root'
+  group 'root'
+
+  code <<-EOH
+    touch /var/log/cron-apt/log
+    echo foo | tee -a /var/log/cron-apt/log
+  EOH
+
+  not_if { File.exist?('/var/log/cron-apt/log') }
+end
+
+script 'Explicitly rotate the log file' do
+  interpreter 'bash'
+
+  user 'root'
+  group 'root'
+
+  code <<-EOH
+    /usr/sbin/logrotate -f /etc/logrotate.d/cron-apt
+  EOH
 end
