@@ -6,6 +6,6 @@ DEBUG="verbose"
 
 MAILON=""
 
-APTCOMMAND=/usr/bin/aptitude
+APTCOMMAND=/usr/bin/apt
 
 OPTIONS="-o quiet=1 -o Dir::Etc::SourceList=/etc/apt/security.sources.list"
