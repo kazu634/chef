@@ -11,6 +11,7 @@
 cookbook_file '/lib/systemd/system/consul.service' do
   owner 'root'
   group 'root'
+
   mode 0o755
 end
 
@@ -18,6 +19,7 @@ end
 cookbook_file '/etc/default/consul' do
   owner 'root'
   group 'root'
+
   mode 0o644
 end
 
@@ -25,6 +27,7 @@ end
 cookbook_file '/etc/rsyslog.d/22-consul.conf' do
   owner 'root'
   group 'root'
+
   mode 0o644
 
   notifies :run, 'bash[Restart rsyslogd]', :immediately
@@ -53,8 +56,9 @@ template '/etc/consul.d/config.json' do
 end
 
 cookbook_file '/etc/consul.d/service-consul.json' do
-  owner 'root'
-  group 'root'
+  owner node['consul']['user']
+  group node['consul']['group']
+
   mode 0o644
 
   only_if { node['consul']['manager'] }
