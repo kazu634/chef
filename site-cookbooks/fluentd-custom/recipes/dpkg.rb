@@ -1,15 +1,15 @@
 #
 # Cookbook Name:: fluentd-custom
-# Recipe:: monit
+# Recipe:: dpkg
 #
 # Copyright 2014, YOUR_COMPANY_NAME
 #
 # All rights reserved - Do Not Redistribute
 #
 
-# deploy the configuration file for monitoring /var/log/monit.log
-cookbook_file '/etc/td-agent/conf.d/forwarder_monit.conf' do
-  source 'forwarder_monit.conf'
+# deploy the configuration file for monitoring /var/log/dpkg.log
+cookbook_file '/etc/td-agent/conf.d/forwarder_dpkg.conf' do
+  source 'forwarder_dpkg.conf'
 
   owner 'root'
   group 'root'

@@ -1,15 +1,15 @@
 #
 # Cookbook Name:: fluentd-custom
-# Recipe:: monit
+# Recipe:: cron-apt
 #
 # Copyright 2014, YOUR_COMPANY_NAME
 #
 # All rights reserved - Do Not Redistribute
 #
 
-# deploy the configuration file for monitoring /var/log/monit.log
-cookbook_file '/etc/td-agent/conf.d/forwarder_monit.conf' do
-  source 'forwarder_monit.conf'
+# deploy the configuration file for monitoring /var/log/cron-apt/log
+cookbook_file '/etc/td-agent/conf.d/forwarder_cron-apt.conf' do
+  source 'forwarder_cron-apt.conf'
 
   owner 'root'
   group 'root'

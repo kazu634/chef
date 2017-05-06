@@ -2,7 +2,7 @@ require 'serverspec'
 
 set :backend, :exec
 
-describe file('/etc/td-agent/conf.d/forwarder_aptitude.conf') do
+describe file('/etc/td-agent/conf.d/forwarder_consul.conf') do
   it { should be_file }
 
   it { should be_owned_by 'root' }
