@@ -1,6 +1,6 @@
 require 'serverspec'
 
-set :backend,  :exec
+set :backend, :exec
 
 describe package('cron-apt') do
   it { should be_installed }
@@ -32,4 +32,12 @@ describe file('/etc/apt/security.sources.list') do
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
   it { should be_mode 644 }
+end
+
+describe file('/var/log/cron-apt/log') do
+  it { should be_file }
+
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'adm' }
+  it { should be_mode 640 }
 end
