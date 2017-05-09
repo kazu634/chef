@@ -1,0 +1,9 @@
+{
+  "check": {
+    "id": "reboot-required",
+    "name": "Check for Reboot Required",
+    "script": "/usr/lib/nagios/plugins/check_file.sh /var/run/reboot-required",
+    "interval": "86400s",
+    "timeout": "10s"
+  }
+}

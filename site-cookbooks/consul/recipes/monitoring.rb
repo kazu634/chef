@@ -14,8 +14,18 @@ package 'nagios-plugins' do
   options '--no-install-recommends'
 end
 
+# Deploy the check-file script:
+cookbook_file '/usr/lib/nagios/plugins/check_file' do
+  source 'check_file'
+  owner 'root'
+  group 'root'
+  mode 0o555
+
+  notifies :reload, 'service[consul]'
+end
+
 # Deploy `consul` monitoring config file:
-%w(disk load ssh swap).each do |target|
+%w(disk load ssh swap reboot-required).each do |target|
   cookbook_file "/etc/consul.d/check-#{target}.json" do
     owner node['consul']['user']
     group node['consul']['group']
