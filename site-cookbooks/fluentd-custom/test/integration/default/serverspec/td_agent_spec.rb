@@ -60,3 +60,9 @@ describe file('/etc/hosts') do
   its(:content) { should match /primary.td-agent.service.consul/ }
   its(:content) { should match /backup.td-agent.service.consul/ }
 end
+
+describe file('/etc/td-agent/conf.d/forwarder_td-agent.conf') do
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  it { should be_mode 644 }
+end
