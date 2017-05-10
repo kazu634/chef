@@ -1,3 +1,4 @@
 site :opscode
 
+cookbook 'monit', path: '../monit'
 metadata

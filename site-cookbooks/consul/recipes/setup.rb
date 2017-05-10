@@ -48,21 +48,33 @@ end
 template '/etc/consul.d/config.json' do
   source 'consul.json.erb'
 
-  owner node['consul']['user']
-  group node['consul']['group']
+  owner 'root'
+  group 'root'
   mode 0o644
 
   notifies :restart, 'service[consul]'
 end
 
 cookbook_file '/etc/consul.d/service-consul.json' do
-  owner node['consul']['user']
-  group node['consul']['group']
+  owner 'root'
+  group 'root'
 
   mode 0o644
 
   only_if { node['consul']['manager'] }
   notifies :restart, 'service[consul]'
+end
+
+# Monit integration:
+include_recipe 'monit'
+
+cookbook_file '/etc/monit/conf.d/consul.conf' do
+  owner 'root'
+  group 'root'
+
+  mode 0o644
+
+  notifies :restart, 'service[monit]'
 end
 
 # Start `consul` service

@@ -17,22 +17,11 @@ package 'dnsmasq' do
   action :install
 end
 
-# Create consul user/group
-group node['consul']['group'] do
-  action :create
-end
-
-user node['consul']['user'] do
-  gid node['consul']['group']
-  system true
-  home '/nonexistent'
-end
-
 # `consul`-related paths:
 %w(/etc/consul.d /var/opt/consul /opt/consul/bin).each do |d|
   directory d do
-    owner node['consul']['user']
-    group node['consul']['group']
+    owner 'root'
+    group 'root'
 
     mode 0o755
 

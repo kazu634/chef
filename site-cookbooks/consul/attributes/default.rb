@@ -1,6 +1,3 @@
-default['consul']['user']  = '_consul'
-default['consul']['group'] = '_consul'
-
 default['consul']['base_binary_url'] = 'https://releases.hashicorp.com/consul/'
 default['consul']['arch']            = \
   node['kernel']['machine'] =~ /x86_64/ ? 'amd64' : '386'

@@ -35,8 +35,8 @@ end
 remote_file node['consul']['tmp_path'] do
   source download_url
 
-  owner node['consul']['user']
-  group node['consul']['group']
+  owner 'root'
+  group 'root'
   mode 0o0644
 
   action :create_if_missing
@@ -54,8 +54,8 @@ execute 'unzip consul binary' do
 end
 
 file '/opt/consul/bin/consul' do
-  owner node['consul']['user']
-  group node['consul']['group']
+  owner 'root'
+  group 'root'
 
   mode 0o0755
 end
