@@ -71,6 +71,18 @@ cookbook_file '/etc/td-agent/conf.d/forwarder.conf' do
   notifies :restart, 'service[td-agent]'
 end
 
+# deploy the `td-agent` configuration file for monitoring `td-agent` logs
+cookbook_file '/etc/td-agent/conf.d/forwarder_td-agent.conf' do
+  source 'forwarder_td-agent.conf'
+
+  owner 'root'
+  group 'root'
+
+  mode 0o644
+
+  notifies :restart, 'service[td-agent]'
+end
+
 ####################
 # The Manager part #
 ####################

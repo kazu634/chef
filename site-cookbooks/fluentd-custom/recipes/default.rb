@@ -14,7 +14,6 @@ include_recipe 'fluentd-custom::processor'
 
 include_recipe 'fluentd-custom::aptitude'
 include_recipe 'fluentd-custom::auth'
-include_recipe 'fluentd-custom::consul'
 include_recipe 'fluentd-custom::cron_apt'
 include_recipe 'fluentd-custom::monit'
 include_recipe 'fluentd-custom::nginx'
