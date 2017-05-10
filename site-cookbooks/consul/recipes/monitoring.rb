@@ -27,8 +27,8 @@ end
 # Deploy `consul` monitoring config file:
 %w(disk load ssh swap reboot-required).each do |target|
   cookbook_file "/etc/consul.d/check-#{target}.json" do
-    owner node['consul']['user']
-    group node['consul']['group']
+    owner 'root'
+    group 'root'
 
     mode 0o644
 

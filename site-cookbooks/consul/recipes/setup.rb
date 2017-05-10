@@ -48,16 +48,16 @@ end
 template '/etc/consul.d/config.json' do
   source 'consul.json.erb'
 
-  owner node['consul']['user']
-  group node['consul']['group']
+  owner 'root'
+  group 'root'
   mode 0o644
 
   notifies :restart, 'service[consul]'
 end
 
 cookbook_file '/etc/consul.d/service-consul.json' do
-  owner node['consul']['user']
-  group node['consul']['group']
+  owner 'root'
+  group 'root'
 
   mode 0o644
 
