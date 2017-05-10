@@ -1,2 +1,2 @@
 GOMAXPROCS=2
-OPTIONS=""
+OPTIONS="-pid-file /var/run/consul.pid"
