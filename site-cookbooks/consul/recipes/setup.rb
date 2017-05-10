@@ -65,6 +65,18 @@ cookbook_file '/etc/consul.d/service-consul.json' do
   notifies :restart, 'service[consul]'
 end
 
+# Monit integration:
+include_recipe 'monit'
+
+cookbook_file '/etc/monit/conf.d/consul.conf' do
+  owner 'root'
+  group 'root'
+
+  mode 0o644
+
+  notifies :restart, 'service[monit]'
+end
+
 # Start `consul` service
 service 'consul' do
   supports status: true, restart: true, reload: true
