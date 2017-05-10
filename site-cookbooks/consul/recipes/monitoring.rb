@@ -38,7 +38,7 @@ remote_file '/usr/lib/nagios/plugins/check_memory' do
 end
 
 # Deploy `consul` monitoring config file:
-%w(disk load ssh swap reboot-required).each do |target|
+%w(disk load ssh swap reboot-required memory).each do |target|
   cookbook_file "/etc/consul.d/check-#{target}.json" do
     owner 'root'
     group 'root'
