@@ -63,8 +63,8 @@ describe user('td-agent') do
 end
 
 describe file('/etc/consul.d/service-td-agent.json') do
-  it { should be_owned_by '_consul' }
-  it { should be_grouped_into '_consul' }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
   it { should be_mode 644 }
 end
 

@@ -105,8 +105,8 @@ if node['td_agent']['forward']
   template '/etc/consul.d/service-td-agent.json' do
     source 'service-td-agent.json'
 
-    owner '_consul'
-    group '_consul'
+    owner 'root'
+    group 'root'
 
     mode 0o644
 
