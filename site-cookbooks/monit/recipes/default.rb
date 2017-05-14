@@ -24,8 +24,7 @@ cookbook_file '/etc/monit/monitrc' do
   notifies :reload, 'service[monit]'
 end
 
-case
-when node['platform_version'].to_f < 16.04
+if node['platform_version'].to_f < 16.04
   template '/etc/init/monit.conf' do
     source 'monit.conf.erb'
     mode 0o644
@@ -49,7 +48,7 @@ when node['platform_version'].to_f < 16.04
     action :nothing
   end
 
-when node['platform_version'].to_f < 16.04
+elsif node['platform_version'].to_f == 16.04
   cookbook_file '/etc/default/monit' do
     source 'monit'
     mode 0o644
