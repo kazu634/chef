@@ -24,8 +24,21 @@ cookbook_file '/usr/lib/nagios/plugins/check_file' do
   notifies :reload, 'service[consul]'
 end
 
+# Deploy the check_memory script:
+package 'bc' do
+  action :install
+end
+
+remote_file '/usr/lib/nagios/plugins/check_memory' do
+  source 'https://raw.githubusercontent.com/zwindler/check_mem_ng/master/check_mem_ng.sh'
+
+  owner 'root'
+  group 'root'
+  mode 0o555
+end
+
 # Deploy `consul` monitoring config file:
-%w(disk load ssh swap reboot-required).each do |target|
+%w(disk load ssh swap reboot-required memory).each do |target|
   cookbook_file "/etc/consul.d/check-#{target}.json" do
     owner 'root'
     group 'root'
