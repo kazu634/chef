@@ -28,7 +28,7 @@ describe file('/etc/td-agent/td-agent.conf') do
 
   it { should be_mode 644 }
 
-  its(:md5sum) { should eq '19ed229ade1c3ed11be7835982d40847' }
+  its(:md5sum) { should eq 'fbca8726eb307de22c011a3c292dc438' }
 end
 
 describe file('/etc/monit/conf.d/td-agent.conf') do
