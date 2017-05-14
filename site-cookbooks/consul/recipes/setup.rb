@@ -12,7 +12,7 @@ cookbook_file '/lib/systemd/system/consul.service' do
   owner 'root'
   group 'root'
 
-  mode 0o755
+  mode 0o644
 end
 
 # Deploy default configuration file:
