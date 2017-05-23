@@ -3,7 +3,7 @@
   <% if node['consul']['manager'] %>
   "bootstrap_expect": 3,
   <% end %>
-  "bind_addr": "0.0.0.0",
+  "bind_addr": "<%= node['ipaddress'] %>",
   "disable_update_check": true,
   "retry_interval": "30s",
   "data_dir": "/var/opt/consul",
