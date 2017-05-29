@@ -7,41 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# Deploy `systemd` script:
-cookbook_file '/lib/systemd/system/consul.service' do
-  owner 'root'
-  group 'root'
+# Deploy the `supervisor` config file:
+cookbook_file '/etc/supervisor/conf.d/consul.conf' do
+  source 'consul.supervisor'
 
-  mode 0o644
-end
-
-# Deploy default configuration file:
-cookbook_file '/etc/default/consul' do
-  owner 'root'
-  group 'root'
-
-  mode 0o644
-end
-
-# Deploy default `rsyslog` configuration file:
-cookbook_file '/etc/rsyslog.d/22-consul.conf' do
   owner 'root'
   group 'root'
 
   mode 0o644
 
-  notifies :run, 'bash[Restart rsyslogd]', :immediately
-end
-
-bash 'Restart rsyslogd' do
-  code <<-EOH
-  systemctl restart rsyslog.service
-  EOH
-
-  user  'root'
-  group 'root'
-
-  action :nothing
+  notifies :restart, 'service[supervisor]'
 end
 
 # Deploy the `consul` config file:
@@ -51,8 +26,6 @@ template '/etc/consul.d/config.json' do
   owner 'root'
   group 'root'
   mode 0o644
-
-  notifies :restart, 'service[consul]'
 end
 
 cookbook_file '/etc/consul.d/service-consul.json' do
@@ -62,7 +35,6 @@ cookbook_file '/etc/consul.d/service-consul.json' do
   mode 0o644
 
   only_if { node['consul']['manager'] }
-  notifies :restart, 'service[consul]'
 end
 
 # Monit integration:
@@ -78,9 +50,13 @@ cookbook_file '/etc/monit/conf.d/consul.conf' do
 end
 
 # Start `consul` service
-service 'consul' do
-  supports status: true, restart: true, reload: true
-  action [:enable, :start]
+bash 'Reload supervisor' do
+  user 'root'
+  group 'root'
+
+  code <<-EOH
+    /usr/bin/supervisorctl update
+  EOH
 end
 
 # Configure `iptables` configuration:
