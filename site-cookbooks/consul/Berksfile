@@ -1,4 +1,5 @@
 site :opscode
 
 cookbook 'monit', path: '../monit'
+cookbook 'supervisor', path: '../supervisor'
 metadata
