@@ -8,6 +8,9 @@
 #
 
 # Make sure unzip is available to us
+include_recipe 'supervisor::default'
+
+# Make sure unzip is available to us
 package 'unzip' do
   action :install
 end

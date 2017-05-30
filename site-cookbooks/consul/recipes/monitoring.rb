@@ -21,7 +21,7 @@ cookbook_file '/usr/lib/nagios/plugins/check_file' do
   group 'root'
   mode 0o555
 
-  notifies :reload, 'service[consul]'
+  notifies :run, 'bash[Reload supervisor]'
 end
 
 # Deploy the check_memory script:
@@ -45,6 +45,6 @@ end
 
     mode 0o644
 
-    notifies :reload, 'service[consul]'
+    notifies :run, 'bash[Reload supervisor]'
   end
 end

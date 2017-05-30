@@ -50,7 +50,7 @@ execute 'unzip consul binary' do
   # -q = quiet, -o = overwrite existing files
   command "unzip -qo #{node['consul']['tmp_path']}"
 
-  notifies :restart, 'service[consul]'
+  notifies :run, 'bash[Reload supervisor]'
 end
 
 file '/opt/consul/bin/consul' do
