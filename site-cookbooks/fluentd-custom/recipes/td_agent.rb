@@ -110,7 +110,7 @@ if node['td_agent']['forward']
 
     mode 0o644
 
-    notifies :restart, 'service[consul]'
+    notifies :run, 'bash[Reload supervisor]'
   end
   # include the `iptables` cookbook
   include_recipe 'iptables'
