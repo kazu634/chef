@@ -33,6 +33,7 @@ suites:
   - name: server
     run_list:
       - recipe[fluentd-custom::default]
+      - recipe[supervisor::default]
       - recipe[base::ssh]
       - recipe[consul::default]
     attributes:
