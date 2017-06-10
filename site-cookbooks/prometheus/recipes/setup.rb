@@ -42,3 +42,8 @@ cookbook_file '/etc/supervisor/conf.d/prometheus.conf' do
 
   notifies :restart, 'service[supervisor]'
 end
+
+# Configure `iptables` configuration:
+include_recipe 'iptables'
+
+iptables_rule 'prometheus'

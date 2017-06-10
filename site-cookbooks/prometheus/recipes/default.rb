@@ -13,3 +13,4 @@ if node['prometheus']['manager']
 end
 
 include_recipe 'prometheus::node_exporter_install'
+include_recipe 'prometheus::node_exporter_setup'
