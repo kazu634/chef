@@ -7,5 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe 'prometheus::install'
-include_recipe 'prometheus::setup'
+if node['prometheus']['manager']
+  include_recipe 'prometheus::install'
+  include_recipe 'prometheus::setup'
+end
