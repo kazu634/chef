@@ -21,3 +21,6 @@ suites:
   - name: server
     run_list:
       - recipe[prometheus::default]
+    attributes:
+      prometheus:
+        manager: true
