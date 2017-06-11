@@ -31,5 +31,6 @@ scrape_configs:
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
 
-    static_configs:
-      - targets: ['localhost:9100']
+    file_sd_configs:
+      - files:
+        - '/etc/prometheus.d/targets/*.yml'
