@@ -1,0 +1,6 @@
+site :opscode
+
+cookbook 'consul', path: '../consul'
+cookbook 'monit', path: '../monit'
+cookbook 'supervisor', path: '../supervisor'
+metadata
