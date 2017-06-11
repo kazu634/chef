@@ -80,6 +80,16 @@ cookbook_file '/etc/supervisor/conf.d/prometheus.conf' do
   notifies :restart, 'service[supervisor]'
 end
 
+# Generate the Prometheus monitoring targets:
+bash 'Generate the Prometheus monitoring targets' do
+  code <<-EOH
+    /usr/bin/supervisorctl stop prometheus-targets
+    /usr/bin/supervisorctl start prometheus-targets
+  EOH
+
+  user 'root'
+end
+
 # Configure `iptables` configuration:
 include_recipe 'iptables'
 
