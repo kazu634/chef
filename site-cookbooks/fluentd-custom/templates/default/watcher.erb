@@ -39,6 +39,26 @@
     </store>
   </match>
 
+  <match apt-mirror.**>
+    @type copy
+
+    <store>
+      @type slack
+      webhook_url <%= @webhook_url %>
+      channel %23ops
+      username kazu-chan
+      color good
+      icon_emoji :honeybee:
+      message_keys log
+      flush_interval 60s
+    </store>
+
+    <store>
+      @type file
+      path /tmp/notify-apt-mirror.log
+    </store>
+  </match>
+
   <match **>
     @type copy
 
