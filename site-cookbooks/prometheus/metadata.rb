@@ -8,3 +8,4 @@ version          '0.1.0'
 
 depends 'supervisor'
 depends 'iptables'
+depends 'consul-template'

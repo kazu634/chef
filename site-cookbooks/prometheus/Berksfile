@@ -1,4 +1,5 @@
 site :opscode
 
 cookbook 'supervisor', path: '../supervisor'
+cookbook 'consul-template', path: '../consul-template'
 metadata

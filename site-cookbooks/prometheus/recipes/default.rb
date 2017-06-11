@@ -9,7 +9,10 @@
 
 if node['prometheus']['manager']
   include_recipe 'prometheus::install'
+
+  include_recipe 'consul-template::default'
   include_recipe 'prometheus::setup'
+
 end
 
 include_recipe 'prometheus::node_exporter_install'
