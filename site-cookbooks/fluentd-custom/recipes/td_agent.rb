@@ -68,6 +68,8 @@ cookbook_file '/etc/td-agent/conf.d/forwarder.conf' do
 
   mode 0o644
 
+  not_if { node['td_agent']['forward'] }
+
   notifies :restart, 'service[td-agent]'
 end
 
