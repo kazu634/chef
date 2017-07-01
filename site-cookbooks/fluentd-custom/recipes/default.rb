@@ -11,6 +11,7 @@ include_recipe 'fluentd-custom::prerequisites'
 
 include_recipe 'fluentd-custom::td_agent'
 include_recipe 'fluentd-custom::processor'
+include_recipe 'fluentd-custom::syslogs'
 
 include_recipe 'fluentd-custom::aptitude'
 include_recipe 'fluentd-custom::auth'

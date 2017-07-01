@@ -1,0 +1,4 @@
+# Port 1514, 5141, 5140 for fluentd
+-A FWR -p tcp --dport 1514 -j ACCEPT
+-A FWR -p tcp --dport 5140 -j ACCEPT
+-A FWR -p tcp --dport 5141 -j ACCEPT
