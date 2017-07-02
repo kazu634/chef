@@ -2,9 +2,15 @@
   "datacenter": "aws",
   <% if node['consul']['manager'] %>
   "bootstrap_expect": 3,
+  "addresses": {
+    "http": "0.0.0.0"
+  },
+  "ui": true,
   <% end %>
   "bind_addr": "<%= node['ipaddress'] %>",
+  "disable_remote_exec": false,
   "disable_update_check": true,
+  "leave_on_terminate": true,
   "retry_interval": "30s",
   "data_dir": "/var/opt/consul",
   "log_level": "INFO",
