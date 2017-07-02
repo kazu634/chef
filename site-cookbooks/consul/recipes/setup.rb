@@ -26,6 +26,8 @@ template '/etc/consul.d/config.json' do
   owner 'root'
   group 'root'
   mode 0o644
+
+  notifies :restart, 'service[supervisor]'
 end
 
 cookbook_file '/etc/consul.d/service-consul.json' do
