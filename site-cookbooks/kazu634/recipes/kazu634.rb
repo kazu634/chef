@@ -54,6 +54,14 @@ git 'rcfiles' do
   notifies :run, 'script[install rcfiles]'
 end
 
+git 'zplug' do
+  repo 'git://github.com/zplug/zplug.git'
+  destination '/home/kazu634/.zplug'
+  user 'kazu634'
+  group 'kazu634'
+  action :sync
+end
+
 script 'install rcfiles' do
   interpreter 'bash'
 
