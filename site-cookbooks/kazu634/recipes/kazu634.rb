@@ -54,6 +54,14 @@ git 'rcfiles' do
   notifies :run, 'script[install rcfiles]'
 end
 
+git 'zplug' do
+  repo 'git://github.com/zplug/zplug.git'
+  destination '/home/kazu634/.zplug'
+  user 'kazu634'
+  group 'kazu634'
+  action :sync
+end
+
 script 'install rcfiles' do
   interpreter 'bash'
 
@@ -75,18 +83,13 @@ cookbook_file '/etc/sudoers.d/kazu634' do
   mode '0440'
 end
 
-directory '/home/kazu634/src' do
-  owner 'kazu634'
-  group 'kazu634'
-  mode 0755
-  action :create
-end
-
-directory '/home/kazu634/tmp' do
-  owner 'kazu634'
-  group 'kazu634'
-  mode 0755
-  action :create
+%w( /home/kazu634/src /home/kazu634/tmp /home/kazu634/works /home/kazu634/.cache ).each do |d|
+  directory d do
+    owner 'kazu634'
+    group 'kazu634'
+    mode 0755
+    action :create
+  end
 end
 
 cookbook_file '/etc/cron.d/remove_tmp' do
@@ -95,13 +98,6 @@ cookbook_file '/etc/cron.d/remove_tmp' do
   owner 'root'
   group 'root'
   mode '0644'
-end
-
-directory '/home/kazu634/works' do
-  owner 'kazu634'
-  group 'kazu634'
-  mode 0755
-  action :create
 end
 
 # AWS setting

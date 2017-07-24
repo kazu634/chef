@@ -12,6 +12,10 @@ describe file('/home/kazu634/repo/dotfiles') do
   it { should be_directory }
 end
 
+describe file('/home/kazu634/repo/.zplug') do
+  it { should be_directory }
+end
+
 describe file('/etc/sudoers.d/kazu634') do
   it { should be_file }
   it { should be_owned_by 'root' }
@@ -35,6 +39,13 @@ describe file('/home/kazu634/tmp') do
 end
 
 describe file('/home/kazu634/works') do
+  it { should be_directory }
+  it { should be_owned_by 'kazu634' }
+  it { should be_grouped_into 'kazu634' }
+  it { should be_mode 755 }
+end
+
+describe file('/home/kazu634/.cache') do
   it { should be_directory }
   it { should be_owned_by 'kazu634' }
   it { should be_grouped_into 'kazu634' }
