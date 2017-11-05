@@ -1,1 +1,1 @@
-default['nginx']['version'] = '1.9.9'
+default['nginx']['version'] = '1.13.6'
