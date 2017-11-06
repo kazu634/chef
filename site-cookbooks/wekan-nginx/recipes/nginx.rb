@@ -16,7 +16,7 @@ template '/etc/nginx/sites-available/wekan-nginx' do
   variables fqdn: node['wekan-nginx']['FQDN']
 end
 
-link '/etc/nginx/sites-enabled/wekan' do
-  to '/etc/nginx/sites-available/wekan'
+link '/etc/nginx/sites-enabled/wekan-nginx' do
+  to '/etc/nginx/sites-available/wekan-nginx'
   notifies :restart, 'service[nginx]'
 end
