@@ -14,7 +14,7 @@ package 'git' do
 end
 
 git '/home/webadm/letsencrypt' do
-  repository 'https://github.com/letsencrypt/letsencrypt'
+  repository 'https://github.com/certbot/certbot'
   action :sync
   user 'webadm'
   group 'webadm'
