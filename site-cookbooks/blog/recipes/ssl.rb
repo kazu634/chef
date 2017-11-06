@@ -40,33 +40,4 @@ if node['blog']['production']
     group 'root'
     creates "/etc/letsencrypt/live/#{node['blog']['FQDN']}/ticket.key"
   end
-
-  directory '/home/webadm/bin' do
-    owner 'webadm'
-    group 'webadm'
-    mode 0755
-  end
-
-  template '/home/webadm/bin/ssl_renewal.sh' do
-    source 'ssl_renewal.sh'
-    owner 'webadm'
-    group 'webadm'
-    mode 0755
-
-    variables fqdn: node['blog']['FQDN']
-  end
-
-  template '/etc/cron.d/ssl' do
-    source 'ssl.crontab'
-    owner 'root'
-    group 'root'
-    mode 0644
-
-    variables fqdn: node['blog']['FQDN']
-  end
-
-  link '/etc/nginx/sites-enabled/blog' do
-    to '/etc/nginx/sites-available/blog'
-    notifies :restart, 'service[nginx]'
-  end
 end
