@@ -1,2 +1,0 @@
-2 2 25 */1 * root /home/webadm/bin/ssl_renewal.sh
-12 3 * * * root openssl rand 48 > /etc/letsencrypt/live/<%= @fqdn %>/ticket.key
