@@ -18,7 +18,7 @@ if node['wekan-nginx']['production']
     # Apply
     systemctl restart nginx.service
 
-    ./certbot-auto certonly --webroot -d #{node['wekan-nginx']['FQDN']} --webroot-path /usr/share/nginx/html/ --email simoom634@yahoo.co.jp --agree-tos
+    /home/webadm/letsencrypt/certbot-auto certonly --webroot -d #{node['wekan-nginx']['FQDN']} --webroot-path /usr/share/nginx/html/ --email simoom634@yahoo.co.jp --agree-tos -n
 
     # Delete config
     rm -f /etc/nginx/sites-enabled/maintenance
