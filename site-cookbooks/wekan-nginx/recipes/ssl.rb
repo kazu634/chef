@@ -36,15 +36,12 @@ if node['wekan-nginx']['production']
     creates "/etc/letsencrypt/live/#{node['wekan-nginx']['FQDN']}/"
   end
 
-  bash 'Generating DH Key Exchange Key: this will take about 7 minutes' do
-    code <<-EOS
-    openssl dhparam -out /etc/letsencrypt/live/#{node['wekan-nginx']['FQDN']}/dhparams_4096.pem 4096
-    EOS
-    user 'root'
-    group 'root'
+  cookbook_file "/etc/letsencrypt/live/#{node['wekan-nginx']['FQDN']}/dhparams_4096.pem" do
+    source 'dhparams_4096.pem'
 
-    timeout 7200
-    creates "/etc/letsencrypt/live/#{node['wekan-nginx']['FQDN']}/dhparams_4096.pem"
+    owner 'root'
+    group 'root'
+    mode 0644
   end
 
   bash 'Generating TLS Session Ticket Key' do
