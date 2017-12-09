@@ -11,14 +11,29 @@ if node['blog']['production']
   bash 'Create SSL certificate' do
     cwd '/home/webadm/letsencrypt'
     code <<-EOS
-    ./letsencrypt-auto certonly --webroot -d #{node['blog']['FQDN']} --webroot-path /usr/share/nginx/html/ --email simoom634@yahoo.co.jp --agree-tos
+    # Modify the `nginx` configuration:
+    rm -f /etc/nginx/sites-enabled/*
+    ln -s /etc/nginx/sites-available/maintenance /etc/nginx/sites-enabled/maintenance
+
+    # Apply
+    systemctl restart nginx.service
+
+    /home/webadm/letsencrypt/certbot-auto certonly --webroot -d #{node['blog']['FQDN']} --webroot-path /usr/share/nginx/html/ --email simoom634@yahoo.co.jp --agree-tos -n
+
+    # Delete config
     rm -f /etc/nginx/sites-enabled/maintenance
-    ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+    # Copy configuration
+    for conf in `find /etc/nginx/sites-available -maxdepth 1 -type f | grep -v maintenance`; do
+      tmp=`basename ${conf}`
+
+      ln -s ${conf} /etc/nginx/sites-enabled/${tmp}
+    done
     EOS
     user 'root'
     group 'root'
 
-    creates "/etc/letsencrypt/live/#{node['blog']['FQDN']}/"
+    creates "/etc/letsencrypt/live/#{node['blog']['FQDN']}/README"
   end
 
   bash 'Generating DH Key Exchange Key: this will take about 7 minutes' do
